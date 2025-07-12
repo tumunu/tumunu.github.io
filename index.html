@@ -1,34 +1,48 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>tumunu</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <meta charset="UTF-8">
+    <title>Tumunu | Digital Forensics NZ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Tumunu: Trusted digital forensics, incident response, and cyber risk consulting since 1997.">
+    <link rel="stylesheet" href="index.css">
 </head>
-<!-- Hi. How's post covid-19 treating you? Need a virtual shoulder to lean on? Reach out, and touch base. You're not alone. Stay safe. -->
-
 <body>
-    <hr />
-    <p><a name="content"></a></p>
-    <h3>Contact:</h3>
-     <pre>name:    Tumunu</pre>
-     <pre><a href="https://www.nzbn.govt.nz/">nzbn<a>:    9429044372194</pre>
-     <pre><a href="https://www.nzbn.govt.nz/">nzbn<a>:    9429043177530</pre>
-    <pre>address:    Titahi Bay
-            Porirua
-            Wellington
-            New Zealand
-    </pre>
-    <pre>address:    Tarapaku
-            Enuamanu
-            Cook Islands
-    </pre>
-    <hr />
-    <p>
-        <tt>Webs:&nbsp; <a href="https://play.google.com/store/apps/dev?id=5854985015241191036">Google Play</a> $ <!--a
-                href="https://github.com/tumunu">https://github.com/tumunu</a> $--> <a href="https://g.page/cleave-nz">Google Maps</a></tt><br>
-    </p>
-    <address>$Date: <!--2022-06-26 1:11:49-->2024-01-06 $ - $Author: TCP $</address>
+    <main>
+        <header>
+            <h1>Tumunu</h1>
+            <p class="tagline">Trusted digital forensics &amp; cyber consulting since 1997</p>
+        </header>
+        <section>
+            <ul>
+                <li>Digital forensics: evidence capture &amp; analysis</li>
+                <li>Incident response support</li>
+                <li>Cyber risk and readiness consulting</li>
+                <li>Chain-of-custody &amp; court-defensible reports</li>
+            </ul>
+        </section>
+        <section class="contact">
+            <h2>Contact</h2>
+            <pre>NZBN: <a href="https://www.nzbn.govt.nz/" target="_blank" rel="noopener">9429044372194</a></pre>
+            <pre>Location: Wellington &amp; Porirua, New Zealand<br>Enuamanu, Cook Islands</pre>
+            <pre>Email: <span id="e"></span></pre>
+            <script>
+                // Simple JS obfuscation: splits local and domain, avoids full "@" and "."
+                (function() {
+                    var u = 'project';
+                    var a = String.fromCharCode(64); // '@'
+                    var d = 'tumunu';
+                    var t = 'com';
+                    var e = u + a + d + '.' + t;
+                    var link = '<a href="mailto:' + e + '">' + e + '</a>';
+                    document.getElementById('e').innerHTML = link;
+                })();
+            </script>
+        </section>
+        <footer>
+            <hr>
+            <small>&copy; 1997–2025 Tumunu. Updated 2025-07-12.</small>
+        </footer>
+    </main>
 </body>
-
 </html>
