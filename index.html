@@ -1,104 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Tumunu | Digital Forensics NZ</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Digital forensics, incident response, and cyber risk consulting since 1997.">
-    <style>
-        body { font-family: monospace, monospace; background: #fff; color: #111; max-width: 700px; margin: 32px auto; line-height: 1.15; }
-        h1 { font-size: 2em; margin: 0 0 0.2em; }
-        .tagline { margin-bottom: 1.5em; color: #555; }
-        hr { margin: 2em 0; }
-        ul { margin: 0 0 1.5em 0; padding: 0 0 0 1.2em; }
-        section { margin-bottom: 2em; }
-        .contact pre { margin: 0.5em 0; }
-        .copy { margin: 1.2em 0 0.8em 0; }
-        small { color: #888; }
-        .step { margin-bottom: 0.8em; }
-    </style>
+  <meta charset="UTF-8">
+  <title>Tumunu | Digital Forensics NZ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Digital forensics, incident response, and cyber risk consulting since 1997.">
+  <style>
+    body { font-family: monospace, monospace; background: #fff; color: #111; max-width: 720px; margin: 32px auto; line-height: 1.22; }
+    h1, h2 { margin-bottom: 0.2em; }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.2em; }
+    section { margin-bottom: 2em; }
+    ul, ol { padding-left: 1.2em; }
+    .faq { border-top: 1px solid #ccc; margin-top: 2em; padding-top: 1.2em; }
+    small { color: #888; }
+    a { color: #005; }
+    .copy { margin-bottom: 1em; }
+    pre, code { background: #f8f8f8; padding: 0.2em 0.4em; }
+  </style>
 </head>
 <body>
 <main>
-    <header>
-        <h1>Tumunu</h1>
-        <div class="tagline">Digital forensics &amp; cyber consulting since 1997</div>
-    </header>
+  <header>
+    <h1>Tumunu</h1>
+    <div>Digital forensics &amp; cyber consulting since 1997</div>
+  </header>
 
-    <section>
-        <ul>
-            <li>Digital forensics: evidence capture &amp; analysis</li>
-            <li>Incident response support</li>
-            <li>Cyber risk and readiness consulting</li>
-            <li>Chain-of-custody &amp; court-defensible reports</li>
-        </ul>
-    </section>
+  <section>
+    <ul>
+      <li>Digital forensics: evidence capture &amp; analysis</li>
+      <li>Incident response support</li>
+      <li>Cyber risk and readiness consulting</li>
+      <li>Chain-of-custody &amp; court-defensible reports</li>
+    </ul>
+  </section>
 
-    <section>
-        <div class="copy">
-            <strong>How it works:</strong>
-        </div>
-        <div class="step">
-            <b>1. Capture:</b>  
-            You (the client) use the Tumunu Forensic Imager to create an encrypted disk image.  
-            <br>
-            <span style="color:#555;">We provide a downloadable, court-compliant tool and simple instructions. Your data never leaves your hands until encrypted and logged.</span>
-        </div>
-        <div class="step">
-            <b>2. Submit:</b>
-            For small to medium files, upload your encrypted evidence and chain-of-custody log using our one-time secure upload link.<br>
-            For large disk images, send the encrypted device to Tumunu via your preferred tracked courier. 
-            <br>
-            <span style="color:#555;">
-                For best practice, use tamper-evident packaging and keep a copy of the chain-of-custody record for your files. Full instructions and templates are provided. 
-                You are responsible for secure delivery; Tumunu will confirm receipt and note any issues.
-            </span>
-        </div>
-        <div class="step">
-            <b>3. Analysis:</b>  
-            Tumunu decrypts and analyzes your evidence in a dedicated forensic lab. Every step is documented for legal defensibility.
-        </div>
-        <div class="step">
-            <b>4. Results:</b>  
-            We provide a detailed report (PDF), summary findings, and expert support. All evidence is preserved per your instructions.
-        </div>
-    </section>
+  <section>
+    <h2>How Tumunu Works</h2>
+    <ol>
+      <li>
+        <b>Capture:</b> Use the <strong>Tumunu Forensic Imager</strong> to create an encrypted disk image.
+        <br>
+        <small>Your data remains in your hands until encrypted and logged. The tool and instructions are downloadable. No cloud dependency for imaging.</small>
+      </li>
+      <li>
+        <b>Submit:</b> Upload your encrypted evidence and chain-of-custody log via one-time secure link, or courier the encrypted device with tamper-evident packaging.
+      </li>
+      <li>
+        <b>Analysis:</b> Tumunu decrypts and analyzes your evidence in a dedicated forensic lab. Every step is documented for legal defensibility.
+      </li>
+      <li>
+        <b>Results:</b> Receive a detailed report, summary findings, and expert support. Evidence is preserved per your instructions.
+      </li>
+    </ol>
+  </section>
 
-    <section>
-        <div class="copy">
-            <strong>Why Tumunu?</strong>
-        </div>
-        <ul>
-            <li>Client-first: You control initial capture. Only Tumunu can decrypt, analyze, or report on the data.</li>
-            <li>Defensible: Full audit logs, chain-of-custody, and standards-based process.</li>
-            <li>Local &amp; independent: 25+ years serving NZ businesses.</li>
-        </ul>
-    </section>
-    <section class="contact">
-        <h2>Contact</h2>
-        <ul>
-            <li><strong>NZBN:</strong> <a href="https://www.nzbn.govt.nz/" target="_blank" rel="noopener">9429044372194</a></li>
-            <li><strong>Locations:</strong> Wellington, New Zealand; Enuamanu, Cook Islands</li>
-            <li><strong>Email:</strong> <span id="e"></span></li>
-        </ul>
-        <script>
-            // Email obfuscation
-            (function() {
-                var u = 'project';
-                var a = String.fromCharCode(64);
-                var d = 'tumunu';
-                var t = 'com';
-                var e = u + a + d + '.' + t;
-                var link = '<a href="mailto:' + e + '">' + e + '</a>';
-                document.getElementById('e').innerHTML = link;
-            })();
-        </script>
-    </section>
-    <footer>
-        <hr>
-        <small>&copy; 1997–2025 Tumunu. Updated 2025-07-12.</small>
-    </footer>
+  <section>
+    <h2>What is the Tumunu Imager?</h2>
+    <div class="copy">
+      The Tumunu Imager is a cross-platform forensic imaging tool for creating secure, legally-defensible copies of digital storage devices (drives, SSDs, USBs) when expert analysis is required.<br><br>
+      <b>Key features:</b>
+      <ul>
+        <li><b>Bit-for-bit imaging:</b> Makes exact, unaltered forensic copies, including deleted files and metadata.</li>
+        <li><b>Hybrid encryption:</b> Images are encrypted at the source (AES-256 + RSA-4096). Only Tumunu can decrypt.</li>
+        <li><b>Chain-of-custody:</b> Every action logged; audit trail is tamper-evident and court-ready.</li>
+        <li><b>User-focused:</b> Designed for non-specialists—step-by-step guidance, no technical background required.</li>
+        <li><b>Remote handover:</b> Secure upload or tracked courier options.</li>
+      </ul>
+      <b>Why?</b> Most SMEs and firms lack in-house forensics. Tumunu Imager lets you secure evidence instantly, defensibly, and privately—no waiting for a site visit or risking data leaks.<br>
+      <b>Compliance:</b> Meets NIST, ISO, and NZ legal standards. Protects privacy and chain-of-custody.<br>
+      <b>Cost-efficient:</b> Capture is in your hands; Tumunu only handles the encrypted evidence and analysis.<br>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <b>Where can I find pricing?</b><br>
+    Pricing is only visible inside the Tumunu Imager CLI tool itself.<br>
+    <small>
+      <b>Why?</b> Restricting pricing info to the CLI, not the website, is a deliberate security measure.<br>
+      It minimises our web attack surface, reduces automated scraping, and signals our security-first approach to all clients and adversaries.<br>
+      We believe that digital forensics providers should minimise publicly exposed business logic and sensitive information.
+    </small>
+    <br><br>
+    <b>Why is this site minimalist?</b><br>
+    Tumunu is for digital forensics, not marketing. Minimalism removes distractions, avoids exposing unnecessary metadata, and reduces risk. All core details are here; everything else is handled via our CLI or directly with clients.
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <ul>
+      <li><strong>NZBN:</strong> <a href="https://www.nzbn.govt.nz/" target="_blank" rel="noopener">9429044372194</a></li>
+      <li><strong>Locations:</strong> Wellington, New Zealand; Enuamanu, Cook Islands</li>
+      <li><strong>Email:</strong> <span id="e"></span></li>
+    </ul>
+    <script>
+      // Email obfuscation, minimal JS
+      (function() {
+        var u = 'project', a = String.fromCharCode(64), d = 'tumunu', t = 'com';
+        document.getElementById('e').innerHTML = '<a href="mailto:' + u + a + d + '.' + t + '">' + u + a + d + '.' + t + '</a>';
+      })();
+    </script>
+  </section>
+  <footer>
+    <hr>
+    <small>&copy; 1997–2025 Tumunu. Updated 2025-07-12.</small>
+  </footer>
 </main>
 </body>
 </html>
-
