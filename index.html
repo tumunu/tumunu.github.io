@@ -4,45 +4,101 @@
     <meta charset="UTF-8">
     <title>Tumunu | Digital Forensics NZ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Tumunu: Trusted digital forensics, incident response, and cyber risk consulting since 1997.">
-    <link rel="stylesheet" href="index.css">
+    <meta name="description" content="Digital forensics, incident response, and cyber risk consulting since 1997.">
+    <style>
+        body { font-family: monospace, monospace; background: #fff; color: #111; max-width: 700px; margin: 32px auto; }
+        h1 { font-size: 2em; margin: 0 0 0.2em; }
+        .tagline { margin-bottom: 1.5em; color: #555; }
+        hr { margin: 2em 0; }
+        ul { margin: 0 0 1.5em 0; padding: 0 0 0 1.2em; }
+        section { margin-bottom: 2em; }
+        .contact pre { margin: 0.5em 0; }
+        .copy { margin: 1.2em 0 0.8em 0; }
+        small { color: #888; }
+        .step { margin-bottom: 0.8em; }
+    </style>
 </head>
 <body>
-    <main>
-        <header>
-            <h1>Tumunu</h1>
-            <p class="tagline">Trusted digital forensics &amp; cyber consulting since 1997</p>
-        </header>
-        <section>
-            <ul>
-                <li>Digital forensics: evidence capture &amp; analysis</li>
-                <li>Incident response support</li>
-                <li>Cyber risk and readiness consulting</li>
-                <li>Chain-of-custody &amp; court-defensible reports</li>
-            </ul>
-        </section>
-        <section class="contact">
-            <h2>Contact</h2>
-            <pre>NZBN: <a href="https://www.nzbn.govt.nz/" target="_blank" rel="noopener">9429044372194</a></pre>
-            <pre>Location: Wellington &amp; Porirua, New Zealand<br>Enuamanu, Cook Islands</pre>
-            <pre>Email: <span id="e"></span></pre>
-            <script>
-                // Simple JS obfuscation: splits local and domain, avoids full "@" and "."
-                (function() {
-                    var u = 'project';
-                    var a = String.fromCharCode(64); // '@'
-                    var d = 'tumunu';
-                    var t = 'com';
-                    var e = u + a + d + '.' + t;
-                    var link = '<a href="mailto:' + e + '">' + e + '</a>';
-                    document.getElementById('e').innerHTML = link;
-                })();
-            </script>
-        </section>
-        <footer>
-            <hr>
-            <small>&copy; 1997–2025 Tumunu. Updated 2025-07-12.</small>
-        </footer>
-    </main>
+<main>
+    <header>
+        <h1>Tumunu</h1>
+        <div class="tagline">Digital forensics &amp; cyber consulting since 1997</div>
+    </header>
+
+    <section>
+        <ul>
+            <li>Digital forensics: evidence capture &amp; analysis</li>
+            <li>Incident response support</li>
+            <li>Cyber risk and readiness consulting</li>
+            <li>Chain-of-custody &amp; court-defensible reports</li>
+        </ul>
+    </section>
+
+    <section>
+        <div class="copy">
+            <strong>How it works:</strong>
+        </div>
+        <div class="step">
+            <b>1. Capture:</b>  
+            You (the client) use the Tumunu Forensic Imager to create an encrypted disk image.  
+            <br>
+            <span style="color:#555;">We provide a downloadable, court-compliant tool and simple instructions. Your data never leaves your hands until encrypted and logged.</span>
+        </div>
+        <div class="step">
+            <b>2. Submit:</b>
+            For small to medium files, upload your encrypted evidence and chain-of-custody log using our one-time secure upload link.<br>
+            For large disk images, send the encrypted device to Tumunu via your preferred tracked courier. 
+            <br>
+            <span style="color:#555;">
+                For best practice, use tamper-evident packaging and keep a copy of the chain-of-custody record for your files. Full instructions and templates are provided. 
+                You are responsible for secure delivery; Tumunu will confirm receipt and note any issues.
+            </span>
+        </div>
+        <div class="step">
+            <b>3. Analysis:</b>  
+            Tumunu decrypts and analyzes your evidence in a dedicated forensic lab. Every step is documented for legal defensibility.
+        </div>
+        <div class="step">
+            <b>4. Results:</b>  
+            We provide a detailed report (PDF), summary findings, and expert support. All evidence is preserved per your instructions.
+        </div>
+    </section>
+
+    <section>
+        <div class="copy">
+            <strong>Why Tumunu?</strong>
+        </div>
+        <ul>
+            <li>Client-first: You control initial capture. Only Tumunu can decrypt, analyze, or report on the data.</li>
+            <li>Defensible: Full audit logs, chain-of-custody, and standards-based process.</li>
+            <li>Local &amp; independent: 25+ years serving NZ businesses.</li>
+        </ul>
+    </section>
+    <section class="contact">
+        <h2>Contact</h2>
+        <ul>
+            <li><strong>NZBN:</strong> <a href="https://www.nzbn.govt.nz/" target="_blank" rel="noopener">9429044372194</a></li>
+            <li><strong>Locations:</strong> Wellington, New Zealand; Enuamanu, Cook Islands</li>
+            <li><strong>Email:</strong> <span id="e"></span></li>
+        </ul>
+        <script>
+            // Email obfuscation
+            (function() {
+                var u = 'project';
+                var a = String.fromCharCode(64);
+                var d = 'tumunu';
+                var t = 'com';
+                var e = u + a + d + '.' + t;
+                var link = '<a href="mailto:' + e + '">' + e + '</a>';
+                document.getElementById('e').innerHTML = link;
+            })();
+        </script>
+    </section>
+    <footer>
+        <hr>
+        <small>&copy; 1997–2025 Tumunu. Updated 2025-07-12.</small>
+    </footer>
+</main>
 </body>
 </html>
+
