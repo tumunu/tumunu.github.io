@@ -2,114 +2,113 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Tumunu | Digital Forensics NZ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Digital forensics, incident response, and cyber risk consulting since 1997.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tumunu</title>
   <style>
-    body { font-family: monospace, monospace; background: #fff; color: #111; max-width: 720px; margin: 32px auto; line-height: 1.22; }
-    h1, h2 { margin-bottom: 0.2em; }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.2em; }
-    section { margin-bottom: 2em; }
-    ul, ol { padding-left: 1.2em; }
-    .faq { border-top: 1px solid #ccc; margin-top: 2em; padding-top: 1.2em; }
-    small { color: #888; }
-    a { color: #005; }
-    .copy { margin-bottom: 1em; }
-    pre, code { background: #f8f8f8; padding: 0.2em 0.4em; }
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+      color: #212529;
+    }
+    header {
+      background-color: #1c1c1c;
+      color: #ffffff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin-bottom: 0.5rem;
+    }
+    main {
+      padding: 2rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    h2 {
+      color: #343a40;
+    }
+    a.button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+    .legal {
+      font-size: 0.85rem;
+      color: #495057;
+      text-align: center;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
-<main>
+
   <header>
-    <h1>Tumunu</h1>
-    <div>Digital forensics &amp; cyber consulting</div>
+    <h1>Tumunu: Open-Source Digital Forensics Toolkit</h1>
+    <p>Tumunu is an open-source digital forensics toolkit and training project developed by a father-son team with decades of combined experience in security, systems, and applied research.</p>
   </header>
 
-  <section>
-    <ul>
-      <li>Digital forensics: evidence capture &amp; professional analysis</li>
-      <li>Incident response support</li>
-      <li>Cyber risk and readiness consulting</li>
-      <li>Chain-of-custody &amp; court-defensible reports</li>
-    </ul>
-  </section>
+ <main>
+    <section>
+      <h2>Background</h2>
+      <p>
+        The current redition of Tumunu was started by <strong>@dupesnduds</strong>, an ex-IT veteran, as a way to give <strong>@synviction</strong> a meaningful path into cybersecurity after finishing his degree. With no job in hand and limited entry points, the goal was simple: build tools that prove competence and fill the gaps in a resume with something real.
+      </p>
+        It's not a product pitch or training business:just a focused effort to build tools that demonstrate capability and initiative.
+      </p>
+    </section>
 
-  <section>
-    <h2>How Tumunu Works</h2>
-    <ol>
-      <li>
-        <b>Capture:</b> Use the <strong>Tumunu open source forensic imager</strong> to create secure disk images.
-        <br>
-        <small>Download our Rust-based forensic platform. Enterprise-grade performance with 48-82% speed improvements. No cloud dependency for imaging.</small>
-      </li>
-      <li>
-        <b>Submit:</b> Upload your encrypted evidence and chain-of-custody log via secure channels, or courier the encrypted device with tamper-evident packaging.
-      </li>
-      <li>
-        <b>Analysis:</b> Tumunu's forensic experts analyze your evidence in our dedicated lab. Every step is documented for legal defensibility.
-      </li>
-      <li>
-        <b>Results:</b> Receive detailed reports, expert testimony support, and professional consultation. Evidence is preserved per your instructions.
-      </li>
-    </ol>
-  </section>
+    <section>
+      <h2>What It Does</h2>
+      <p>
+        Tumunu is an evolving collection of security and digital forensics tools built under a single brand. The goal is to create reliable, auditable software that supports hands-on skill development and real-world workflows. While the Tumunu CLI is the first tool, many others are in active development. These tools are created as needed. no hype, no roadmap promises. just working code aligned with practical needs.
+      </p>
+    </section>
 
-  <section>
-    <h2>Tumunu Forensic Platform</h2>
-    <div class="copy">
-      Our open source forensic platform drives professional analysis services. Built in Rust for maximum performance and memory safety.<br><br>
-      <b>Live ISO Available:</b> <a href="https://github.com/tumunu/tumunu-live-iso/releases/latest">Download forensic live environment</a><br>
-      <b>Source Code:</b> <a href="https://github.com/tumunu">Full platform on GitHub</a><br><br>
-      <b>Key features:</b>
+    <section>
+      <h2>Current Features</h2>
       <ul>
-        <li><b>Bit-for-bit imaging:</b> SHA256/MD5 verified forensic copies with zero-copy operations.</li>
-        <li><b>Plugin ecosystem:</b> Extensible architecture for specialized analysis (SSD forensics, audit logging, etc.).</li>
-        <li><b>Professional encryption:</b> Proprietary Tumunu encryption ensures only our experts can decrypt for analysis.</li>
-        <li><b>Cross-platform:</b> Linux, Windows, macOS support with adaptive I/O optimization.</li>
-        <li><b>Court-ready:</b> NIST OSAC compliant with comprehensive audit trails.</li>
+        <li>Bit-for-bit imaging with secure read-only methodology</li>
+        <li>Plugin system for classification, provenance, and custom logic</li>
+        <li>Integrity hashing and cryptographic verification</li>
+        <li>CLI-first design with readable, pipeable output</li>
+        <li>Written in whatever language gets the job done right</li>
       </ul>
-      <b>Why open source?</b> Transparency builds trust. You can audit our imaging process, contribute improvements, and be confident in evidence integrity.<br>
-      <b>Business model:</b> Tumunu provides the specialized knowledge most organizations lack.<br>
-      <b>Performance:</b> 800-1200 MB/s SSD imaging. Professional-grade efficiency for time-critical investigations.<br>
-    </div>
-  </section>
+    </section>
 
-  <section class="faq">
-    <h2>FAQ</h2>
-    <b>Where can I find pricing for analysis services?</b><br>
-    Pricing is only visible inside the Tumunu CLI tool itself using the `--pricing-details` flag.<br>
-    <small>
-      <b>Why?</b> Restricting pricing info to the CLI, not the website, is a deliberate security measure.<br>
-      It minimizes our web attack surface, reduces automated scraping, and signals our security-first approach to all clients and adversaries.<br>
-      We believe that digital forensics providers should minimize publicly exposed business logic and sensitive information.
-    </small>
-    <br><br>
-    <b>Can I use the tools without paying for analysis?</b><br>
-    Yes. All imaging and verification tools are open source/ You only pay for professional analysis services.<br><br>
-    <b>Why is this site minimalist?</b><br>
-    Tumunu is for digital forensics, not marketing. Minimalism removes distractions, avoids exposing unnecessary metadata, and reduces risk. All core details are here; everything else is handled via our CLI or directly with clients.
-  </section>
+    <section>
+      <h2>Explore More</h2>
+      <p>
+        Tumunu is a working lab and development platform. If it helps others learn or build better tools, all the better.
+      </p>
+      <a href="https://github.com/tumunu" class="button">GitHub</a>
+      <a href="mailto:project@tumunu.com" class="button">Email</a>
+    </section>
+  </main>
 
-  <section>
-    <h2>Contact</h2>
-    <ul>
-      <li><strong>NZBN:</strong> <a href="https://www.nzbn.govt.nz/" target="_blank" rel="noopener">9429044372194</a></li>
-      <li><strong>Locations:</strong> Wellington, New Zealand; Enuamanu, Cook Islands</li>
-      <li><strong>Email:</strong> <span id="e"></span></li>
-    </ul>
-    <script>
-      // Email obfuscation, minimal JS
-      (function() {
-        var u = 'project', a = String.fromCharCode(64), d = 'tumunu', t = 'com';
-        document.getElementById('e').innerHTML = '<a href="mailto:' + u + a + d + '.' + t + '">' + u + a + d + '.' + t + '</a>';
-      })();
-    </script>
-  </section>
   <footer>
-    <hr>
-    <small>&copy; 1997–2025 Tumunu. Updated 2025-07-16.</small>
+    <p>&copy; 2025 Tumunu. Built to prove it, not pitch it.</p>
+    <div class="legal">
+      NZBN: 9429044372194<br>
+      Locations: Wellington, New Zealand; Enuamanu, Cook Islands<br>
+      Email: project@tumunu.com
+    </div>
   </footer>
-</main>
+
 </body>
 </html>
+
