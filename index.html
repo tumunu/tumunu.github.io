@@ -38,6 +38,8 @@
 
     /* Hero */
     header.hero {
+      position: relative; /* anchor glow */
+      overflow: hidden;
       padding: 3rem 1rem;
       text-align: center;
       background: var(--dark);
@@ -52,6 +54,38 @@
       list-style: none; padding: 0; margin: 0 auto 2rem; max-width: 480px;
     }
     header.hero li { margin: 0.4rem 0; }
+
+    /* Glow blobs */
+    header.hero::before,
+    header.hero::after {
+      content: "";
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(180px) saturate(120%);
+      opacity: .55;
+      z-index: -1;
+      animation: float 14s ease-in-out infinite;
+    }
+    /* top‑left cyan */
+    header.hero::before {
+      top: -250px;
+      left: -300px;
+      background: radial-gradient(circle at center, rgba(0,173,255,.8) 0%, rgba(0,173,255,.4) 40%, transparent 70%);
+    }
+    /* bottom‑right purple */
+    header.hero::after {
+      bottom: -250px;
+      right: -300px;
+      background: radial-gradient(circle at center, rgba(154,68,255,.8) 0%, rgba(154,68,255,.4) 40%, transparent 70%);
+    }
+    @keyframes float {
+      0% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(40px,-30px) scale(1.05); }
+      100% { transform: translate(0,0) scale(1); }
+    }
 
     .btn {
       display: inline-block;
@@ -96,7 +130,7 @@
     <a href="/" aria-label="Home">Home</a>
     <a href="/docs" aria-label="Documentation">Docs</a>
     <a href="https://github.com/tumunu" target="_blank" rel="noopener" aria-label="GitHub repository">GitHub</a>
-    <a href="/hire" aria-label="Hire Tumunu">Hire Us</a>
+    <a href="/hire" aria-label="Hire Tumunu">Hire&nbsp;Us</a>
   </nav>
 
   <!-- Hero -->
