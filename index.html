@@ -1,206 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tumunu – Court‑Ready Disk Imaging</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tumunu - Court-Ready Disk Imaging</title>
   <style>
     :root {
       --accent: #007bff;
       --dark: #1c1c1c;
       --text: #212529;
-      --muted: #6c757d;
       --bg: #f8f9fa;
     }
-    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.5;
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* Navigation */
-    nav {
+      min-height: 100vh;
       display: flex;
-      gap: 1rem;
-      justify-content: center;
-      padding: 1rem;
-      background: var(--dark);
+      flex-direction: column;
     }
-    nav a {
-      color: #fff;
-      font-weight: 600;
-    }
-
-    /* Hero */
-    header.hero {
-      position: relative; /* anchor glow */
-      overflow: hidden;
-      padding: 3rem 1rem;
+    header {
       text-align: center;
+      padding: 5rem 1rem 4rem;
       background: var(--dark);
-      color: #fff;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      flex: 1;
     }
-    header.hero h1 {
-      margin: 0 0 1rem;
-      font-size: 2.25rem;
+    h1 { 
+      margin: 0 0 1.25rem; 
+      font-size: 2.5rem; 
     }
-    header.hero p { margin-bottom: 2rem; max-width: 640px; margin-left: auto; margin-right: auto; }
-    header.hero ul {
-      list-style: none; padding: 0; margin: 0 auto 2rem; max-width: 480px;
+    .tagline { 
+      margin: 0 auto 2rem; 
+      max-width: 640px; 
+      font-size: 1.125rem; 
     }
-    header.hero li { margin: 0.4rem 0; }
-
-    /* Glow blobs */
-    header.hero::before,
-    header.hero::after {
-      content: "";
-      position: absolute;
-      width: 650px;
-      height: 650px;
-      border-radius: 50%;
-      pointer-events: none;
-      filter: blur(180px) saturate(120%);
-      opacity: .55;
-      z-index: -1;
-      animation: float 14s ease-in-out infinite;
+    .benefits { 
+      list-style: none;
+      padding: 0;
+      margin: 0 auto 2.5rem;
+      max-width: 480px;
     }
-    /* top‑left cyan */
-    header.hero::before {
-      top: -250px;
-      left: -300px;
-      background: radial-gradient(circle at center, rgba(0,173,255,.8) 0%, rgba(0,173,255,.4) 40%, transparent 70%);
+    .benefits li { 
+      margin: 0.5rem 0; 
     }
-    /* bottom‑right purple */
-    header.hero::after {
-      bottom: -250px;
-      right: -300px;
-      background: radial-gradient(circle at center, rgba(154,68,255,.8) 0%, rgba(154,68,255,.4) 40%, transparent 70%);
-    }
-    @keyframes float {
-      0% { transform: translate(0,0) scale(1); }
-      50% { transform: translate(40px,-30px) scale(1.05); }
-      100% { transform: translate(0,0) scale(1); }
-    }
-
-    .btn {
+    .cta {
       display: inline-block;
-      padding: 0.65rem 1.3rem;
+      margin: 0.4rem 0.5rem;
+      padding: 0.7rem 1.4rem;
       border-radius: 4px;
       font-weight: 600;
-      margin: 0.25rem 0.5rem;
+      text-decoration: none;
     }
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-outline { border: 2px solid var(--accent); color: var(--accent); }
-    .btn-text { color: #fff; text-decoration: underline; }
-
-    /* Sections */
-    main { max-width: 840px; margin: 0 auto; padding: 2rem 1rem; }
-    section { margin-bottom: 3rem; }
-    h2 { color: #343a40; margin-top: 0; }
-
-    /* Download cards */
-    .downloads { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-    .card {
-      padding: 1.25rem;
-      background: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      text-align: center;
+    .primary { 
+      background: var(--accent); 
+      color: white; 
     }
-    .card a { font-weight: 600; }
-    .checksum { display: block; margin-top: 0.5rem; font-size: 0.85rem; color: var(--muted); word-break: break-all; }
-
-    footer {
+    .secondary { 
+      border: 2px solid var(--accent); 
+      color: var(--accent); 
+    }
+    footer { 
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 1.5rem;
       font-size: 0.9rem;
-      color: var(--muted);
+      color: #6c757d;
+    }
+    footer a { 
+      color: var(--accent); 
     }
   </style>
 </head>
 <body>
-
-  <!-- Navigation -->
-  <nav aria-label="Primary navigation">
-    <a href="/" aria-label="Home">Home</a>
-    <a href="https://github.com/tumunu/tumunu.github.io/wiki" aria-label="Documentation">Docs</a>
-    <a href="https://github.com/tumunu" target="_blank" rel="noopener" aria-label="GitHub repository">GitHub</a>
-    <a href=""mailto:project@tumunu.com" aria-label="Hire Tumunu">Hire&nbsp;Us</a>
-  </nav>
-
-  <!-- Hero -->
-  <header class="hero">
-    <h1>Tumunu: Court‑Ready Disk Imaging</h1>
-    <p>Free, open‑source CLI (command‑line tool) for forensic acquisitions with tamper‑proof audit trails</p>
-    <ul>
-      <li>Capture bit‑for‑bit images and chain‑of‑custody logs</li>
-      <li>Native Linux, macOS, and Windows CLI; no bloated GUI</li>
-      <li>Built and field‑tested by New Zealand investigators</li>
+  <header>
+    <h1>Tumunu</h1>
+    <p class="tagline">Open‑source defensive‑forensics toolkit … imaging, secure vaults, cloud IaC, and automation across Rust, C#, Python, and Bicep.</p>
+    
+    <ul class="benefits">
+      <li>Bit‑for‑bit imaging with tamper‑proof audit logs</li>
+      <li>Secure Vaults module in C#/.NET</li>
+      <li>Azure‑ready infrastructure templates in Bicep</li>
+      <li>Plugin framework in &lt; 50 LOC</li>
+      <li>Native binaries for Linux · macOS · Windows</li>
     </ul>
-    <a href="https://github.com/tumunu/tumunu.github.io/releases/" class="btn btn-primary" title="64 MB tar.gz">⬇️ Download v0.1.0</a>
-    <a href=""mailto:project@tumunu.com" class="btn btn-outline">Book a Demo</a>
-    <a href="https://github.com/tumunu/tumunu.github.io/wiki" class="btn btn-text">Docs (quickstart) →</a>
-    <div style="margin-top:1rem;font-size:0.85rem;color:var(--muted);">v0.1.0 released&nbsp;•&nbsp;26 July 2025&nbsp;•&nbsp;<a href="/changelog" style="color:#fff;text-decoration:underline;">Changelog</a></div>
+
+    <a href="https://github.com/tumunu/tumunu-acquisition-cli/releases/latest" class="cta primary">⬇️ Download v0.1.0</a>
+    <a href="https://github.com/tumunu/tumunu-acquisition-cli/wiki/Quickstart" class="cta secondary">Docs →</a>
   </header>
 
-  <!-- Main content -->
-  <main>
-    <section id="download">
-      <h2>Download Tumunu v0.1.0</h2>
-      <div class="downloads">
-        <div class="card">
-          <h3>Linux (x86‑64)</h3>
-          <a href="/assets/tumunu-cli-linux-x86_64.tar.gz">Download .tar.gz</a>
-          <span class="checksum">SHA‑256: 9a3f5b…64d2</span>
-        </div>
-        <div class="card">
-          <h3>macOS (Apple Silicon)</h3>
-          <a href="/assets/tumunu-cli-macos-arm64.tar.gz">Download .tar.gz</a>
-          <span class="checksum">SHA‑256: 1b8e2c…9f4a</span>
-        </div>
-        <div class="card">
-          <h3>Windows (x86‑64)</h3>
-          <a href="/assets/tumunu-cli-windows-x86_64.zip">Download .zip</a>
-          <span class="checksum">SHA‑256: 7d3f0a…2e6b</span>
-        </div>
-      </div>
-      <p style="margin-top:1rem;font-size:0.9rem;">Verify downloads with:
-        <code>sha256sum -c SHA256SUMS</code></p>
-    </section>
-
-    <section id="background">
-      <h2>Background</h2>
-      <p>Tumunu began as a father‑and‑son project—<a href="https://github.com/dupesnduds">@dupesnduds</a> and <a href="https://github.com/synviction">@synviction</a>—to prove competence through real, open‑source tooling. No hype, no vaporware; just working code that fills practical gaps in digital forensics.</p>
-    </section>
-
-    <section id="features">
-      <h2>Key Features</h2>
-      <ul>
-        <li>Bit‑for‑bit imaging with read‑only methodology</li>
-        <li>Plugin framework for classification, provenance, and custom logic</li>
-        <li>Integrity hashing and cryptographic verification (SHA‑256, BLAKE3)</li>
-        <li>CLI‑first design with pipe‑friendly JSON output</li>
-        <li>Language‑agnostic implementation—use the best tool for the task</li>
-      </ul>
-    </section>
-
-    <section id="get-involved">
-      <h2>Get Involved</h2>
-      <p>Tumunu is an active lab. Contributors, testers, and forensic educators are welcome. If Tumunu helps your workflow—or if you have a feature in mind—reach out.</p>
-      <p>
-        <a href="https://github.com/tumunu" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
-        <a href="mailto:project@tumunu.com" class="btn btn-outline">Email the Team</a>
-      </p>
-    </section>
-  </main>
-
   <footer>
-    © 2025 Tumunu | NZBN 9429044372194 | Wellington, New Zealand & Enuamanu, Cook Islands | project@tumunu.com
+    © 2025 Tumunu • Built in New Zealand • <a href="mailto:project@tumunu.com">project@tumunu.com</a>
   </footer>
 </body>
 </html>
