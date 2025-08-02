@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Tumunu — Digital tools</title>
+  <title>Tumunu — Rust-Fast Forensics & Copilot Governance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Tumunu builds digital tools. Explore the public collection on GitHub at https://github.com/tumunu.">
+  <meta name="description" content="Digital forensics toolchain with chain-of-custody integrity. Copilot governance for enterprise AI policy enforcement. Rust performance, offline capable.">
   <link rel="canonical" href="https://tumunu.dev/">
   <meta name="theme-color" content="#ffffff">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Tumunu — Digital tools">
-  <meta property="og:description" content="Tumunu builds digital tools. Explore the public collection on GitHub at https://github.com/tumunu.">
+  <meta property="og:title" content="Tumunu — Rust-Fast Forensics & Copilot Governance">
+  <meta property="og:description" content="Digital forensics toolchain with chain-of-custody integrity. Copilot governance for enterprise AI policy enforcement. Rust performance, offline capable.">
   <meta property="og:url" content="https://tumunu.dev/">
   <meta property="og:image" content="https://opengraph.githubassets.com/1/tumunu/tumunu">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Tumunu — Digital tools">
-  <meta name="twitter:description" content="Tumunu builds digital tools. Explore the public collection on GitHub at https://github.com/tumunu.">
+  <meta name="twitter:title" content="Tumunu — Rust-Fast Forensics & Copilot Governance">
+  <meta name="twitter:description" content="Digital forensics toolchain with chain-of-custody integrity. Copilot governance for enterprise AI policy enforcement.">
   <meta name="twitter:image" content="https://opengraph.githubassets.com/1/tumunu/tumunu">
   <link rel="icon" href="/favicon.ico">
   <link rel="manifest" href="/site.webmanifest">
@@ -25,7 +25,7 @@
     "name": "Tumunu",
     "url": "https://tumunu.dev/",
     "sameAs": ["https://github.com/tumunu"],
-    "description": "Tumunu builds digital tools. Explore the public collection on GitHub.",
+    "description": "Digital forensics toolchain and Copilot governance solutions. Rust performance with enterprise compliance.",
     "logo": "https://tumunu.dev/icon.png"
   }
   </script>
@@ -163,6 +163,49 @@
       font-size: 13px;
     }
     .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .proof {
+      margin-top: 32px;
+      padding: clamp(18px, 4vw, 28px);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 5%, transparent), transparent 90%);
+      border: 1px solid color-mix(in srgb, var(--accent) 15%, var(--card-border));
+      border-radius: var(--radius);
+      text-align: center;
+    }
+    .proof h2 {
+      font-size: clamp(20px, 4vw, 28px);
+      margin: 0 0 16px 0;
+      color: var(--accent);
+    }
+    .testimonials {
+      display: grid;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .testimonials blockquote {
+      margin: 0;
+      padding: 12px 16px;
+      background: var(--card);
+      border-radius: 8px;
+      font-style: italic;
+      color: var(--muted);
+      border-left: 3px solid var(--accent);
+    }
+    .stats {
+      margin: 16px 0 0 0;
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 14px;
+    }
+    .urgency {
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: linear-gradient(135deg, var(--accent-2), color-mix(in srgb, var(--accent-2) 80%, white));
+      color: white;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
@@ -180,58 +223,70 @@
   </header>
 
   <section class="hero" aria-labelledby="hero-title">
-    <h2 id="hero-title">We build digital tools.</h2>
-    <p>Simple, robust, and open when it matters. Explore public projects, libraries, and utilities maintained by Tumunu.</p>
+    <h2 id="hero-title">Rust-fast forensics and Copilot governance. Built to prove it, not pitch it.</h2>
+    <p>Acquire evidence with chain-of-custody. Enforce AI policy at scale. Extend analysis with plugins.</p>
     <div class="cta">
-      <a class="primary" href="https://github.com/tumunu" target="_blank" rel="noopener noreferrer">Browse on GitHub</a>
-      <a class="secondary" href="#projects">Jump to featured tools</a>
+      <a class="primary" href="/beta">Join SaaS Beta</a>
+      <a class="secondary" href="https://github.com/tumunu/acquisition-core" target="_blank" rel="noopener noreferrer">Try acquisition-core</a>
     </div>
+  </section>
+
+  <section id="proof" class="proof" aria-labelledby="proof-title">
+    <h2 id="proof-title">Offline • Rust performance • Plugin extensibility • MIT core</h2>
+    <div class="testimonials">
+      <blockquote>"Chain-of-custody without the paperwork nightmare"</blockquote>
+      <blockquote>"Finally, Copilot governance that doesn't break CI"</blockquote>
+      <blockquote>"Rust performance with zero-deps CLI"</blockquote>
+    </div>
+    <p class="stats">★ GitHub stars growing • Pilots in progress</p>
   </section>
 
   <section id="projects" aria-labelledby="projects-title" class="grid">
     <h2 class="sr" id="projects-title">Featured tools</h2>
 
     <article class="card" aria-labelledby="card1-title">
-      <h3 id="card1-title">Open source projects</h3>
-      <p>Public code, utilities, and experiments. Stars, issues, and forks welcome. View the full list on the <a class="inline" href="https://github.com/tumunu" target="_blank" rel="noopener noreferrer">Tumunu</a>.</p>
+      <h3 id="card1-title">Imaging without excuses</h3>
+      <p>Chain-of-custody built in. Offline CLI with hash verification and custody logs. No network dependencies, no evidence tampering.</p>
     </article>
 
     <article class="card" aria-labelledby="card2-title">
-      <h3 id="card2-title">Lightweight by default</h3>
-      <p>Small dependencies, fast load, semantic HTML, and progressive enhancement. Works great on mobile and low bandwidth.</p>
+      <h3 id="card2-title">Copilot with accountability</h3>
+      <p>Proactive policy enforcement in Microsoft ecosystems. Audit trails, redaction, and compliance logging for enterprise AI governance.</p>
     </article>
 
     <article class="card" aria-labelledby="card3-title">
-      <h3 id="card3-title">Pragmatic engineering</h3>
-      <p>Focus on durable, maintainable tools over hype. Clear docs and minimal interfaces to get work done.</p>
+      <h3 id="card3-title">Detect what others miss</h3>
+      <p>Neural and fractal pattern detection for modern obfuscation. Plugin architecture extends analysis capabilities with Rust performance.</p>
     </article>
   </section>
 
-  <section class="grid" aria-labelledby="principles-title">
-    <h2 class="sr" id="principles-title">Principles</h2>
+  <section class="grid" aria-labelledby="enterprise-title">
+    <h2 class="sr" id="enterprise-title">Enterprise</h2>
 
     <article class="card">
-      <h3>Clarity</h3>
-      <p>Readable code, straight-forward UX, and honest documentation.</p>
+      <h3>Need enterprise features?</h3>
+      <p>SSO/SCIM integration, SOC2-ready logging, dedicated support SLAs, and custom compliance workflows.</p>
+      <p><a class="inline" href="/beta">Book enterprise call →</a></p>
     </article>
 
     <article class="card">
-      <h3>Performance</h3>
-      <p>Lean assets, no blocking scripts, and accessible-by-default components.</p>
+      <h3>Compliance ready</h3>
+      <p>Built-in audit trails, data handling controls, and evidence integrity verification for regulatory requirements.</p>
     </article>
 
     <article class="card">
-      <h3>Openness</h3>
-      <p>When possible, projects are public with permissive licenses on GitHub.</p>
+      <h3>Plugin ecosystem</h3>
+      <p>Extend analysis with custom detectors. Rust trait-based architecture with performance guarantees and memory safety.</p>
     </article>
   </section>
 
   <section aria-labelledby="collection-title" class="hero">
-    <h2 id="collection-title">Explore the collection</h2>
-    <p>Find libraries, CLIs, and small web utilities maintained by Tumunu. Contributions and feedback are welcome.</p>
+    <h2 id="collection-title">Ready for production forensics?</h2>
+    <p>Join security teams building evidence integrity into their workflows. Beta access includes enterprise pilot support.</p>
+    <div class="urgency">⚡ Limited beta spots for Q1 2025</div>
     <div class="cta">
-      <a class="primary" href="https://github.com/tumunu?tab=repositories" target="_blank" rel="noopener noreferrer">View repositories</a>
-      <a class="secondary" href="https://github.com/tumunu" target="_blank" rel="noopener noreferrer" aria-label="Open Tumunu on GitHub (opens in a new tab)">Open page ↗</a>
+      <a class="primary" href="/beta">Join SaaS Beta →</a>
+      <a class="secondary" href="https://github.com/tumunu/vaults" target="_blank" rel="noopener noreferrer" aria-label="Vaults for Copilot governance">Vaults for Copilot ↗</a>
     </div>
   </section>
 
@@ -239,17 +294,18 @@
     <h2 class="sr" id="about-title">About Tumunu</h2>
     <article class="card">
       <h3>About</h3>
-      <p>Tumunu builds digital tools. This site is intentionally minimal: fast, accessible, and privacy‑respecting.</p>
+      <p>Tumunu builds forensics and governance tools for security professionals. Open-source core with enterprise extensions.</p>
     </article>
     <article class="card">
       <h3>Contact</h3>
-      <p>Email: <span id="e"></span><br>Locations: Wellington, New Zealand; Raratonga, Cook Islands</p>
+      <p>Enterprise: <span id="e"></span><br>Locations: Wellington, New Zealand; Raratonga, Cook Islands</p>
     </article>
     <article class="card">
-      <h3>Links</h3>
+      <h3>Open Source</h3>
       <p>
-        <a class="inline" href="https://github.com/tumunu" target="_blank" rel="noopener noreferrer">github.com/tumunu</a><br>
-        <a class="inline" href="http://ngo.tumunu.com/" target="_blank" rel="noopener noreferrer">Tumunu Charitable Trust</a>
+        <a class="inline" href="https://github.com/tumunu/acquisition-core" target="_blank" rel="noopener noreferrer">acquisition-core</a><br>
+        <a class="inline" href="https://github.com/tumunu/vaults" target="_blank" rel="noopener noreferrer">vaults</a><br>
+        <a class="inline" href="https://github.com/tumunu/tumunu-brains" target="_blank" rel="noopener noreferrer">tumunu-brains</a>
       </p>
     </article>
   </section>

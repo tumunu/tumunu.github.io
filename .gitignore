@@ -1,0 +1,20 @@
+# IDE files
+.vs/
+.vscode/settings.json
+.idea/
+
+# AI assistant and development tools
+.claude/
+.roo/
+.cline/
+.cursor/
+.windsurf/
+memory-bank/
+
+# GitHub workflows and configuration
+.github/
+.git/
+
+# OS files
+.DS_Store
+Thumbs.db
