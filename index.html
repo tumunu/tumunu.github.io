@@ -73,11 +73,7 @@
     body {
       margin: 0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Cantarell, Noto Sans, Ubuntu, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        var(--shade),
-        linear-gradient(180deg, color-mix(in srgb, var(--card) 60%, transparent), transparent 60%) no-repeat,
-        var(--bg);
-      background-size: 100% 320px, 100% 100%, 100% 100%;
+      background: var(--bg);
       color: var(--fg);
       line-height: 1.6;
       text-rendering: optimizeLegibility;
@@ -97,8 +93,7 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 92%, transparent), transparent);
-      backdrop-filter: saturate(1.1) blur(6px);
+      background: var(--bg);
       border-bottom: 1px solid color-mix(in srgb, var(--card-border) 60%, transparent);
     }
     .brand {
@@ -196,13 +191,64 @@
     .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
     .proof {
       margin-top: 32px;
-      padding: clamp(22px, 4.6vw, 34px);
-      background:
-        linear-gradient(180deg, color-mix(in srgb, var(--accent) 6%, transparent), transparent 90%),
-        linear-gradient(0deg, color-mix(in srgb, var(--card) 70%, transparent), transparent 60%);
-      border: 1px solid color-mix(in srgb, var(--accent) 16%, var(--card-border));
+      padding: 0;
+      background: transparent;
+      border: none;
+      text-align: left;
+    }
+    .proof .proof-inner {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+      padding: clamp(20px, 4vw, 24px);
+      border: 1px solid var(--card-border);
       border-radius: var(--radius);
-      text-align: center;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 820px) {
+      .proof .proof-inner { grid-template-columns: 1fr; }
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      border: 1px solid var(--card-border);
+      background: linear-gradient(180deg, #fff, color-mix(in srgb, #fff 0%, transparent));
+      color: var(--fg);
+    }
+    @media (prefers-color-scheme: dark) {
+      .badge {
+        background: linear-gradient(180deg, var(--card-elev), color-mix(in srgb, var(--card-elev) 0%, transparent));
+      }
+    }
+    .quotes {
+      display: grid;
+      gap: 10px;
+    }
+    .quote {
+      margin: 0;
+      padding: 12px 14px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      color: var(--muted);
+      font-style: normal;
+    }
+    .stats {
+      margin: 10px 0 0 0;
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 13px;
     }
     .proof h2 {
       font-size: clamp(20px, 4vw, 28px);
@@ -267,13 +313,23 @@
   </section>
 
   <section id="proof" class="proof" aria-labelledby="proof-title">
-    <h2 id="proof-title">Offline • Rust performance • Plugin extensibility • MIT core</h2>
-    <div class="testimonials">
-      <blockquote>"Chain-of-custody without the paperwork nightmare"</blockquote>
-      <blockquote>"Finally, Copilot governance that doesn't break CI"</blockquote>
-      <blockquote>"Rust performance with zero-deps CLI"</blockquote>
+    <div class="proof-inner">
+      <div>
+        <h2 id="proof-title" style="margin:0 0 8px 0; font-size:clamp(20px,4vw,26px); line-height:1.25;">Proof, not promises</h2>
+        <div class="badges" aria-label="Capabilities">
+          <span class="badge">Offline</span>
+          <span class="badge">Rust performance</span>
+          <span class="badge">Plugin extensibility</span>
+          <span class="badge">MIT core</span>
+        </div>
+      </div>
+      <div class="quotes" aria-label="What users say">
+        <p class="quote">“Chain-of-custody without the paperwork nightmare.”</p>
+        <p class="quote">“Copilot governance that doesn’t break CI.”</p>
+        <p class="quote">“Rust performance with zero‑deps CLI.”</p>
+        <p class="stats">GitHub stars growing • Pilots in progress</p>
+      </div>
     </div>
-    <p class="stats">★ GitHub stars growing • Pilots in progress</p>
   </section>
 
   <section id="projects" aria-labelledby="projects-title" class="grid">
