@@ -148,6 +148,7 @@
       padding: 16px;
       box-shadow: var(--shadow);
     }
+    .card .wow {background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent-2) 60%, white));}
     .card h3 { margin: 0 0 6px 0; font-size: 16px; }
     .card p { margin: 0; color: var(--muted); font-size: 14px; }
     a.inline { color: var(--link); text-decoration: none; }
@@ -188,9 +189,9 @@
   <section id="projects" aria-labelledby="projects-title" class="grid">
     <h2 class="sr" id="projects-title">Featured tools</h2>
 
-    <article class="card" aria-labelledby="card1-title">
+    <article class="card wow" aria-labelledby="card1-title">
       <h3 id="card1-title">Open source projects</h3>
-      <p>Public code, utilities, and experiments. Stars, issues, and forks welcome. View the full list on the <a class="inline" href="https://github.com/tumunu" target="_blank" rel="noopener noreferrer">Tumunu org</a>.</p>
+      <p>Public code, utilities, and experiments. Stars, issues, and forks welcome. View the full list on the <a class="inline" href="https://github.com/tumunu" target="_blank" rel="noopener noreferrer">Tumunu</a>.</p>
     </article>
 
     <article class="card" aria-labelledby="card2-title">
@@ -228,7 +229,7 @@
     <p>Find libraries, CLIs, and small web utilities maintained by Tumunu. Contributions and feedback are welcome.</p>
     <div class="cta">
       <a class="primary" href="https://github.com/tumunu?tab=repositories" target="_blank" rel="noopener noreferrer">View repositories</a>
-      <a class="secondary" href="https://github.com/tumunu" target="_blank" rel="noopener noreferrer" aria-label="Open Tumunu on GitHub (opens in a new tab)">Open org page ↗</a>
+      <a class="secondary" href="https://github.com/tumunu" target="_blank" rel="noopener noreferrer" aria-label="Open Tumunu on GitHub (opens in a new tab)">Open page ↗</a>
     </div>
   </section>
 
@@ -240,7 +241,7 @@
     </article>
     <article class="card">
       <h3>Contact</h3>
-      <p>Email: <span id="e"></span><br>Locations: Wellington, New Zealand; Enuamanu, Cook Islands</p>
+      <p>Email: <span id="e"></span><br>Locations: Wellington, New Zealand; Raratonga, Cook Islands</p>
     </article>
     <article class="card">
       <h3>Links</h3>
@@ -254,7 +255,7 @@
   <script>
     // Email obfuscation, minimal JS
     (function() {
-      var u = 'hello', a = String.fromCharCode(64), d = 'tumunu', t = 'dev';
+      var u = 'project', a = String.fromCharCode(64), d = 'tumunu', t = 'com';
       var el = document.getElementById('e');
       if (el) el.innerHTML = '<a class="inline" href="mailto:' + u + a + d + '.' + t + '">' + u + a + d + '.' + t + '</a>';
     })();
