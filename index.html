@@ -147,8 +147,10 @@
       border-radius: var(--radius);
       padding: 16px;
       box-shadow: var(--shadow);
+      transform-origin: center;
+      will-change: transform;
     }
-    .card .wow {background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent-2) 60%, white));}
+    .wow {background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent-2) 60%, white));}
     .card h3 { margin: 0 0 6px 0; font-size: 16px; }
     .card p { margin: 0; color: var(--muted); font-size: 14px; }
     a.inline { color: var(--link); text-decoration: none; }
@@ -255,9 +257,69 @@
   <script>
     // Email obfuscation, minimal JS
     (function() {
-      var u = 'project', a = String.fromCharCode(64), d = 'tumunu', t = 'com';
+      var u = 'hello', a = String.fromCharCode(64), d = 'tumunu', t = 'dev';
       var el = document.getElementById('e');
       if (el) el.innerHTML = '<a class="inline" href="mailto:' + u + a + d + '.' + t + '">' + u + a + d + '.' + t + '</a>';
+    })();
+
+    // IntersectionObserver to reveal .card.wow on scroll
+    (function() {
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.card.wow').forEach(function(el){ el.classList.add('is-visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { root: null, threshold: 0.15 });
+      document.querySelectorAll('.card.wow').forEach(function(el){ io.observe(el); });
+    })();
+
+    // Pointer wiggle on hover for cards
+    (function() {
+      var active = null, rAF = null;
+      function wiggle(el) {
+        var t = 0, dur = 300; // ms
+        var start = performance.now();
+        function step(now) {
+          t = (now - start) / dur;
+          if (t >= 1) {
+            el.style.transform = '';
+            rAF = null;
+            return;
+          }
+          // damped wiggle
+          var amp = 3; // degrees
+          var freq = 10; // oscillations per duration
+          var decay = Math.exp(-4 * t);
+          var angle = amp * Math.sin(2 * Math.PI * freq * t) * decay;
+          el.style.transform = 'rotate(' + angle + 'deg)';
+          rAF = requestAnimationFrame(step);
+        }
+        if (rAF) cancelAnimationFrame(rAF);
+        rAF = requestAnimationFrame(step);
+      }
+
+      document.addEventListener('pointerenter', function(e) {
+        var card = e.target.closest('.card');
+        if (!card) return;
+        active = card;
+        wiggle(card);
+      }, true);
+
+      document.addEventListener('pointerleave', function(e) {
+        if (!active) return;
+        var related = e.relatedTarget && e.relatedTarget.closest ? e.relatedTarget.closest('.card') : null;
+        if (related !== active) {
+          if (rAF) cancelAnimationFrame(rAF);
+          active.style.transform = '';
+          active = null;
+        }
+      }, true);
     })();
   </script>
 
