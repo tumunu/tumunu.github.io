@@ -3,754 +3,896 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Tumunu: practical tools that reduce friction and raise standards across built work, learning, and systems." />
-  <meta name="theme-color" content="#0b0f14" />
+  <meta name="description" content="Tumunu. Tools over theatre: trade, learning, and digital tools that reduce friction and raise standards." />
+  <meta name="theme-color" content="#070707" />
   <title>Tumunu</title>
 
-  <!-- Typeface: clean, readable. Falls back gracefully if Google Fonts blocked. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     :root{
-      --bg: #0b0f14;
-      --bg2:#0e141c;
-      --card:#0f1722;
-      --card2:#0c121a;
-      --text:#e7eef7;
-      --muted:#a7b6c8;
-      --faint:#6f7f93;
-      --line: rgba(255,255,255,.08);
-      --line2: rgba(255,255,255,.12);
+      --bg:#070707;
+      --fg:#EAEAEA;
 
-      --accent:#6ee7ff;
-      --accent2:#a78bfa;
-      --good:#34d399;
-      --warn:#fbbf24;
+      --fg85:rgba(234,234,234,.85);
+      --fg70:rgba(234,234,234,.70);
+      --fg55:rgba(234,234,234,.55);
+      --fg40:rgba(234,234,234,.40);
+      --fg25:rgba(234,234,234,.25);
+      --fg14:rgba(234,234,234,.14);
+      --fg08:rgba(234,234,234,.08);
 
-      --shadow: 0 18px 50px rgba(0,0,0,.45);
-      --shadow2: 0 10px 25px rgba(0,0,0,.35);
-      --r12: 12px;
-      --r16: 16px;
-      --r20: 20px;
+      --serif:"Fraunces", ui-serif, Georgia, serif;
+      --sans:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      --mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-      --max: 1120px;
-      --pad: clamp(18px, 2.4vw, 28px);
+      --max:1180px;
+      --pad:clamp(18px,2.6vw,30px);
+      --r:14px;
+      --line:1px solid var(--fg14);
 
-      --h1: clamp(30px, 3.6vw, 48px);
-      --h2: clamp(18px, 2.2vw, 22px);
-      --h3: 16px;
-      --p: 16px;
-      --small: 14px;
+      --h1:clamp(36px,4.8vw,74px);
+      --h2:clamp(18px,2.2vw,24px);
+      --p:16px;
 
-      --ls: -0.02em;
+      --ls:-0.02em;
+      --lh:1.55;
+
+      --ease:cubic-bezier(.2,.8,.2,1);
+      --dur:680ms;
     }
-
-    @media (prefers-color-scheme: light){
-      :root{
-        --bg:#f7f9fc;
-        --bg2:#eef3fa;
-        --card:#ffffff;
-        --card2:#ffffff;
-        --text:#0b1220;
-        --muted:#3a4b63;
-        --faint:#5c6f89;
-        --line: rgba(10,18,32,.08);
-        --line2: rgba(10,18,32,.12);
-        --shadow: 0 18px 50px rgba(15,23,42,.12);
-        --shadow2: 0 10px 25px rgba(15,23,42,.10);
-      }
-    }
-
-    /* Manual theme toggle support */
-    html[data-theme="dark"]{
-      color-scheme: dark;
-    }
-    html[data-theme="light"]{
-      color-scheme: light;
-    }
-    html[data-theme="dark"] :root {}
-    html[data-theme="light"] :root {}
 
     *{ box-sizing:border-box; }
-    html, body{ height:100%; }
+    html,body{ height:100%; }
     body{
       margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background:
-        radial-gradient(1200px 800px at 12% 6%, rgba(110,231,255,.14), transparent 55%),
-        radial-gradient(1200px 900px at 88% 14%, rgba(167,139,250,.12), transparent 60%),
-        radial-gradient(900px 600px at 60% 80%, rgba(52,211,153,.10), transparent 55%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      color:var(--text);
-      line-height:1.55;
-      letter-spacing: 0.002em;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:var(--sans);
+      line-height:var(--lh);
+      letter-spacing:.002em;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
-
     a{ color:inherit; text-decoration:none; }
-    a:hover{ text-decoration: none; }
-    ::selection{ background: rgba(110,231,255,.25); }
+    ::selection{ background:rgba(234,234,234,.14); }
 
-    /* Layout */
-    .wrap{ max-width: var(--max); margin:0 auto; padding: 0 var(--pad); }
-    .grid{ display:grid; gap: 18px; }
-    .row{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
-
-    /* Top bar */
-    header{
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: color-mix(in srgb, var(--bg) 80%, transparent);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
+    .wrap{ max-width:var(--max); margin:0 auto; padding:0 var(--pad); }
+    .grid{
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap: 28px;
+      padding: 22px 0 70px;
     }
-    .topbar{
-      display:flex; justify-content:space-between; align-items:center;
-      padding: 14px 0;
+
+    header{
+      border-bottom:var(--line);
+      padding: 18px 0;
+    }
+    .top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
       gap: 16px;
     }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width: 180px;
-    }
-    .mark{
-      width: 38px; height: 38px; border-radius: 12px;
-      background:
-        radial-gradient(18px 18px at 30% 30%, rgba(110,231,255,.75), transparent 60%),
-        radial-gradient(22px 22px at 70% 70%, rgba(167,139,250,.70), transparent 60%),
-        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-      border: 1px solid var(--line2);
-      box-shadow: var(--shadow2);
-    }
-    .brand h1{
-      margin:0;
-      font-size: 15px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text);
-      opacity: .92;
-    }
-    nav{
-      display:flex; align-items:center; gap: 14px;
-      flex: 1;
-      justify-content: center;
+    .id{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
       min-width: 220px;
     }
-    .navlink{
-      font-size: 14px;
-      color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      transition: .2s ease;
+    .id .name{
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--fg85);
     }
-    .navlink:hover{
-      color: var(--text);
-      background: rgba(255,255,255,.04);
-      border-color: var(--line);
+    .id .tag{
+      font-size:14px;
+      color:var(--fg70);
+      max-width: 80ch;
     }
-
-    .actions{ display:flex; gap:10px; justify-content:flex-end; min-width: 240px; }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      font-weight: 500;
-      font-size: 14px;
-      transition: transform .16s ease, background .16s ease, border-color .16s ease;
-      cursor: pointer;
-      user-select: none;
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: var(--line2); }
-    .btn:active{ transform: translateY(0px); }
-    .btn.primary{
-      border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
-      background:
-        radial-gradient(130px 90px at 20% 20%, rgba(110,231,255,.25), transparent 60%),
-        radial-gradient(140px 100px at 70% 60%, rgba(167,139,250,.20), transparent 60%),
-        rgba(255,255,255,.04);
-    }
-    .btn.ghost{
-      background: transparent;
-    }
-
-    .kbd{
-      font-variant-numeric: tabular-nums;
-      font-size: 12px;
-      padding: 2px 7px;
-      border: 1px solid var(--line);
-      border-bottom-color: var(--line2);
-      border-radius: 8px;
-      color: var(--muted);
-      background: rgba(255,255,255,.04);
-    }
-
-    /* Hero */
-    .hero{
-      padding: 56px 0 22px;
-    }
-    .heroCard{
-      border: 1px solid var(--line);
-      border-radius: var(--r20);
-      background:
-        radial-gradient(800px 300px at 10% 10%, rgba(110,231,255,.12), transparent 70%),
-        radial-gradient(650px 320px at 90% 10%, rgba(167,139,250,.10), transparent 72%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow: var(--shadow);
-      padding: clamp(18px, 3vw, 28px);
-      overflow: hidden;
-      position: relative;
-    }
-    .heroCard:before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: linear-gradient(135deg, rgba(110,231,255,.18), rgba(167,139,250,.12), rgba(255,255,255,0));
-      opacity:.25;
-      pointer-events:none;
-      mask-image: radial-gradient(800px 380px at 20% 0%, black 40%, transparent 70%);
-    }
-    .hero h2{
-      margin: 0 0 10px;
-      font-size: var(--h1);
-      letter-spacing: var(--ls);
-      line-height: 1.1;
-    }
-    .lede{
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: clamp(15px, 1.4vw, 18px);
-      max-width: 66ch;
-    }
-    .pillRow{ display:flex; flex-wrap:wrap; gap:10px; margin: 14px 0 0; }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .dot{
-      width: 8px; height: 8px; border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(110,231,255,.12);
-    }
-
-    /* Sections */
-    section{ padding: 30px 0; }
-    .sectionHead{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom: 14px;
-    }
-    .sectionHead h3{
-      margin:0;
-      font-size: var(--h2);
-      letter-spacing: var(--ls);
-    }
-    .sectionHead .sub{
-      color: var(--faint);
-      font-size: 14px;
-      max-width: 54ch;
-    }
-
-    .card{
-      border: 1px solid var(--line);
-      border-radius: var(--r16);
-      background: rgba(255,255,255,.03);
-      box-shadow: var(--shadow2);
-      padding: 18px;
-    }
-    .card.tight{ padding: 14px; }
-    .cardTitle{
-      font-weight: 600;
-      margin: 0 0 8px;
-      letter-spacing: -0.01em;
-    }
-    .muted{ color: var(--muted); }
-    .small{ font-size: var(--small); color: var(--muted); }
-
-    .cards3{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-    }
-    .span4{ grid-column: span 4; }
-    .span6{ grid-column: span 6; }
-
-    @media (max-width: 980px){
-      nav{ display:none; }
-      .actions{ min-width: auto; }
-      .span4, .span6{ grid-column: span 12; }
-      .hero{ padding-top: 38px; }
-    }
-
-    ul.clean{
-      margin: 10px 0 0;
-      padding: 0 0 0 18px;
-    }
-    ul.clean li{ margin: 8px 0; color: var(--muted); }
-    ul.clean li strong{ color: var(--text); font-weight: 600; }
-
-    .rule{
-      height:1px;
-      background: var(--line);
-      margin: 18px 0;
-    }
-
-    /* Link cards */
-    .linkGrid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-    }
-    .linkCard{
-      grid-column: span 4;
-      border-radius: var(--r16);
-      border: 1px solid var(--line);
-      padding: 14px;
-      background:
-        radial-gradient(260px 140px at 30% 20%, rgba(110,231,255,.10), transparent 65%),
-        rgba(255,255,255,.03);
-      transition: transform .16s ease, border-color .16s ease, background .16s ease;
-    }
-    .linkCard:hover{
-      transform: translateY(-2px);
-      border-color: var(--line2);
-      background:
-        radial-gradient(260px 140px at 30% 20%, rgba(167,139,250,.10), transparent 65%),
-        rgba(255,255,255,.04);
-    }
-    .linkCard .top{
-      display:flex; justify-content:space-between; align-items:flex-start; gap:12px;
-      margin-bottom: 8px;
-    }
-    .badge{
-      font-size: 12px;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: 999px;
-      padding: 4px 10px;
-      white-space:nowrap;
-    }
-    .linkCard h4{
-      margin:0;
-      font-size: 15px;
-      letter-spacing: -0.01em;
-    }
-
-    @media (max-width: 980px){
-      .linkCard{ grid-column: span 12; }
-    }
-
-    /* Contact */
-    form{
-      display:grid;
-      gap: 12px;
-      grid-template-columns: repeat(12, 1fr);
-      align-items:start;
-    }
-    .field{ grid-column: span 6; display:flex; flex-direction:column; gap:6px; }
-    .field.full{ grid-column: span 12; }
-    label{
-      font-size: 13px;
-      color: var(--muted);
-    }
-    input, textarea, select{
-      width:100%;
-      padding: 12px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      outline: none;
-      transition: border-color .16s ease, background .16s ease;
-    }
-    textarea{ min-height: 120px; resize: vertical; }
-    input:focus, textarea:focus, select:focus{
-      border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
-      background: rgba(255,255,255,.04);
-    }
-
-    .formActions{
-      grid-column: span 12;
+    .toplinks{
       display:flex;
       gap: 10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      margin-top: 4px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
     }
-    .hint{ color: var(--faint); font-size: 13px; max-width: 62ch; }
+    .chip{
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      padding: 8px 10px;
+      border: 1px solid var(--fg14);
+      border-radius: 999px;
+      color:var(--fg70);
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .chip:hover{
+      background:var(--fg08);
+      border-color:var(--fg25);
+      color:var(--fg);
+    }
+
+    aside{
+      position:sticky;
+      top: 16px;
+      align-self:start;
+    }
+    .nav{
+      border:var(--line);
+      border-radius: var(--r);
+      padding: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .nav h3{
+      margin:0 0 12px;
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--fg40);
+    }
+
+    /* Progress line */
+    .progress{
+      position:absolute;
+      left: 12px;
+      top: 48px;
+      bottom: 14px;
+      width: 2px;
+      background: var(--fg08);
+      border-radius: 99px;
+    }
+    .progress > i{
+      display:block;
+      width:100%;
+      height: 0%;
+      background: var(--fg55);
+      border-radius: 99px;
+      transform-origin: top;
+      transition: height 120ms linear;
+    }
+
+    .nav ul{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      flex-direction:column;
+      gap: 4px;
+      position: relative;
+    }
+    .nav a{
+      display:flex;
+      align-items:baseline;
+      gap: 12px;
+      padding: 9px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: background .15s ease, border-color .15s ease;
+    }
+    .nav a:hover{
+      background: var(--fg08);
+      border-color: var(--fg14);
+    }
+    .nav .n{
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.06em;
+      color:var(--fg40);
+      width: 52px;
+      flex: 0 0 auto;
+    }
+    .nav .t{
+      font-size:14px;
+      color:var(--fg70);
+    }
+    .nav li.active a{
+      background: var(--fg08);
+      border-color: var(--fg25);
+    }
+    .nav li.active .t{ color:var(--fg); }
+    .nav li.active .n{ color:var(--fg70); }
+
+    .meta{
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: var(--line);
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      color:var(--fg70);
+      font-size:13px;
+    }
+    .meta .k{
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:var(--fg40);
+      margin-bottom: 2px;
+    }
+
+    main{ min-width:0; }
+
+    /* Reveal system */
+    .reveal{
+      opacity: 0;
+      transform: translateY(14px);
+      filter: blur(0px);
+      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+      will-change: opacity, transform;
+    }
+    .reveal.in{
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger > *{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+      will-change: opacity, transform;
+    }
+    .stagger.in > *{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    section[id] { scroll-margin-top: 18px; }
+
+
+    /* Stagger timing via CSS variables set in JS */
+    .stagger > *{
+      transition-delay: var(--d, 0ms);
+    }
+
+    .hero{
+      padding: 10px 0 26px;
+      border-bottom: var(--line);
+      margin-bottom: 22px;
+    }
+    h1{
+      font-family:var(--serif);
+      font-weight:600;
+      font-size:var(--h1);
+      letter-spacing:var(--ls);
+      line-height:1.02;
+      margin:0 0 12px;
+    }
+    .lede{
+      margin:0;
+      font-size:18px;
+      color:var(--fg85);
+      max-width: 76ch;
+    }
+    .lede strong{ color:var(--fg); font-weight:600; }
+
+    .section{
+      padding: 24px 0;
+      border-bottom: var(--line);
+    }
+    .kicker{
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--fg40);
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      margin: 0 0 10px;
+    }
+    .kicker:after{
+      content:"";
+      height:1px;
+      background:var(--fg14);
+      flex:1;
+      transform: translateY(-1px);
+    }
+    h2{
+      margin:0 0 10px;
+      font-size:var(--h2);
+      font-weight:600;
+      letter-spacing:-0.01em;
+    }
+    p{
+      margin:0 0 12px;
+      font-size:var(--p);
+      color:var(--fg70);
+      max-width: 82ch;
+    }
+
+    .twocol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .box{
+      border: 1px solid var(--fg14);
+      border-radius: var(--r);
+      padding: 14px;
+    }
+    .box h3{
+      margin:0 0 10px;
+      font-size:14px;
+      font-weight:600;
+      color:var(--fg);
+    }
+    ul{
+      margin:0;
+      padding: 0 0 0 18px;
+      color:var(--fg70);
+    }
+    li{ margin: 8px 0; }
+    li::marker{ color: var(--fg25); }
+
+    .rows{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 16px;
+      padding: 10px 12px;
+      border: 1px solid var(--fg14);
+      border-radius: 999px;
+      transition: background .15s ease, border-color .15s ease;
+    }
+    .row:hover{
+      background: var(--fg08);
+      border-color: var(--fg25);
+    }
+    .row .l{
+      display:flex;
+      gap: 12px;
+      align-items:baseline;
+      min-width:0;
+    }
+    .code{
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:var(--fg40);
+      width: 86px;
+      flex: 0 0 auto;
+    }
+    .txt{
+      color:var(--fg70);
+      font-size:14px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .row:hover .txt{ color:var(--fg); }
+    .hint{
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:var(--fg40);
+      white-space:nowrap;
+    }
 
     footer{
-      padding: 24px 0 42px;
-      color: var(--faint);
-      font-size: 13px;
-      border-top: 1px solid var(--line);
-      margin-top: 26px;
+      border-top: var(--line);
+      padding: 18px 0 40px;
+      color:var(--fg40);
+      font-size:13px;
+      margin-top: 24px;
     }
-    .footerRow{
-      display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    .foot{
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .mono{
+      font-family:var(--mono);
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:var(--fg40);
     }
 
-    /* Accessibility */
-    .sr-only{
-      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
-      clip: rect(0,0,0,0); white-space:nowrap; border:0;
+    /* Minimal loader */
+    .loader{
+      position:fixed;
+      inset:0;
+      background:var(--bg);
+      display:grid;
+      place-items:center;
+      z-index: 50;
+      pointer-events:none;
+      opacity:1;
+      transition: opacity .30s ease;
     }
+    .loader.hide{ opacity:0; }
+    .loader .rule{
+      width:min(420px, 74vw);
+      height:1px;
+      background:var(--fg14);
+      position:relative;
+      overflow:hidden;
+    }
+    .loader .rule:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      width: 42%;
+      background:var(--fg70);
+      transform: translateX(-120%);
+      animation: sweep .65s var(--ease) forwards;
+    }
+
+    /* Give the nav a left gutter */
+.nav{ padding-left: 18px; }
+
+/* Move links right a touch so the gutter is real space */
+.nav a{ padding: 9px 10px 9px 16px; }
+
+/* Put the progress line in the gutter, and stop before meta */
+.progress{
+  left: 10px;     /* was ~12px */
+  top: 56px;      /* push down a touch from the title */
+  bottom: 130px;  /* stop above meta block (tweak if needed) */
+  width: 1px;     /* cleaner */
+  background: var(--fg08);
+}
+
+.progress > i{
+  background: var(--fg40);
+}
+
+
+    @keyframes sweep{ to{ transform: translateX(260%); } }
+
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; gap: 18px; }
+      aside{ position:static; }
+      .twocol{ grid-template-columns: 1fr; }
+      .code{ width: 74px; }
+      .progress{ display:none; }
+    }
+
     :focus-visible{
-      outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent);
-      outline-offset: 2px;
+      outline: 2px solid var(--fg70);
+      outline-offset: 3px;
       border-radius: 12px;
     }
-
-    /* Motion */
-    @media (prefers-reduced-motion: reduce){
-      *{ transition:none !important; scroll-behavior:auto !important; }
-    }
     html{ scroll-behavior:smooth; }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; animation:none !important; scroll-behavior:auto !important; }
+      .loader{ display:none; }
+      .reveal, .stagger > *{ opacity:1 !important; transform:none !important; }
+    }
+
+
+.thumbstrip{
+  margin-top: 12px;
+  margin-bottom: 14px;
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.thumbitem{
+  margin:0;
+  border: 1px solid var(--fg14);
+  border-radius: var(--r);
+  overflow:hidden;
+  background: rgba(234,234,234,.03);
+}
+
+.thumbitem img{
+  width:100%;
+  height: 128px;
+  object-fit: cover;
+  display:block;
+  filter: saturate(.9) contrast(1.02);
+}
+
+.thumbitem figcaption{
+  padding: 8px 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: var(--fg40);
+  border-top: 1px solid var(--fg14);
+}
+
+@media (max-width: 980px){
+  .thumbitem img{ height: 120px; }
+}
+@media (max-width: 560px){
+  .thumbstrip{ grid-template-columns: 1fr; }
+  .thumbitem img{ height: 160px; }
+}
+
+/* Signals: keep the credentials box visually calm */
+#c05 .box{ background: rgba(234,234,234,.03); }
+#c05 .box h3{ margin-bottom: 8px; }
   </style>
 </head>
 
 <body>
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="rule"></div>
+  </div>
+
 <header>
   <div class="wrap">
-    <div class="topbar">
-      <div class="brand">
-        <div class="mark" aria-hidden="true"></div>
-        <h1>Tumunu</h1>
+    <div class="top">
+      <div class="id">
+        <div class="name">Tumunu</div>
+        <div class="tag">Kia orana. Built work, learning, and tools. Wellington · BP158180</div>
       </div>
-
-      <nav aria-label="Primary">
-        <a class="navlink" href="#about">About</a>
-        <a class="navlink" href="#build">What I build</a>
-        <a class="navlink" href="#signals">Signals</a>
-        <a class="navlink" href="#contact">Contact</a>
-      </nav>
-
-      <div class="actions">
-        <button class="btn ghost" id="themeBtn" type="button" aria-label="Toggle theme">
-          Theme <span class="kbd" aria-hidden="true">T</span>
-        </button>
-        <a class="btn primary" href="#contact">Contact</a>
+      <div class="toplinks">
+        <a class="chip" href="#c05">Signals</a>
+        <a class="chip" href="https://www.linkedin.com/in/taratoa-pokotea-b43b81321/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="chip" href="https://github.com/tumunu" target="_blank" rel="noreferrer">GitHub</a>
       </div>
     </div>
   </div>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="wrap">
-      <div class="heroCard">
-        <h2>I build tools.</h2>
-        <p class="lede">
-          Not just timber ones. Trade tools, digital tools, and learning tools that reduce friction and raise standards.
-          If something is wasting time, breaking under pressure, or failing at handover, I make it usable.
-        </p>
 
-        <div class="row" style="margin-top:14px;">
-          <span class="pill"><span class="dot" aria-hidden="true"></span> LBP (Carpentry) BP158180</span>
-          <span class="pill"><span class="dot" aria-hidden="true" style="background:var(--accent2); box-shadow:0 0 0 4px rgba(167,139,250,.12)"></span> Teaching, assessment, moderation support</span>
-          <span class="pill"><span class="dot" aria-hidden="true" style="background:var(--good); box-shadow:0 0 0 4px rgba(52,211,153,.12)"></span> Lightweight systems and automation</span>
-        </div>
-
-        <div class="row" style="margin-top:18px;">
-          <!-- Replace placeholders -->
-          <a class="btn" href="mailto:YOUR@TUMUNU.COM">Email</a>
-          <a class="btn" href="tel:+64XXXXXXXXX">Call</a>
-          <a class="btn" href="#signals">Links</a>
-          <span class="small">Wellington region, remote work by arrangement.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="wrap">
-      <div class="sectionHead">
-        <div>
-          <h3>About</h3>
-          <div class="sub">Practical operator. Calm under pressure. Bias for clarity and repeatability.</div>
-        </div>
-      </div>
-
-      <div class="cards3">
-        <div class="card span6">
-          <p class="muted" style="margin:0;">
-            I am trade-qualified and an LBP in carpentry. I also work in vocational learning and assessment, where the job
-            is equal parts teaching, evidence, moderation, and keeping programmes workable.
-          </p>
-          <div class="rule"></div>
-          <p class="muted" style="margin:0;">
-            When a process is clunky, I do not complain about it. I build a tool, a checklist, a template, or a small bit
-            of automation that makes the next pass easier for everyone.
-          </p>
-        </div>
-
-        <div class="card span6">
-          <h4 class="cardTitle">What you can expect</h4>
-          <ul class="clean">
-            <li><strong>Clear requirements:</strong> what “done” means, written down.</li>
-            <li><strong>Evidence you can use:</strong> photos, notes, and simple artefacts.</li>
-            <li><strong>Clean handovers:</strong> the next person can keep moving.</li>
-            <li><strong>No theatre:</strong> useful work over performative noise.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="build">
-    <div class="wrap">
-      <div class="sectionHead">
-        <div>
-          <h3>What I build</h3>
-          <div class="sub">Three families of tools, same standard: reduce friction, raise reliability.</div>
-        </div>
-      </div>
-
-      <div class="cards3">
-        <div class="card span4">
-          <h4 class="cardTitle">Trade tools</h4>
-          <p class="muted" style="margin:0;">Work that holds up. Clean sequencing. Quality checks that prevent rework.</p>
-          <ul class="clean">
-            <li>Remedials and defect rectification</li>
-            <li>Minor works and alterations</li>
-            <li>Practical site support and short handovers</li>
-          </ul>
-        </div>
-
-        <div class="card span4">
-          <h4 class="cardTitle">Digital tools</h4>
-          <p class="muted" style="margin:0;">Lightweight systems that save time and keep information usable.</p>
-          <ul class="clean">
-            <li>Simple web and forms for intake and handover</li>
-            <li>Process documentation and templates</li>
-            <li>Automation for repetitive admin</li>
-          </ul>
-          <div class="rule"></div>
-          <p class="small" style="margin:0;">
-            Examples can include an Android field app, evidence export utilities, schedule generators, and diff checks.
-          </p>
-        </div>
-
-        <div class="card span4">
-          <h4 class="cardTitle">Learning tools</h4>
-          <p class="muted" style="margin:0;">Teaching and assessment artefacts that match real work, not theory theatre.</p>
-          <ul class="clean">
-            <li>Coaching and structured guidance</li>
-            <li>Rubrics, evidence guides, moderation support</li>
-            <li>Progress visibility that learners can act on</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="signals">
-    <div class="wrap">
-      <div class="sectionHead">
-        <div>
-          <h3>Signals</h3>
-          <div class="sub">Quiet links to the places that matter. Replace the placeholders with your real URLs.</div>
-        </div>
-      </div>
-
-      <div class="linkGrid">
-        <a class="linkCard" href="https://www.lbp.govt.nz/" target="_blank" rel="noreferrer">
-          <div class="top">
-            <div>
-              <h4>LBP registration</h4>
-              <div class="small">BP158180 (add your public link)</div>
-            </div>
-            <span class="badge">Built work</span>
-          </div>
-          <div class="small">Regulatory signal. Keep it clean and factual.</div>
-        </a>
-
-        <a class="linkCard" href="https://github.com/YOURUSERNAME" target="_blank" rel="noreferrer">
-          <div class="top">
-            <div>
-              <h4>GitHub</h4>
-              <div class="small">Selected templates and tools</div>
-            </div>
-            <span class="badge">Systems</span>
-          </div>
-          <div class="small">Put your best, simplest repos first. Avoid noise.</div>
-        </a>
-
-        <a class="linkCard" href="#" target="_blank" rel="noreferrer">
-          <div class="top">
-            <div>
-              <h4>Resources</h4>
-              <div class="small">Downloads and examples</div>
-            </div>
-            <span class="badge">Learning</span>
-          </div>
-          <div class="small">Redacted rubrics, checklists, evidence guides.</div>
-        </a>
-
-        <a class="linkCard" href="#" target="_blank" rel="noreferrer">
-          <div class="top">
-            <div>
-              <h4>Google Business</h4>
-              <div class="small">Reviews and local presence</div>
-            </div>
-            <span class="badge">Local</span>
-          </div>
-          <div class="small">Keep photos current. Use plain service names.</div>
-        </a>
-
-        <a class="linkCard" href="#" target="_blank" rel="noreferrer">
-          <div class="top">
-            <div>
-              <h4>Instagram</h4>
-              <div class="small">Work, not vibes</div>
-            </div>
-            <span class="badge">Evidence</span>
-          </div>
-          <div class="small">Use captions that name the work and the check.</div>
-        </a>
-
-        <a class="linkCard" href="#" target="_blank" rel="noreferrer">
-          <div class="top">
-            <div>
-              <h4>LinkedIn</h4>
-              <div class="small">Professional context</div>
-            </div>
-            <span class="badge">Work</span>
-          </div>
-          <div class="small">Keep headline plain. Link back here.</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap">
-      <div class="sectionHead">
-        <div>
-          <h3>Contact</h3>
-          <div class="sub">If you want a useful reply, send the goal, the constraint, and the current state.</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <form id="contactForm" novalidate>
-          <div class="field">
-            <label for="name">Name</label>
-            <input id="name" name="name" autocomplete="name" placeholder="Your name" />
-          </div>
-
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" />
-          </div>
-
-          <div class="field">
-            <label for="phone">Phone</label>
-            <input id="phone" name="phone" autocomplete="tel" placeholder="+64..." />
-          </div>
-
-          <div class="field">
-            <label for="location">Location (if relevant)</label>
-            <input id="location" name="location" placeholder="Suburb / region" />
-          </div>
-
-          <div class="field full">
-            <label for="message">What are you trying to achieve?</label>
-            <textarea id="message" name="message" placeholder="Goal, what is in the way, constraints, and any links or screenshots."></textarea>
-          </div>
-
-          <div class="formActions">
-            <button class="btn primary" type="submit">Send (email)</button>
-            <div class="hint">
-              This form opens your email app. If you prefer, email directly: <strong>YOUR@TUMUNU.COM</strong>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
   <div class="wrap">
-    <div class="footerRow">
-      <div>
-        <strong style="color:var(--text);">Tumunu</strong>
-        <div class="small">LBP (Carpentry) BP158180</div>
-      </div>
-      <div class="small">
-        <div>© <span id="year"></span> Tumunu</div>
-        <div>Built for clarity, not noise.</div>
-      </div>
+    <div class="grid">
+      <aside>
+        <div class="nav" aria-label="Chapters">
+          <h3>Navigate</h3>
+
+          <div class="progress" aria-hidden="true"><i id="pfill"></i></div>
+
+          <ul id="nav">
+            <li><a href="#c01"><span class="n">01</span><span class="t">Start</span></a></li>
+            <li><a href="#c02"><span class="n">02</span><span class="t">Built work</span></a></li>
+            <li><a href="#c03"><span class="n">03</span><span class="t">Learning</span></a></li>
+            <li><a href="#c04"><span class="n">04</span><span class="t">Systems</span></a></li>
+            <li><a href="#c05"><span class="n">05</span><span class="t">Signals</span></a></li>
+          </ul>
+
+          <div class="meta">
+            <div>
+              <div class="k">LBP</div>
+              <div>Carpentry · BP158180</div>
+            </div>
+            <div>
+              <div class="k">Base</div>
+              <div>Wellington region · remote by arrangement</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main>
+ <!-- HERO -->
+<section class="hero reveal" id="c01" data-title="Start">
+  <h1>Record of work</h1>
+  <p class="lede">
+    Built work, Learning, Systems. Signals at the end if you want to verify anything.
+  </p>
+</section>
+
+
+
+
+<!-- CHAPTER 02 -->
+<section class="section reveal" id="c02" data-title="Built work">
+  <div class="kicker">02</div>
+  <h2>Built work</h2>
+  <p>
+    I am a carpenter. A tidy site begets tidy work.
+  </p>
+
+  <div class="thumbstrip stagger" aria-label="Built work receipts">
+  <figure class="thumbitem">
+    <img src="img/2025-06-09-004.jpg" alt="Finishing carpentry work" loading="lazy" />
+    <figcaption>Detail</figcaption>
+  </figure>
+
+  <figure class="thumbitem">
+    <img src="img/2025-06-09-001.jpg" alt="Creative setups to achieve workshop quality" loading="lazy" />
+    <figcaption>Setup</figcaption>
+  </figure>
+
+  <figure class="thumbitem">
+    <img src="img/2025-06-09-003.jpg" alt="New flooring and trim" loading="lazy" />
+    <figcaption>Remedial</figcaption>
+  </figure>
+</div>
+
+  <div class="twocol">
+    <div class="box reveal">
+      <h3>My defaults</h3>
+      <ul class="stagger">
+        <li>If it is unclear, it is not ready.</li>
+        <li>Handover notes are part of the job.</li>
+      </ul>
+    </div>
+    <div class="box reveal">
+      <h3>Non-negotiables</h3>
+      <ul class="stagger">
+        <li>Safety that's practical, not performative.</li>
+        <li>Quality checks that prevent rework.</li>
+        <li>Clean site, clean finish.</li>
+      </ul>
     </div>
   </div>
-</footer>
+</section>
+
+<!-- CHAPTER 03 -->
+<section class="section reveal" id="c03" data-title="Learning">
+  <div class="kicker">03</div>
+  <h2>Learning</h2>
+  <p>If people are guessing, the teaching failed.</p>
+
+  <div class="twocol">
+    <div class="box reveal">
+      <h3>What I build in learning</h3>
+      <ul class="stagger">
+        <li>Examples that show “good” without a lecture.</li>
+        <li>Rubrics and checklists that survive moderation.</li>
+        <li>Evidence guides that match the real work.</li>
+      </ul>
+    </div>
+    <div class="box reveal">
+      <h3>My bias</h3>
+      <ul class="stagger">
+        <li>Plain language over educational jargon.</li>
+        <li>One page is better than five, if it is the right page.</li>
+        <li>Progress visibility beats vague encouragement.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 04 -->
+<section class="section reveal" id="c04" data-title="Systems">
+  <div class="kicker">04</div>
+  <h2>Systems</h2>
+  <p>I build tools that save time. If it doesn't, it's gone.</p>
+
+  <div class="thumbstrip stagger" aria-label="Built work receipts">
+  <figure class="thumbitem">
+    <img src="img/2025-06-09-005.jpg" alt="Assessor management app." loading="lazy" />
+    <figcaption>Site Visit</figcaption>
+  </figure>
+
+  <figure class="thumbitem">
+    <img src="img/2025-06-09-006.png" alt="The only game where you learn whānau pū, create words, and build sentences with a swipe." loading="lazy" />
+    <figcaption>He Kupu i Kore</figcaption>
+  </figure>
+  </div>
+
+  <div class="twocol">
+    <div class="box reveal">
+      <h3>Some recent things built</h3>
+      <ul class="stagger">
+        <li>An Android field app for on-site updates and progress visibility.</li>
+        <li>Browser tools for evidence export, scheduling, and diff checks.</li>
+        <li>Templates for intake, triage, and handover.</li>
+      </ul>
+    </div>
+    <div class="box reveal">
+      <h3>My rules</h3>
+      <ul class="stagger">
+        <li>Simple beats clever.</li>
+        <li>Documentation is part of delivery.</li>
+        <li>Tools should be maintainable by the next person.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- CHAPTER 05 -->
+<section class="section reveal" id="c05" data-title="Signals and contact">
+  <div class="kicker">05</div>
+  <h2>Signals</h2>
+  <p>
+    If you want to verify anything, these are the public anchors.
+  </p>
+
+  <div class="rows stagger" role="list">
+    <a class="row" role="listitem" href="https://kete-lbp.mbie.govt.nz/advanced-building-practitioner-search/" target="_blank" rel="noreferrer">
+      <div class="l"><span class="code">LBP</span><span class="txt">BP158180</span></div>
+      <span class="hint">external</span>
+    </a>
+    <a class="row" role="listitem" href="https://github.com/tumunu" target="_blank" rel="noreferrer">
+      <div class="l"><span class="code">GITHUB</span><span class="txt">Tools, templates, notes</span></div>
+      <span class="hint">external</span>
+    </a>
+    <a class="row" role="listitem" href="https://g.page/cleave-nz" target="_blank" rel="noreferrer">
+      <div class="l"><span class="code">MAPS</span><span class="txt">Google Business listing</span></div>
+      <span class="hint">external</span>
+    </a>
+    <a class="row" role="listitem" href="https://www.instagram.com/ivebuilt/" target="_blank" rel="noreferrer">
+      <div class="l"><span class="code">INSTA</span><span class="txt">Work photos and short notes</span></div>
+      <span class="hint">external</span>
+    </a>
+  </div>
+
+  <div class="box reveal" style="margin-top:12px;">
+  <h3>Credentials</h3>
+  <ul class="stagger">
+    <li>Licensed Building Practitioner (Carpentry)</li>
+    <li>Certificate in Carpenter</li>
+    <li>Diploma in Construction Management</li>
+    <li>Certificate in Project Management</li>
+    <li>Certificate in Information Technology</li>
+    <li>Certificate in Assessment Practice</li>
+  </ul>
+</div>
+
+<p style="margin-top:14px; color:rgba(234,234,234,.55); font-size:13px;">
+  Best contact is via Google Business. Phone details is on the LBP registry.
+</p>
+</section>
+
+        <footer>
+          <div class="foot">
+            <div class="mono">Tumunu</div>
+            <div>LBP (Carpentry) BP158180</div>
+            <div class="mono">Updated <span id="d"></span></div>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </div>
 
 <script>
   (function(){
-    const root = document.documentElement;
-    const btn = document.getElementById('themeBtn');
-    const year = document.getElementById('year');
-    year.textContent = new Date().getFullYear();
-
-    // Persisted theme
-    const saved = localStorage.getItem('theme');
-    if (saved === 'dark' || saved === 'light') root.dataset.theme = saved;
-
-    // Keyboard shortcut: T
-    document.addEventListener('keydown', (e) => {
-      if (e.key.toLowerCase() === 't' && !e.metaKey && !e.ctrlKey && !e.altKey) toggleTheme();
-    });
-    btn.addEventListener('click', toggleTheme);
-
-    function toggleTheme(){
-      const current = root.dataset.theme || '';
-      const next = current === 'light' ? 'dark' : 'light';
-      root.dataset.theme = next;
-      localStorage.setItem('theme', next);
+    // Loader
+    const loader = document.getElementById('loader');
+    if (loader){
+      requestAnimationFrame(() => loader.classList.add('hide'));
+      setTimeout(() => { try { loader.remove(); } catch(e){} }, 520);
     }
 
-    // Mailto compose from form
-    const form = document.getElementById('contactForm');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      const name = (data.get('name') || '').toString().trim();
-      const email = (data.get('email') || '').toString().trim();
-      const phone = (data.get('phone') || '').toString().trim();
-      const location = (data.get('location') || '').toString().trim();
-      const message = (data.get('message') || '').toString().trim();
+    // Date (NZ locale)
+    const dEl = document.getElementById('d');
+    if (dEl){
+      const d = new Date();
+      dEl.textContent =
+        new Intl.DateTimeFormat('en-NZ', { year:'numeric', month:'short', day:'2-digit' }).format(d);
+    }
 
-      const to = 'YOUR@TUMUNU.COM'; // TODO: replace
-      const subject = encodeURIComponent('Tumunu enquiry');
-      const bodyLines = [
-        name ? `Name: ${name}` : null,
-        email ? `Email: ${email}` : null,
-        phone ? `Phone: ${phone}` : null,
-        location ? `Location: ${location}` : null,
-        '',
-        message || '(No message provided)'
-      ].filter(Boolean);
+    const reduceMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const body = encodeURIComponent(bodyLines.join('\n'));
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    // Stagger delays
+    document.querySelectorAll('.stagger').forEach((group) => {
+      Array.from(group.children).forEach((el, i) => {
+        el.style.setProperty('--d', `${Math.min(i, 12) * 60}ms`);
+      });
     });
+
+    // Reveal on scroll (keep IntersectionObserver here; it's fine for reveals)
+    if (!reduceMotion && 'IntersectionObserver' in window){
+      const revealEls = Array.from(document.querySelectorAll('.reveal, .stagger'));
+      const ro = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('in');
+          ro.unobserve(e.target);
+        });
+      }, { rootMargin: '-12% 0px -18% 0px', threshold: 0.12 });
+
+      revealEls.forEach(el => ro.observe(el));
+    } else {
+      document.querySelectorAll('.reveal, .stagger').forEach(el => el.classList.add('in'));
+    }
+
+    // --- Scroll nav alignment (deterministic, matches what you see) ---
+    const navItems = Array.from(document.querySelectorAll('#nav li'));
+    const navLinks = Array.from(document.querySelectorAll('#nav a'));
+    const pfill = document.getElementById('pfill');
+
+    const sections = navLinks
+      .map(a => document.querySelector(a.getAttribute('href')))
+      .filter(Boolean);
+
+    function setActive(index){
+      navItems.forEach(li => li.classList.remove('active'));
+      if (index >= 0 && navItems[index]) navItems[index].classList.add('active');
+    }
+
+    // Smooth scroll with a small top offset (avoids hugging top edge)
+    navLinks.forEach(a => {
+      a.addEventListener('click', (e) => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+
+        const y = target.getBoundingClientRect().top + window.pageYOffset - 12;
+        window.scrollTo({ top: y, behavior: reduceMotion ? 'auto' : 'smooth' });
+        history.replaceState(null, '', a.getAttribute('href'));
+      });
+    });
+
+function updateActiveSection(){
+  const doc = document.documentElement;
+
+  // Hard guardrails (optional but makes edges feel correct)
+  if (window.pageYOffset <= 8){
+    setActive(0);
+    return;
+  }
+  if ((window.pageYOffset + window.innerHeight) >= (doc.scrollHeight - 24)){
+    setActive(sections.length - 1);
+    return;
+  }
+
+  const viewTop = 0;
+  const viewBottom = window.innerHeight;
+
+  let bestIdx = 0;
+  let bestVisible = -1;
+
+  for (let i = 0; i < sections.length; i++){
+    const r = sections[i].getBoundingClientRect();
+
+    // Visible height of this section within viewport
+    const visible = Math.max(0, Math.min(r.bottom, viewBottom) - Math.max(r.top, viewTop));
+
+    if (visible > bestVisible){
+      bestVisible = visible;
+      bestIdx = i;
+    }
+  }
+
+  setActive(bestIdx);
+}
+
+
+
+    function updateScrollProgress(){
+      if (!pfill) return;
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - doc.clientHeight;
+      if (max <= 0) { pfill.style.height = '0%'; return; }
+      const frac = Math.max(0, Math.min(1, doc.scrollTop / max));
+      pfill.style.height = `${frac * 100}%`;
+    }
+
+    function updateAll(){
+      updateActiveSection();
+      updateScrollProgress();
+    }
+
+    let ticking = false;
+    function onScroll(){
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateAll();
+        ticking = false;
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive:true });
+    window.addEventListener('resize', onScroll, { passive:true });
+
+    // Initial
+    updateAll();
   })();
 </script>
+
 </body>
 </html>
