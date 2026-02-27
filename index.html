@@ -13,26 +13,185 @@
     <meta property="og:url" content="https://tumunu.com/">
     <title>Tumunu Collective</title>
     <style>
-        body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f8f9fa; color:#212529; line-height:1.6; }
-        header { background: linear-gradient(to right, #1a3c5e, #0d47a1); color:white; padding:50px 20px; text-align:center; }
-        header h1 { margin:0; font-size:2.8rem; }
-        header p { font-size:1.3rem; max-width:600px; margin:15px auto 0; opacity:0.9; }
-        .tagline { font-size:1.1rem; opacity:0.85; margin-top:6px; }
-        section { max-width:900px; margin:40px auto; padding:0 20px; }
-        h2 { font-size:1.9rem; color:#0d47a1; border-bottom:2px solid #e9ecef; padding-bottom:10px; margin-bottom:25px; }
-        .members { display:grid; gap:25px; }
-        .member { background:white; padding:20px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
-        .member h3 { margin:0 0 10px; font-size:1.6rem; color:#1a3c5e; }
-        .anchor-note { font-style:italic; color:#555; font-size:0.95rem; margin-bottom:10px; display:block; }
-        ul { padding:0; list-style:none; }
-        ul li { margin:10px 0; }
-        ul.work li:before { content:"→ "; color:#0d47a1; margin-right:8px; }
-        footer { background:#1a3c5e; color:#ced4da; text-align:center; padding:30px 20px; font-size:0.95rem; }
-        a { color:#4dabf7; text-decoration:none; }
-        a:hover { text-decoration:underline; }
-        .skip-link { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
-        .skip-link:focus { left:16px; top:16px; width:auto; height:auto; padding:10px 12px; background:#fff; color:#000; z-index:9999; }
-        @media (max-width:600px) { header h1 { font-size:2.2rem; } header p { font-size:1.1rem; } }
+        /* --- CSS VARIABLES --- */
+        :root {
+            --color-bg: #f8f9fa;
+            --color-text: #212529;
+            --color-primary: #0d47a1;
+            --color-primary-dark: #1a3c5e;
+            --color-link: #4dabf7;
+            --color-link-hover: #a5d8ff;
+            --color-border: #e9ecef;
+            --color-card-bg: #ffffff;
+            --font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 3rem;
+            --spacing-xl: 4rem;
+            --max-width: 900px;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --radius: 6px;
+        }
+
+        /* --- RESET & BASE --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-stack);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--color-link); text-decoration: none; }
+        a:hover { text-decoration: underline; color: var(--color-link-hover); }
+        img { max-width: 100%; height: auto; }
+
+        /* --- ACCESSIBILITY --- */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .skip-link:focus {
+            left: 16px;
+            top: 16px;
+            width: auto;
+            height: auto;
+            padding: 10px 12px;
+            background: #fff;
+            color: #000;
+            z-index: 9999;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+            color: white;
+            padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg);
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: var(--spacing-sm);
+        }
+        header p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto var(--spacing-sm);
+            opacity: 0.95;
+        }
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            max-width: var(--max-width);
+            margin: var(--spacing-xl) auto;
+            padding: 0 var(--spacing-md);
+        }
+        h2 {
+            font-size: 1.9rem;
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            font-weight: 700;
+        }
+
+        /* --- TEAM GRID --- */
+        .members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+        .member {
+            background: var(--color-card-bg);
+            padding: var(--spacing-md);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .member:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        .member h3 {
+            font-size: 1.5rem;
+            color: var(--color-primary-dark);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 700;
+        }
+        .anchor-note {
+            display: block;
+            font-style: italic;
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        .member p { margin: 0; color: #495057; }
+
+        /* --- WORK LIST --- */
+        ul.work {
+            list-style: none;
+            padding: 0;
+        }
+        ul.work li {
+            margin: var(--spacing-sm) 0;
+            padding-left: 24px;
+            position: relative;
+        }
+        ul.work li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        /* --- CONTACT / VERIFY --- */
+        .verify-list {
+            list-style: none;
+            padding: 0;
+        }
+        .verify-list li {
+            margin: var(--spacing-sm) 0;
+            font-size: 1.05rem;
+        }
+        .verify-list strong { color: var(--color-primary-dark); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--color-primary-dark);
+            color: #ced4da;
+            text-align: center;
+            padding: var(--spacing-lg) var(--spacing-md);
+            font-size: 0.95rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            header p { font-size: 1.1rem; }
+            h2 { font-size: 1.7rem; }
+            .member { padding: var(--spacing-sm); }
+        }
+
+        /* --- FOCUS STATES --- */
+        a:focus, button:focus {
+            outline: 2px solid var(--color-link);
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
@@ -81,14 +240,14 @@
 
         <section>
             <h2>Verify / Contact</h2>
-            <ul>
+            <ul class="verify-list">
                 <li><strong>LBP:</strong> BP158180 <a href="https://kete-lbp.mbie.govt.nz/advanced-building-practitioner-search/" target="_blank" rel="noopener noreferrer">(search public register NZ)</a></li>
                 <li><strong>GitHub:</strong> <a href="https://github.com/tumunu" target="_blank" rel="noopener noreferrer">github.com/tumunu</a> — forensic tools & templates</li>
-                <li><strong>Google:</strong> Search “Tumunu Collective Wellington”</li>
+                <li><strong>Google:</strong> Search "Tumunu Collective Wellington"</li>
                 <li><strong>Instagram:</strong> <a href="https://www.instagram.com/ivebuilt/" target="_blank" rel="noopener noreferrer">@ivebuilt</a> — work photos & notes</li>
                 <li><strong>Email:</strong> <a href="mailto:info@tumunu.com">info@tumunu.com</a> (no unsolicited sales/agencies — pitches to services: don't)</li>
             </ul>
-            <p>Selective: build/tech/coordination/creative needs only.</p>
+            <p style="margin-top: var(--spacing-sm);">Selective: build/tech/coordination/creative needs only.</p>
             <p><a href="/about.html">Full profile (credentials & details)</a></p>
         </section>
     </main>
@@ -96,5 +255,18 @@
     <footer>
         <p>Wellington • Rarotonga<br>Professional standards. Unconventional structure.</p>
     </footer>
+
+    <!-- Optional: Smooth scroll for anchor links -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
