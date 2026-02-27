@@ -1,898 +1,100 @@
-<!doctype html>
-<html lang="en-NZ">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Tumunu. Built work, learning, and tools. Wellington." />
-  <meta name="theme-color" content="#070707" />
-  <title>Tumunu</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <style>
-    :root{
-      --bg:#070707;
-      --fg:#EAEAEA;
-
-      --fg85:rgba(234,234,234,.85);
-      --fg70:rgba(234,234,234,.70);
-      --fg55:rgba(234,234,234,.55);
-      --fg40:rgba(234,234,234,.40);
-      --fg25:rgba(234,234,234,.25);
-      --fg14:rgba(234,234,234,.14);
-      --fg08:rgba(234,234,234,.08);
-
-      --serif:"Fraunces", ui-serif, Georgia, serif;
-      --sans:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      --mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-
-      --max:1180px;
-      --pad:clamp(18px,2.6vw,30px);
-      --r:14px;
-      --line:1px solid var(--fg14);
-
-      --h1:clamp(36px,4.8vw,74px);
-      --h2:clamp(18px,2.2vw,24px);
-      --p:16px;
-
-      --ls:-0.02em;
-      --lh:1.55;
-
-      --ease:cubic-bezier(.2,.8,.2,1);
-      --dur:680ms;
-    }
-
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--fg);
-      font-family:var(--sans);
-      line-height:var(--lh);
-      letter-spacing:.002em;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-    a{ color:inherit; text-decoration:none; }
-    ::selection{ background:rgba(234,234,234,.14); }
-
-    .wrap{ max-width:var(--max); margin:0 auto; padding:0 var(--pad); }
-    .grid{
-      display:grid;
-      grid-template-columns: 320px 1fr;
-      gap: 28px;
-      padding: 22px 0 70px;
-    }
-
-    header{
-      border-bottom:var(--line);
-      padding: 18px 0;
-    }
-    .top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 16px;
-    }
-    .id{
-      display:flex;
-      flex-direction:column;
-      gap: 6px;
-      min-width: 220px;
-    }
-    .id .name{
-      font-family:var(--mono);
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:var(--fg85);
-    }
-    .id .tag{
-      font-size:14px;
-      color:var(--fg70);
-      max-width: 80ch;
-    }
-    .toplinks{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content:flex-end;
-    }
-    .chip{
-      font-family:var(--mono);
-      font-size:12px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      padding: 8px 10px;
-      border: 1px solid var(--fg14);
-      border-radius: 999px;
-      color:var(--fg70);
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .chip:hover{
-      background:var(--fg08);
-      border-color:var(--fg25);
-      color:var(--fg);
-    }
-
-    aside{
-      position:sticky;
-      top: 16px;
-      align-self:start;
-    }
-    .nav{
-      border:var(--line);
-      border-radius: var(--r);
-      padding: 14px;
-      position: relative;
-      overflow: hidden;
-    }
-    .nav h3{
-      margin:0 0 12px;
-      font-family:var(--mono);
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:var(--fg40);
-    }
-
-    /* Progress line */
-    .progress{
-      position:absolute;
-      left: 12px;
-      top: 48px;
-      bottom: 14px;
-      width: 2px;
-      background: var(--fg08);
-      border-radius: 99px;
-    }
-    .progress > i{
-      display:block;
-      width:100%;
-      height: 0%;
-      background: var(--fg55);
-      border-radius: 99px;
-      transform-origin: top;
-      transition: height 120ms linear;
-    }
-
-    .nav ul{
-      list-style:none;
-      margin:0;
-      padding:0;
-      display:flex;
-      flex-direction:column;
-      gap: 4px;
-      position: relative;
-    }
-    .nav a{
-      display:flex;
-      align-items:baseline;
-      gap: 12px;
-      padding: 9px 10px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-      transition: background .15s ease, border-color .15s ease;
-    }
-    .nav a:hover{
-      background: var(--fg08);
-      border-color: var(--fg14);
-    }
-    .nav .n{
-      font-family:var(--mono);
-      font-size:12px;
-      letter-spacing:.06em;
-      color:var(--fg40);
-      width: 52px;
-      flex: 0 0 auto;
-    }
-    .nav .t{
-      font-size:14px;
-      color:var(--fg70);
-    }
-    .nav li.active a{
-      background: var(--fg08);
-      border-color: var(--fg25);
-    }
-    .nav li.active .t{ color:var(--fg); }
-    .nav li.active .n{ color:var(--fg70); }
-
-    .meta{
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: var(--line);
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-      color:var(--fg70);
-      font-size:13px;
-    }
-    .meta .k{
-      font-family:var(--mono);
-      font-size:12px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color:var(--fg40);
-      margin-bottom: 2px;
-    }
-
-    main{ min-width:0; }
-
-    /* Reveal system */
-    .reveal{
-      opacity: 0;
-      transform: translateY(14px);
-      filter: blur(0px);
-      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
-      will-change: opacity, transform;
-    }
-    .reveal.in{
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .stagger > *{
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
-      will-change: opacity, transform;
-    }
-    .stagger.in > *{
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-
-    section[id] { scroll-margin-top: 18px; }
-
-
-    /* Stagger timing via CSS variables set in JS */
-    .stagger > *{
-      transition-delay: var(--d, 0ms);
-    }
-
-    .hero{
-      padding: 10px 0 26px;
-      border-bottom: var(--line);
-      margin-bottom: 22px;
-    }
-    h1{
-      font-family:var(--serif);
-      font-weight:600;
-      font-size:var(--h1);
-      letter-spacing:var(--ls);
-      line-height:1.02;
-      margin:0 0 12px;
-    }
-    .lede{
-      margin:0;
-      font-size:18px;
-      color:var(--fg85);
-      max-width: 76ch;
-    }
-    .lede strong{ color:var(--fg); font-weight:600; }
-
-    .section{
-      padding: 24px 0;
-      border-bottom: var(--line);
-    }
-    .kicker{
-      font-family:var(--mono);
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:var(--fg40);
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      margin: 0 0 10px;
-    }
-    .kicker:after{
-      content:"";
-      height:1px;
-      background:var(--fg14);
-      flex:1;
-      transform: translateY(-1px);
-    }
-    h2{
-      margin:0 0 10px;
-      font-size:var(--h2);
-      font-weight:600;
-      letter-spacing:-0.01em;
-    }
-    p{
-      margin:0 0 12px;
-      font-size:var(--p);
-      color:var(--fg70);
-      max-width: 82ch;
-    }
-
-    .twocol{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 10px;
-    }
-    .box{
-      border: 1px solid var(--fg14);
-      border-radius: var(--r);
-      padding: 14px;
-    }
-    .box h3{
-      margin:0 0 10px;
-      font-size:14px;
-      font-weight:600;
-      color:var(--fg);
-    }
-    ul{
-      margin:0;
-      padding: 0 0 0 18px;
-      color:var(--fg70);
-    }
-    li{ margin: 8px 0; }
-    li::marker{ color: var(--fg25); }
-
-    .rows{
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .row{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap: 16px;
-      padding: 10px 12px;
-      border: 1px solid var(--fg14);
-      border-radius: 999px;
-      transition: background .15s ease, border-color .15s ease;
-    }
-    .row:hover{
-      background: var(--fg08);
-      border-color: var(--fg25);
-    }
-    .row .l{
-      display:flex;
-      gap: 12px;
-      align-items:baseline;
-      min-width:0;
-    }
-    .code{
-      font-family:var(--mono);
-      font-size:12px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color:var(--fg40);
-      width: 86px;
-      flex: 0 0 auto;
-    }
-    .txt{
-      color:var(--fg70);
-      font-size:14px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .row:hover .txt{ color:var(--fg); }
-    .hint{
-      font-family:var(--mono);
-      font-size:12px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color:var(--fg40);
-      white-space:nowrap;
-    }
-
-    footer{
-      border-top: var(--line);
-      padding: 18px 0 40px;
-      color:var(--fg40);
-      font-size:13px;
-      margin-top: 24px;
-    }
-    .foot{
-      display:flex;
-      justify-content:space-between;
-      gap: 12px;
-      flex-wrap:wrap;
-    }
-    .mono{
-      font-family:var(--mono);
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      font-size:12px;
-      color:var(--fg40);
-    }
-
-    /* Minimal loader */
-    .loader{
-      position:fixed;
-      inset:0;
-      background:var(--bg);
-      display:grid;
-      place-items:center;
-      z-index: 50;
-      pointer-events:none;
-      opacity:1;
-      transition: opacity .30s ease;
-    }
-    .loader.hide{ opacity:0; }
-    .loader .rule{
-      width:min(420px, 74vw);
-      height:1px;
-      background:var(--fg14);
-      position:relative;
-      overflow:hidden;
-    }
-    .loader .rule:after{
-      content:"";
-      position:absolute;
-      inset:0;
-      width: 42%;
-      background:var(--fg70);
-      transform: translateX(-120%);
-      animation: sweep .65s var(--ease) forwards;
-    }
-
-    /* Give the nav a left gutter */
-.nav{ padding-left: 18px; }
-
-/* Move links right a touch so the gutter is real space */
-.nav a{ padding: 9px 10px 9px 16px; }
-
-/* Put the progress line in the gutter, and stop before meta */
-.progress{
-  left: 10px;     /* was ~12px */
-  top: 56px;      /* push down a touch from the title */
-  bottom: 130px;  /* stop above meta block (tweak if needed) */
-  width: 1px;     /* cleaner */
-  background: var(--fg08);
-}
-
-.progress > i{
-  background: var(--fg40);
-}
-
-
-    @keyframes sweep{ to{ transform: translateX(260%); } }
-
-    @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; gap: 18px; }
-      aside{ position:static; }
-      .twocol{ grid-template-columns: 1fr; }
-      .code{ width: 74px; }
-      .progress{ display:none; }
-    }
-
-    :focus-visible{
-      outline: 2px solid var(--fg70);
-      outline-offset: 3px;
-      border-radius: 12px;
-    }
-    html{ scroll-behavior:smooth; }
-
-    @media (prefers-reduced-motion: reduce){
-      *{ transition:none !important; animation:none !important; scroll-behavior:auto !important; }
-      .loader{ display:none; }
-      .reveal, .stagger > *{ opacity:1 !important; transform:none !important; }
-    }
-
-
-.thumbstrip{
-  margin-top: 12px;
-  margin-bottom: 14px;
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.thumbitem{
-  margin:0;
-  border: 1px solid var(--fg14);
-  border-radius: var(--r);
-  overflow:hidden;
-  background: rgba(234,234,234,.03);
-}
-
-.thumbitem img{
-  width:100%;
-  height: 128px;
-  object-fit: cover;
-  display:block;
-  filter: saturate(.9) contrast(1.02);
-}
-
-.thumbitem figcaption{
-  padding: 8px 10px;
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: .10em;
-  text-transform: uppercase;
-  color: var(--fg40);
-  border-top: 1px solid var(--fg14);
-}
-
-@media (max-width: 980px){
-  .thumbitem img{ height: 120px; }
-}
-@media (max-width: 560px){
-  .thumbstrip{ grid-template-columns: 1fr; }
-  .thumbitem img{ height: 160px; }
-}
-
-/* Signals: keep the credentials box visually calm */
-#c05 .box{ background: rgba(234,234,234,.03); }
-#c05 .box h3{ margin-bottom: 8px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tumunu Collective — cross-disciplinary work between Wellington and Rarotonga. Carpentry (NZ LBP), software tooling, teaching, performance, market trading, and project management.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://tumunu.com/">
+    <meta property="og:title" content="Tumunu Collective">
+    <meta property="og:description" content="Cross-disciplinary collective between Wellington and Rarotonga. Named accountability, professional standards, unconventional structure.">
+    <meta property="og:site_name" content="Tumunu Collective">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tumunu.com/">
+    <title>Tumunu Collective</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f8f9fa; color:#212529; line-height:1.6; }
+        header { background: linear-gradient(to right, #1a3c5e, #0d47a1); color:white; padding:50px 20px; text-align:center; }
+        header h1 { margin:0; font-size:2.8rem; }
+        header p { font-size:1.3rem; max-width:600px; margin:15px auto 0; opacity:0.9; }
+        .tagline { font-size:1.1rem; opacity:0.85; margin-top:6px; }
+        section { max-width:900px; margin:40px auto; padding:0 20px; }
+        h2 { font-size:1.9rem; color:#0d47a1; border-bottom:2px solid #e9ecef; padding-bottom:10px; margin-bottom:25px; }
+        .members { display:grid; gap:25px; }
+        .member { background:white; padding:20px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+        .member h3 { margin:0 0 10px; font-size:1.6rem; color:#1a3c5e; }
+        .anchor-note { font-style:italic; color:#555; font-size:0.95rem; margin-bottom:10px; display:block; }
+        ul { padding:0; list-style:none; }
+        ul li { margin:10px 0; }
+        ul.work li:before { content:"→ "; color:#0d47a1; margin-right:8px; }
+        footer { background:#1a3c5e; color:#ced4da; text-align:center; padding:30px 20px; font-size:0.95rem; }
+        a { color:#4dabf7; text-decoration:none; }
+        a:hover { text-decoration:underline; }
+        .skip-link { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+        .skip-link:focus { left:16px; top:16px; width:auto; height:auto; padding:10px 12px; background:#fff; color:#000; z-index:9999; }
+        @media (max-width:600px) { header h1 { font-size:2.2rem; } header p { font-size:1.1rem; } }
+    </style>
 </head>
-
 <body>
-  <div class="loader" id="loader" aria-hidden="true">
-    <div class="rule"></div>
-  </div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-<header>
-  <div class="wrap">
-    <div class="top">
-      <div class="id">
-        <div class="name">Tumunu</div>
-        <div class="tag">Kia orana. I'm Taratoa, I built stuff. Wellington · BP158180</div>
-      </div>
-      <div class="toplinks">
-        <a class="chip" href="#c05">Signals</a>
-        <a class="chip" href="https://www.linkedin.com/in/taratoa-pokotea-b43b81321/" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a class="chip" href="https://github.com/tumunu" target="_blank" rel="noreferrer">GitHub</a>
-      </div>
-    </div>
-  </div>
-</header>
+    <header>
+        <h1>Tumunu Collective</h1>
+        <p>A cross-disciplinary collective — Wellington and Rarotonga.</p>
+        <p class="tagline">Carpentry (NZ LBP), software tooling, teaching, performance, market trading, project management. Get it done properly, no bullshit.</p>
+    </header>
 
-
-  <div class="wrap">
-    <div class="grid">
-      <aside>
-        <div class="nav" aria-label="Chapters">
-          <h3>Navigate</h3>
-
-          <div class="progress" aria-hidden="true"><i id="pfill"></i></div>
-
-          <ul id="nav">
-            <li><a href="#c01"><span class="n">01</span><span class="t">Start</span></a></li>
-            <li><a href="#c02"><span class="n">02</span><span class="t">Built work</span></a></li>
-            <li><a href="#c03"><span class="n">03</span><span class="t">Learning</span></a></li>
-            <li><a href="#c04"><span class="n">04</span><span class="t">Systems</span></a></li>
-            <li><a href="#c05"><span class="n">05</span><span class="t">Signals</span></a></li>
-          </ul>
-
-          <div class="meta">
-            <div>
-              <div class="k">LBP</div>
-              <div>Carpentry · BP158180</div>
+    <main id="main">
+        <section>
+            <h2>Core People</h2>
+            <div class="members">
+                <div class="member">
+                    <h3>Core Builder / Multi-Skilled</h3>
+                    <span class="anchor-note">Primary anchor</span>
+                    <p>NZ LBP carpentry, software tooling (forensic acquisition CLI, bootable forensic environments, AI governance tooling), teaching (rubrics/skill transfer). Wellington.</p>
+                </div>
+                <div class="member">
+                    <h3>Performance Artist</h3>
+                    <p>Live performance and community/cultural events. Creative direction when needed.</p>
+                </div>
+                <div class="member">
+                    <h3>Market Trader</h3>
+                    <p>Punanga Nui Market stall, Rarotonga. Local produce/crafts, direct sales, island relationships.</p>
+                </div>
+                <div class="member">
+                    <h3>Senior Project Manager</h3>
+                    <p>Coordination, timelines, budgets, risk. Keeps multi-skill projects aligned.</p>
+                </div>
             </div>
-            <div>
-              <div class="k">Base</div>
-              <div>Wellington region · remote by arrangement</div>
-            </div>
-          </div>
-        </div>
-      </aside>
+        </section>
 
-      <main>
- <!-- HERO -->
-<section class="hero reveal" id="c01" data-title="Start">
-  <h1>Record of work</h1>
-  <p class="lede">
-    Signals at the end if you want to verify anything.
-  </p>
-</section>
+        <section>
+            <h2>How We Work</h2>
+            <ul class="work">
+                <li>Named accountability per project — no collective fog.</li>
+                <li>Scope first, commitment second.</li>
+                <li>Credentials, repos, photos, references available.</li>
+                <li>Contracting party is named per project (individual or entity, as appropriate).</li>
+                <li>Only what we can deliver professionally.</li>
+            </ul>
+        </section>
 
+        <section>
+            <h2>Verify / Contact</h2>
+            <ul>
+                <li><strong>LBP:</strong> BP158180 <a href="https://kete-lbp.mbie.govt.nz/advanced-building-practitioner-search/" target="_blank" rel="noopener noreferrer">(search public register NZ)</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/tumunu" target="_blank" rel="noopener noreferrer">github.com/tumunu</a> — forensic tools & templates</li>
+                <li><strong>Google:</strong> Search “Tumunu Collective Wellington”</li>
+                <li><strong>Instagram:</strong> <a href="https://www.instagram.com/ivebuilt/" target="_blank" rel="noopener noreferrer">@ivebuilt</a> — work photos & notes</li>
+                <li><strong>Email:</strong> <a href="mailto:info@tumunu.com">info@tumunu.com</a> (no unsolicited sales/agencies — pitches to services: don't)</li>
+            </ul>
+            <p>Selective: build/tech/coordination/creative needs only.</p>
+            <p><a href="/about.html">Full profile (credentials & details)</a></p>
+        </section>
+    </main>
 
-
-
-<!-- CHAPTER 02 -->
-<section class="section reveal" id="c02" data-title="Built work">
-  <div class="kicker">02</div>
-  <h2>Built work</h2>
-  <p>
-    I am a carpenter. A tidy site begets tidy work.
-  </p>
-
-  <div class="thumbstrip stagger" aria-label="Built work receipts">
-  <figure class="thumbitem">
-    <img src="img/2025-06-09-004.jpg" alt="Finishing carpentry work" loading="lazy" />
-    <figcaption>Detail</figcaption>
-  </figure>
-
-  <figure class="thumbitem">
-    <img src="img/2025-06-09-001.jpg" alt="Creative setups to achieve workshop quality" loading="lazy" />
-    <figcaption>Setup</figcaption>
-  </figure>
-
-  <figure class="thumbitem">
-    <img src="img/2025-06-09-003.jpg" alt="New flooring and trim" loading="lazy" />
-    <figcaption>Remedial</figcaption>
-  </figure>
-</div>
-
-  <div class="twocol">
-    <div class="box reveal">
-      <h3>My defaults</h3>
-      <ul class="stagger">
-        <li>If it is unclear, it is not ready.</li>
-        <li>Handover notes are part of the job.</li>
-      </ul>
-    </div>
-    <div class="box reveal">
-      <h3>Non-negotiables</h3>
-      <ul class="stagger">
-        <li>Safety that's practical, not performative.</li>
-        <li>Quality checks that prevent rework.</li>
-        <li>Clean site, clean finish.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CHAPTER 03 -->
-<section class="section reveal" id="c03" data-title="Learning">
-  <div class="kicker">03</div>
-  <h2>Learning</h2>
-  <p>If people are guessing, the teaching failed.</p>
-
-  <div class="twocol">
-    <div class="box reveal">
-      <h3>What I build in learning</h3>
-      <ul class="stagger">
-        <li>Examples that show “good” without a lecture.</li>
-        <li>Rubrics and checklists that survive moderation.</li>
-        <li>Evidence guides that match the real work.</li>
-      </ul>
-    </div>
-    <div class="box reveal">
-      <h3>My bias</h3>
-      <ul class="stagger">
-        <li>Plain language over educational jargon.</li>
-        <li>One page is better than five, if it is the right page.</li>
-        <li>Progress visibility beats vague encouragement.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CHAPTER 04 -->
-<section class="section reveal" id="c04" data-title="Systems">
-  <div class="kicker">04</div>
-  <h2>Systems</h2>
-  <p>I build tools that save time. If it doesn't, it's gone.</p>
-
-  <div class="thumbstrip stagger" aria-label="Built work receipts">
-  <figure class="thumbitem">
-    <img src="img/2025-06-09-005.jpg" alt="Assessor management app." loading="lazy" />
-    <figcaption>Site Visit</figcaption>
-  </figure>
-
-  <figure class="thumbitem">
-    <img src="img/2025-06-09-006.png" alt="The only game where you learn whānau pū, create words, and build sentences with a swipe." loading="lazy" />
-    <figcaption>He Kupu i Kore</figcaption>
-  </figure>
-  </div>
-
-  <div class="twocol">
-    <div class="box reveal">
-      <h3>Some recent things built</h3>
-      <ul class="stagger">
-        <li>An Android field app for on-site updates and progress visibility.</li>
-        <li>Browser tools for evidence export, scheduling, and diff checks.</li>
-        <li>Templates for intake, triage, and handover.</li>
-      </ul>
-    </div>
-    <div class="box reveal">
-      <h3>My rules</h3>
-      <ul class="stagger">
-        <li>Simple beats clever.</li>
-        <li>Documentation is part of delivery.</li>
-        <li>Tools should be maintainable by the next person.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-
-<!-- CHAPTER 05 -->
-<section class="section reveal" id="c05" data-title="Signals and contact">
-  <div class="kicker">05</div>
-  <h2>Signals</h2>
-  <p>
-    If you want to verify anything, these are the public anchors.
-  </p>
-
-  <div class="rows stagger" role="list">
-    <a class="row" role="listitem" href="https://kete-lbp.mbie.govt.nz/advanced-building-practitioner-search/" target="_blank" rel="noreferrer">
-      <div class="l"><span class="code">LBP</span><span class="txt">BP158180</span></div>
-      <span class="hint">external</span>
-    </a>
-    <a class="row" role="listitem" href="https://github.com/tumunu" target="_blank" rel="noreferrer">
-      <div class="l"><span class="code">GITHUB</span><span class="txt">Tools, templates, notes</span></div>
-      <span class="hint">external</span>
-    </a>
-    <a class="row" role="listitem" href="https://g.page/cleave-nz" target="_blank" rel="noreferrer">
-      <div class="l"><span class="code">MAPS</span><span class="txt">Google Business listing</span></div>
-      <span class="hint">external</span>
-    </a>
-    <a class="row" role="listitem" href="https://www.instagram.com/ivebuilt/" target="_blank" rel="noreferrer">
-      <div class="l"><span class="code">INSTA</span><span class="txt">Work photos and short notes</span></div>
-      <span class="hint">external</span>
-    </a>
-  </div>
-
-  <div class="box reveal" style="margin-top:12px;">
-  <h3>Credentials</h3>
-  <ul class="stagger">
-    <li>Licensed Building Practitioner (Carpentry)</li>
-    <li>Certificate in Carpenter</li>
-    <li>Diploma in Construction Management</li>
-    <li>Certificate in Project Management</li>
-    <li>Certificate in Information Technology</li>
-    <li>Certificate in Assessment Practice</li>
-  </ul>
-</div>
-
-<p style="margin-top:14px; color:rgba(234,234,234,.55); font-size:13px;">
-  Best contact is via Google Business.
-</p>
-</section>
-
-        <footer>
-          <div class="foot">
-            <div class="mono">Tumunu</div>
-            <div>LBP (Carpentry) BP158180</div>
-            <div class="mono">Updated <span id="d"></span></div>
-          </div>
-        </footer>
-      </main>
-    </div>
-  </div>
-
-<script>
-  (function(){
-    // Loader
-    const loader = document.getElementById('loader');
-    if (loader){
-      requestAnimationFrame(() => loader.classList.add('hide'));
-      setTimeout(() => { try { loader.remove(); } catch(e){} }, 520);
-    }
-
-    // Date (NZ locale)
-    const dEl = document.getElementById('d');
-    if (dEl){
-      const d = new Date();
-      dEl.textContent =
-        new Intl.DateTimeFormat('en-NZ', { year:'numeric', month:'short', day:'2-digit' }).format(d);
-    }
-
-    const reduceMotion = window.matchMedia &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // Stagger delays
-    document.querySelectorAll('.stagger').forEach((group) => {
-      Array.from(group.children).forEach((el, i) => {
-        el.style.setProperty('--d', `${Math.min(i, 12) * 60}ms`);
-      });
-    });
-
-    // Reveal on scroll (keep IntersectionObserver here; it's fine for reveals)
-    if (!reduceMotion && 'IntersectionObserver' in window){
-      const revealEls = Array.from(document.querySelectorAll('.reveal, .stagger'));
-      const ro = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return;
-          e.target.classList.add('in');
-          ro.unobserve(e.target);
-        });
-      }, { rootMargin: '-12% 0px -18% 0px', threshold: 0.12 });
-
-      revealEls.forEach(el => ro.observe(el));
-    } else {
-      document.querySelectorAll('.reveal, .stagger').forEach(el => el.classList.add('in'));
-    }
-
-    // --- Scroll nav alignment (deterministic, matches what you see) ---
-    const navItems = Array.from(document.querySelectorAll('#nav li'));
-    const navLinks = Array.from(document.querySelectorAll('#nav a'));
-    const pfill = document.getElementById('pfill');
-
-    const sections = navLinks
-      .map(a => document.querySelector(a.getAttribute('href')))
-      .filter(Boolean);
-
-    function setActive(index){
-      navItems.forEach(li => li.classList.remove('active'));
-      if (index >= 0 && navItems[index]) navItems[index].classList.add('active');
-    }
-
-    // Smooth scroll with a small top offset (avoids hugging top edge)
-    navLinks.forEach(a => {
-      a.addEventListener('click', (e) => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (!target) return;
-        e.preventDefault();
-
-        const y = target.getBoundingClientRect().top + window.pageYOffset - 12;
-        window.scrollTo({ top: y, behavior: reduceMotion ? 'auto' : 'smooth' });
-        history.replaceState(null, '', a.getAttribute('href'));
-      });
-    });
-
-function updateActiveSection(){
-  const doc = document.documentElement;
-
-  // Hard guardrails (optional but makes edges feel correct)
-  if (window.pageYOffset <= 8){
-    setActive(0);
-    return;
-  }
-  if ((window.pageYOffset + window.innerHeight) >= (doc.scrollHeight - 24)){
-    setActive(sections.length - 1);
-    return;
-  }
-
-  const viewTop = 0;
-  const viewBottom = window.innerHeight;
-
-  let bestIdx = 0;
-  let bestVisible = -1;
-
-  for (let i = 0; i < sections.length; i++){
-    const r = sections[i].getBoundingClientRect();
-
-    // Visible height of this section within viewport
-    const visible = Math.max(0, Math.min(r.bottom, viewBottom) - Math.max(r.top, viewTop));
-
-    if (visible > bestVisible){
-      bestVisible = visible;
-      bestIdx = i;
-    }
-  }
-
-  setActive(bestIdx);
-}
-
-
-
-    function updateScrollProgress(){
-      if (!pfill) return;
-      const doc = document.documentElement;
-      const max = doc.scrollHeight - doc.clientHeight;
-      if (max <= 0) { pfill.style.height = '0%'; return; }
-      const frac = Math.max(0, Math.min(1, doc.scrollTop / max));
-      pfill.style.height = `${frac * 100}%`;
-    }
-
-    function updateAll(){
-      updateActiveSection();
-      updateScrollProgress();
-    }
-
-    let ticking = false;
-    function onScroll(){
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        updateAll();
-        ticking = false;
-      });
-    }
-
-    window.addEventListener('scroll', onScroll, { passive:true });
-    window.addEventListener('resize', onScroll, { passive:true });
-
-    // Initial
-    updateAll();
-  })();
-</script>
-
+    <footer>
+        <p>Wellington • Rarotonga<br>Professional standards. Unconventional structure.</p>
+    </footer>
 </body>
 </html>
