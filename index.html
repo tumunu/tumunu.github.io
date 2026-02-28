@@ -3,24 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tumunu Collective — delivery-focused work between Wellington and Rarotonga.">
+    <meta name="description" content="Tumunu Collective — delivery-focused work between Wellington and Rarotonga. Building, software tooling, project delivery.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://tumunu.com/">
+    <meta property="og:title" content="Tumunu Collective">
+    <meta property="og:description" content="Clear scope. Clean delivery. Professional standards, unconventional structure.">
+    <meta property="og:site_name" content="Tumunu Collective">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tumunu.com/">
+    <meta property="og:image" content="https://tumunu.com/og-image.jpg">
     <title>Tumunu Collective</title>
+    
+    <!-- Premium Fonts (Google Fonts CDN - reliable, fast) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- PREMIUM CSS VARIABLES --- */
+        /* --- PREMIUM DESIGN SYSTEM --- */
         :root {
-            /* Color system */
+            /* Color palette - sophisticated, professional */
             --color-bg: #ffffff;
+            --color-bg-alt: #fafafa;
             --color-text: #0a0a0a;
-            --color-muted: #4a4a4a;
+            --color-text-muted: #4a4a4a;
             --color-primary: #0d47a1;
             --color-primary-dark: #0a357a;
+            --color-primary-light: #1976d2;
+            --color-accent: #c9a961; /* Subtle gold - premium accent */
             --color-border: #e6e6e6;
-            --color-card: #fafafa;
-            --color-accent: #c9a961; /* Subtle gold for premium accent */
+            --color-border-focus: #0d47a1;
+            --color-card: #ffffff;
+            --color-success: #2e7d32;
             
-            /* Typography */
-            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+            /* Typography - fluid, editorial */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'Roboto Mono', monospace;
             --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
             --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
             --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
@@ -28,11 +46,14 @@
             --text-xl: clamp(1.375rem, 1.2rem + 1vw, 1.75rem);
             --text-2xl: clamp(1.75rem, 1.5rem + 1.5vw, 2.5rem);
             --text-3xl: clamp(2.5rem, 2rem + 2.5vw, 3.5rem);
+            --text-display: clamp(3rem, 2.5rem + 3vw, 4.5rem);
             --leading-tight: 1.1;
             --leading-base: 1.6;
             --leading-loose: 1.8;
+            --tracking-tight: -0.02em;
+            --tracking-normal: 0;
             
-            /* Spacing & layout */
+            /* Spacing - intentional rhythm */
             --space-1: 0.25rem;
             --space-2: 0.5rem;
             --space-3: 1rem;
@@ -41,22 +62,54 @@
             --space-6: 3rem;
             --space-7: 4rem;
             --space-8: 6rem;
+            --space-9: 8rem;
             --container: min(90vw, 1200px);
+            
+            /* Borders & radius */
             --radius-sm: 4px;
             --radius-md: 8px;
             --radius-lg: 16px;
+            --radius-xl: 24px;
+            --border-width: 1px;
             
-            /* Motion */
-            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
-            --duration-fast: 150ms;
-            --duration-base: 300ms;
-            
-            /* Shadows */
+            /* Shadows - layered, subtle */
             --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
             --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
             --shadow-lg: 0 12px 32px rgba(0,0,0,0.08);
+            --shadow-xl: 0 24px 64px rgba(0,0,0,0.12);
+            --shadow-inset: inset 0 1px 0 rgba(255,255,255,0.1);
+            
+            /* Motion - purposeful, refined */
+            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+            --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+            --duration-fast: 150ms;
+            --duration-base: 300ms;
+            --duration-slow: 500ms;
+            
+            /* Z-index layers */
+            --z-base: 1;
+            --z-overlay: 10;
+            --z-modal: 100;
+            --z-dropdown: 1000;
         }
-
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg: #0a0a0a;
+                --color-bg-alt: #111111;
+                --color-text: #f5f5f5;
+                --color-text-muted: #a0a0a0;
+                --color-primary: #42a5f5;
+                --color-primary-dark: #1976d2;
+                --color-primary-light: #90caf9;
+                --color-border: #2a2a2a;
+                --color-card: #141414;
+                --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+                --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+                --shadow-lg: 0 12px 32px rgba(0,0,0,0.6);
+            }
+        }
+        
         /* --- RESET & BASE --- */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
@@ -69,12 +122,16 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
+            overflow-x: hidden;
         }
         ::selection { background: var(--color-primary); color: white; }
         a { color: var(--color-primary); text-decoration: none; transition: color var(--duration-fast) var(--ease-out); }
         a:hover { color: var(--color-primary-dark); }
-        img { max-width: 100%; height: auto; display: block; }
-
+        a:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+        img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
+        input, button, textarea, select { font: inherit; }
+        button { cursor: pointer; border: none; background: none; }
+        
         /* --- ACCESSIBILITY --- */
         .skip-link {
             position: absolute; left: -9999px; top: auto;
@@ -85,10 +142,24 @@
             width: auto; height: auto;
             padding: var(--space-2) var(--space-3);
             background: var(--color-text); color: var(--color-bg);
-            z-index: 9999; border-radius: var(--radius-sm);
-            font-weight: 600;
+            z-index: var(--z-modal); border-radius: var(--radius-sm);
+            font-weight: 600; font-size: var(--text-sm);
         }
-
+        [hidden] { display: none !important; }
+        
+        /* --- LAYOUT --- */
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 var(--space-3);
+        }
+        .section {
+            padding: var(--space-7) 0;
+        }
+        @media (min-width: 768px) {
+            .section { padding: var(--space-8) 0; }
+        }
+        
         /* --- HEADER / HERO --- */
         .site-header {
             padding: var(--space-7) var(--space-3) var(--space-6);
@@ -107,22 +178,28 @@
             opacity: 0.6;
         }
         .brand-name {
-            font-size: var(--text-3xl);
+            font-size: var(--text-display);
             font-weight: 800;
-            letter-spacing: -0.03em;
+            letter-spacing: var(--tracking-tight);
             line-height: var(--leading-tight);
             margin-bottom: var(--space-2);
             background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary-dark) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: fadeInUp var(--duration-slow) var(--ease-out);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .brand-tagline {
             font-size: var(--text-lg);
-            color: var(--color-muted);
+            color: var(--color-text-muted);
             max-width: 54ch;
             margin: 0 auto var(--space-3);
             line-height: var(--leading-loose);
+            animation: fadeInUp var(--duration-slow) var(--ease-out) var(--duration-fast) both;
         }
         .brand-location {
             display: inline-flex;
@@ -132,25 +209,18 @@
             font-weight: 500;
             color: var(--color-primary);
             padding: var(--space-1) var(--space-3);
-            background: var(--color-card);
+            background: var(--color-bg-alt);
             border: 1px solid var(--color-border);
             border-radius: var(--radius-md);
+            animation: fadeInUp var(--duration-slow) var(--ease-out) calc(var(--duration-fast) * 2) both;
         }
         .brand-location::before {
             content: "◈";
             color: var(--color-accent);
             font-size: 0.9em;
         }
-
-        /* --- MAIN CONTENT --- */
-        .container {
-            max-width: var(--container);
-            margin: 0 auto;
-            padding: 0 var(--space-3);
-        }
-        main { padding: var(--space-7) 0; }
-
-        /* Hero statement */
+        
+        /* --- HERO STATEMENT --- */
         .hero-statement {
             max-width: 65ch;
             margin: 0 auto var(--space-8);
@@ -158,6 +228,7 @@
             line-height: var(--leading-loose);
             text-align: center;
             color: var(--color-text);
+            animation: fadeInUp var(--duration-slow) var(--ease-out) calc(var(--duration-fast) * 3) both;
         }
         .hero-statement strong {
             color: var(--color-primary-dark);
@@ -165,8 +236,8 @@
             border-bottom: 2px solid var(--color-accent);
             padding-bottom: 2px;
         }
-
-        /* Three-column grid */
+        
+        /* --- THREE-COLUMN GRID --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -178,10 +249,14 @@
             border: 1px solid var(--color-border);
             border-radius: var(--radius-md);
             padding: var(--space-4);
-            transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out);
+            transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
             position: relative;
             overflow: hidden;
+            animation: fadeInUp var(--duration-slow) var(--ease-out) both;
         }
+        .card:nth-child(1) { animation-delay: calc(var(--duration-fast) * 4); }
+        .card:nth-child(2) { animation-delay: calc(var(--duration-fast) * 5); }
+        .card:nth-child(3) { animation-delay: calc(var(--duration-fast) * 6); }
         .card::before {
             content: "";
             position: absolute;
@@ -202,7 +277,7 @@
             font-weight: 700;
             margin-bottom: var(--space-3);
             color: var(--color-primary-dark);
-            letter-spacing: -0.02em;
+            letter-spacing: var(--tracking-tight);
         }
         .card ul {
             list-style: none;
@@ -214,7 +289,7 @@
             padding-left: 22px;
             position: relative;
             font-size: var(--text-sm);
-            color: var(--color-muted);
+            color: var(--color-text-muted);
         }
         .card ul li:before {
             content: "•";
@@ -226,8 +301,8 @@
             top: -2px;
         }
         .card ul.work li:before { content: "→"; color: var(--color-accent); }
-
-        /* Verification list */
+        
+        /* --- VERIFICATION LIST --- */
         .verify-list {
             list-style: none;
             padding: 0;
@@ -248,19 +323,22 @@
         .verify-list a {
             color: var(--color-text);
             border-bottom: 1px dashed var(--color-border);
+            transition: all var(--duration-fast) var(--ease-out);
         }
         .verify-list a:hover {
             border-bottom-style: solid;
             color: var(--color-primary);
+            padding-bottom: 1px;
         }
-
-        /* Contact CTA */
+        
+        /* --- CONTACT CTA --- */
         .contact-cta {
             text-align: center;
             padding: var(--space-6) 0;
             border-top: 1px solid var(--color-border);
             border-bottom: 1px solid var(--color-border);
             margin: var(--space-8) 0;
+            animation: fadeInUp var(--duration-slow) var(--ease-out) calc(var(--duration-fast) * 7) both;
         }
         .contact-cta a.primary {
             display: inline-flex;
@@ -274,6 +352,16 @@
             border-radius: var(--radius-md);
             border: 2px solid var(--color-primary);
             transition: all var(--duration-base) var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-cta a.primary::before {
+            content: "";
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left var(--duration-slow) var(--ease-out);
         }
         .contact-cta a.primary:hover {
             background: var(--color-primary-dark);
@@ -282,27 +370,26 @@
             box-shadow: var(--shadow-md);
             text-decoration: none;
         }
+        .contact-cta a.primary:hover::before { left: 100%; }
         .contact-cta a.primary::after {
             content: "→";
             font-weight: 300;
             opacity: 0.8;
             transition: transform var(--duration-fast) var(--ease-out);
         }
-        .contact-cta a.primary:hover::after {
-            transform: translateX(4px);
-        }
+        .contact-cta a.primary:hover::after { transform: translateX(4px); }
         .contact-note {
             display: block;
             margin-top: var(--space-3);
             font-size: var(--text-sm);
-            color: var(--color-muted);
+            color: var(--color-text-muted);
             font-style: italic;
         }
         .secondary-cta {
             display: inline-block;
             margin-top: var(--space-4);
             font-size: var(--text-sm);
-            color: var(--color-muted);
+            color: var(--color-text-muted);
             border-bottom: 1px solid var(--color-border);
             padding-bottom: 2px;
             transition: all var(--duration-fast) var(--ease-out);
@@ -311,13 +398,13 @@
             color: var(--color-primary);
             border-bottom-color: var(--color-primary);
         }
-
-        /* Footer */
+        
+        /* --- FOOTER --- */
         .site-footer {
             text-align: center;
             padding: var(--space-6) var(--space-3);
             font-size: var(--text-sm);
-            color: var(--color-muted);
+            color: var(--color-text-muted);
             border-top: 1px solid var(--color-border);
         }
         .site-footer::before {
@@ -327,20 +414,27 @@
             background: var(--color-accent);
             margin: 0 auto var(--space-3);
             border-radius: 1px;
+            animation: pulse 2s var(--ease-in-out) infinite;
         }
-
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
         /* --- RESPONSIVE REFINEMENTS --- */
         @media (max-width: 768px) {
             :root {
+                --text-display: clamp(2.5rem, 2.2rem + 1.5vw, 3.2rem);
                 --text-3xl: clamp(2rem, 1.8rem + 1vw, 2.75rem);
                 --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
             }
-            .brand-name { font-size: var(--text-2xl); }
+            .brand-name { font-size: var(--text-3xl); }
             .hero-statement { font-size: var(--text-base); }
             .grid { grid-template-columns: 1fr; }
             .card { padding: var(--space-3); }
+            .contact-cta a.primary { width: 100%; justify-content: center; }
         }
-
+        
         /* --- REDUCED MOTION --- */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -349,6 +443,13 @@
                 transition-duration: 0.01ms !important;
             }
             html { scroll-behavior: auto; }
+        }
+        
+        /* --- PRINT --- */
+        @media print {
+            body { background: white; color: black; }
+            .site-header, .contact-cta, .site-footer { border: none; }
+            a { text-decoration: underline; color: black; }
         }
     </style>
 </head>
@@ -406,9 +507,58 @@
         <div class="contact-cta">
             <a href="mailto:info@tumunu.com" class="primary">info@tumunu.com</a>
             <span class="contact-note">No unsolicited sales or agencies.</span>
-            <a href="/about.html" class="secondary-cta">Full profile / due diligence</a>
+            <a href="#about" class="secondary-cta" onclick="showAbout(); return false;">Full profile / due diligence</a>
         </div>
     </main>
+
+    <!-- About Section (Hidden by default, revealed via JS) -->
+    <section id="about" class="section" hidden>
+        <div class="container">
+            <h2 style="font-size: var(--text-2xl); color: var(--color-primary-dark); margin-bottom: var(--space-4);">Full Profile / Due Diligence</h2>
+            
+            <div style="background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); margin-bottom: var(--space-6);">
+                <p style="font-size: var(--text-base); line-height: var(--leading-loose);">
+                    Tumunu is a small collective that forms <strong>project-specific teams</strong> across Wellington and Rarotonga.<br>
+                    We are not a single large company; we operate through <strong>named individuals/entities per engagement</strong>, stated in writing before work begins.
+                </p>
+            </div>
+            
+            <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-3); color: var(--color-primary-dark);">Team</h3>
+            <div class="grid" style="margin-bottom: var(--space-6);">
+                <div class="card">
+                    <h4 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Core Builder / Multi-Skilled Operator</h4>
+                    <span style="display: block; font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-2);">Wellington</span>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-muted);">NZ LBP carpentry delivery, software tooling for field/forensics-oriented workflows, and practical teaching/transfer. Primary technical and delivery anchor when projects require it.</p>
+                </div>
+                <div class="card">
+                    <h4 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Senior Project Manager</h4>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Large-project coordination: scope, budgets, timelines, risk, stakeholders. Keeps delivery predictable and reduces rework.</p>
+                </div>
+                <div class="card">
+                    <h4 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Performance Artist</h4>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Live performance and community/cultural events. Creative direction and storytelling when a project benefits from it.</p>
+                </div>
+                <div class="card">
+                    <h4 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Market Trader / Vendor</h4>
+                    <span style="display: block; font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-2);">Rarotonga</span>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Punanga Nui Market: produce/crafts, direct sales, local relationships. Island-side logistics and on-the-ground execution.</p>
+                </div>
+            </div>
+            
+            <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-3); color: var(--color-primary-dark);">Governance</h3>
+            <ul class="work" style="margin-bottom: var(--space-6);">
+                <li><strong>Accountability:</strong> Every project has a named lead responsible for delivery and communication.</li>
+                <li><strong>Scope control:</strong> We document scope and constraints before committing. Variations are explicit.</li>
+                <li><strong>Contracting:</strong> The contracting party (individual or entity) is named per project.</li>
+                <li><strong>Verification:</strong> Credentials and evidence are provided on request (where appropriate).</li>
+                <li><strong>Fit:</strong> We decline work that can't be delivered to a professional standard.</li>
+            </ul>
+            
+            <div style="text-align: center; padding-top: var(--space-4); border-top: 1px solid var(--color-border);">
+                <a href="#" onclick="hideAbout(); return false;" class="secondary-cta">← Back to overview</a>
+            </div>
+        </div>
+    </section>
 
     <footer class="site-footer">
         Professional standards, unconventional structure.
@@ -419,7 +569,7 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
+                if (target && !target.hasAttribute('hidden')) {
                     e.preventDefault();
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     target.setAttribute('tabindex', '-1');
@@ -427,6 +577,51 @@
                 }
             });
         });
+        
+        // About section toggle
+        function showAbout() {
+            const about = document.getElementById('about');
+            if (about) {
+                about.hidden = false;
+                about.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Add fade-in animation
+                about.style.opacity = '0';
+                about.style.transform = 'translateY(20px)';
+                about.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                requestAnimationFrame(() => {
+                    about.style.opacity = '1';
+                    about.style.transform = 'translateY(0)';
+                });
+            }
+        }
+        
+        function hideAbout() {
+            const about = document.getElementById('about');
+            if (about) {
+                about.style.opacity = '0';
+                about.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    about.hidden = true;
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 300);
+            }
+        }
+        
+        // Close about section if clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            const about = document.getElementById('about');
+            if (about && !about.hidden && !about.contains(e.target) && !e.target.closest('.secondary-cta')) {
+                // Optional: auto-close on outside click (commented for now)
+                // hideAbout();
+            }
+        });
+        
+        // Performance: lazy-load non-critical animations
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                // Could add additional non-critical enhancements here
+            });
+        }
     </script>
 </body>
 </html>
