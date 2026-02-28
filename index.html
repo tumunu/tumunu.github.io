@@ -3,112 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tumunu Collective — delivery-focused work between Wellington and Rarotonga. Building, software tooling, project delivery.">
-    <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://tumunu.com/">
-    <meta property="og:title" content="Tumunu Collective">
-    <meta property="og:description" content="Delivery-focused work between Wellington and Rarotonga. Clear scope, named responsibility, professional standards.">
-    <meta property="og:site_name" content="Tumunu Collective">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tumunu.com/">
+    <meta name="description" content="Tumunu Collective — delivery-focused work between Wellington and Rarotonga.">
     <title>Tumunu Collective</title>
     <style>
+        /* --- PREMIUM CSS VARIABLES --- */
         :root {
+            /* Color system */
             --color-bg: #ffffff;
-            --color-text: #1a1a1a;
-            --color-muted: #4a5568;
+            --color-text: #0a0a0a;
+            --color-muted: #4a4a4a;
             --color-primary: #0d47a1;
-            --color-primary-dark: #1a3c5e;
-            --color-border: #e2e8f0;
-            --color-card: #f8fafc;
-            --font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 3rem;
-            --spacing-xl: 4rem;
-            --max-width: 1100px;
-            --radius: 6px;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --color-primary-dark: #0a357a;
+            --color-border: #e6e6e6;
+            --color-card: #fafafa;
+            --color-accent: #c9a961; /* Subtle gold for premium accent */
+            
+            /* Typography */
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+            --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.375rem);
+            --text-xl: clamp(1.375rem, 1.2rem + 1vw, 1.75rem);
+            --text-2xl: clamp(1.75rem, 1.5rem + 1.5vw, 2.5rem);
+            --text-3xl: clamp(2.5rem, 2rem + 2.5vw, 3.5rem);
+            --leading-tight: 1.1;
+            --leading-base: 1.6;
+            --leading-loose: 1.8;
+            
+            /* Spacing & layout */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 1rem;
+            --space-4: 1.5rem;
+            --space-5: 2rem;
+            --space-6: 3rem;
+            --space-7: 4rem;
+            --space-8: 6rem;
+            --container: min(90vw, 1200px);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+            
+            /* Motion */
+            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+            --duration-fast: 150ms;
+            --duration-base: 300ms;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.08);
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* --- RESET & BASE --- */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: var(--font-stack);
+            font-family: var(--font-sans);
             background: var(--color-bg);
             color: var(--color-text);
-            line-height: 1.6;
+            font-size: var(--text-base);
+            line-height: var(--leading-base);
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
-        a { color: var(--color-primary); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        ::selection { background: var(--color-primary); color: white; }
+        a { color: var(--color-primary); text-decoration: none; transition: color var(--duration-fast) var(--ease-out); }
+        a:hover { color: var(--color-primary-dark); }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* --- ACCESSIBILITY --- */
         .skip-link {
             position: absolute; left: -9999px; top: auto;
             width: 1px; height: 1px; overflow: hidden;
         }
         .skip-link:focus {
-            left: 16px; top: 16px; width: auto; height: auto;
-            padding: 10px 12px; background: #fff; color: #000;
-            z-index: 9999; border: 2px solid var(--color-primary);
-            border-radius: 4px;
+            left: var(--space-3); top: var(--space-3);
+            width: auto; height: auto;
+            padding: var(--space-2) var(--space-3);
+            background: var(--color-text); color: var(--color-bg);
+            z-index: 9999; border-radius: var(--radius-sm);
+            font-weight: 600;
         }
 
-        /* Header */
-        header {
-            padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg);
+        /* --- HEADER / HERO --- */
+        .site-header {
+            padding: var(--space-7) var(--space-3) var(--space-6);
             text-align: center;
             border-bottom: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
         }
-        header h1 {
-            font-size: 2.2rem;
+        .site-header::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 80%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+            opacity: 0.6;
+        }
+        .brand-name {
+            font-size: var(--text-3xl);
             font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: var(--spacing-xs);
+            letter-spacing: -0.03em;
+            line-height: var(--leading-tight);
+            margin-bottom: var(--space-2);
+            background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        header .tagline {
-            font-size: 1.15rem;
+        .brand-tagline {
+            font-size: var(--text-lg);
             color: var(--color-muted);
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 54ch;
+            margin: 0 auto var(--space-3);
+            line-height: var(--leading-loose);
         }
-        header .location {
-            display: inline-block;
-            margin-top: var(--spacing-sm);
-            font-size: 0.95rem;
-            color: var(--color-primary);
+        .brand-location {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-sm);
             font-weight: 500;
+            color: var(--color-primary);
+            padding: var(--space-1) var(--space-3);
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+        }
+        .brand-location::before {
+            content: "◈";
+            color: var(--color-accent);
+            font-size: 0.9em;
         }
 
-        /* Main layout */
-        main { max-width: var(--max-width); margin: 0 auto; padding: var(--spacing-lg) var(--spacing-md); }
+        /* --- MAIN CONTENT --- */
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 var(--space-3);
+        }
+        main { padding: var(--space-7) 0; }
 
         /* Hero statement */
         .hero-statement {
-            max-width: 700px;
-            margin: 0 auto var(--spacing-xl);
-            font-size: 1.15rem;
-            line-height: 1.7;
+            max-width: 65ch;
+            margin: 0 auto var(--space-8);
+            font-size: var(--text-lg);
+            line-height: var(--leading-loose);
+            text-align: center;
             color: var(--color-text);
         }
-        .hero-statement strong { color: var(--color-primary-dark); }
+        .hero-statement strong {
+            color: var(--color-primary-dark);
+            font-weight: 700;
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 2px;
+        }
 
         /* Three-column grid */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-xl);
+            gap: var(--space-5);
+            margin-bottom: var(--space-8);
         }
         .card {
             background: var(--color-card);
             border: 1px solid var(--color-border);
-            border-radius: var(--radius);
-            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out);
+            position: relative;
+            overflow: hidden;
         }
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            opacity: 0;
+            transition: opacity var(--duration-fast) var(--ease-out);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-primary);
+        }
+        .card:hover::before { opacity: 1; }
         .card h3 {
-            font-size: 1.25rem;
+            font-size: var(--text-xl);
             font-weight: 700;
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: var(--space-3);
             color: var(--color-primary-dark);
+            letter-spacing: -0.02em;
         }
         .card ul {
             list-style: none;
@@ -116,10 +210,11 @@
             margin: 0;
         }
         .card ul li {
-            margin: var(--spacing-xs) 0;
-            padding-left: 18px;
+            margin: var(--space-2) 0;
+            padding-left: 22px;
             position: relative;
-            font-size: 0.95rem;
+            font-size: var(--text-sm);
+            color: var(--color-muted);
         }
         .card ul li:before {
             content: "•";
@@ -127,43 +222,10 @@
             left: 0;
             color: var(--color-primary);
             font-weight: 600;
+            font-size: 1.2em;
+            top: -2px;
         }
-        .card ul.work li:before { content: "→"; }
-
-        /* Contact CTA */
-        .contact-cta {
-            text-align: center;
-            padding: var(--spacing-lg) 0;
-            border-top: 1px solid var(--color-border);
-            border-bottom: 1px solid var(--color-border);
-            margin: var(--spacing-xl) 0;
-        }
-        .contact-cta a {
-            display: inline-block;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--color-primary-dark);
-            padding: var(--spacing-sm) var(--spacing-md);
-            border: 2px solid var(--color-primary);
-            border-radius: var(--radius);
-        }
-        .contact-cta a:hover {
-            background: var(--color-primary);
-            color: white;
-            text-decoration: none;
-        }
-        .contact-note {
-            display: block;
-            margin-top: var(--spacing-sm);
-            font-size: 0.9rem;
-            color: var(--color-muted);
-        }
-        .secondary-cta {
-            display: block;
-            text-align: center;
-            margin-top: var(--spacing-sm);
-            font-size: 0.95rem;
-        }
+        .card ul.work li:before { content: "→"; color: var(--color-accent); }
 
         /* Verification list */
         .verify-list {
@@ -172,39 +234,134 @@
             margin: 0;
         }
         .verify-list li {
-            margin: var(--spacing-xs) 0;
-            font-size: 0.95rem;
+            margin: var(--space-2) 0;
+            font-size: var(--text-sm);
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-2);
         }
-        .verify-list strong { color: var(--color-primary-dark); }
+        .verify-list strong {
+            color: var(--color-primary-dark);
+            font-weight: 600;
+            min-width: 80px;
+        }
+        .verify-list a {
+            color: var(--color-text);
+            border-bottom: 1px dashed var(--color-border);
+        }
+        .verify-list a:hover {
+            border-bottom-style: solid;
+            color: var(--color-primary);
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            text-align: center;
+            padding: var(--space-6) 0;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            margin: var(--space-8) 0;
+        }
+        .contact-cta a.primary {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-lg);
+            font-weight: 700;
+            color: var(--color-bg);
+            background: var(--color-primary);
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--radius-md);
+            border: 2px solid var(--color-primary);
+            transition: all var(--duration-base) var(--ease-out);
+        }
+        .contact-cta a.primary:hover {
+            background: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            text-decoration: none;
+        }
+        .contact-cta a.primary::after {
+            content: "→";
+            font-weight: 300;
+            opacity: 0.8;
+            transition: transform var(--duration-fast) var(--ease-out);
+        }
+        .contact-cta a.primary:hover::after {
+            transform: translateX(4px);
+        }
+        .contact-note {
+            display: block;
+            margin-top: var(--space-3);
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+            font-style: italic;
+        }
+        .secondary-cta {
+            display: inline-block;
+            margin-top: var(--space-4);
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 2px;
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+        .secondary-cta:hover {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
 
         /* Footer */
-        footer {
+        .site-footer {
             text-align: center;
-            padding: var(--spacing-lg) var(--spacing-md);
-            font-size: 0.9rem;
+            padding: var(--space-6) var(--space-3);
+            font-size: var(--text-sm);
             color: var(--color-muted);
             border-top: 1px solid var(--color-border);
         }
+        .site-footer::before {
+            content: "";
+            display: block;
+            width: 40px; height: 2px;
+            background: var(--color-accent);
+            margin: 0 auto var(--space-3);
+            border-radius: 1px;
+        }
 
-        /* Responsive */
+        /* --- RESPONSIVE REFINEMENTS --- */
         @media (max-width: 768px) {
-            header h1 { font-size: 1.8rem; }
-            header .tagline { font-size: 1.05rem; }
-            .hero-statement { font-size: 1.05rem; }
+            :root {
+                --text-3xl: clamp(2rem, 1.8rem + 1vw, 2.75rem);
+                --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+            }
+            .brand-name { font-size: var(--text-2xl); }
+            .hero-statement { font-size: var(--text-base); }
             .grid { grid-template-columns: 1fr; }
+            .card { padding: var(--space-3); }
+        }
+
+        /* --- REDUCED MOTION --- */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            html { scroll-behavior: auto; }
         }
     </style>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header>
-        <h1>Tumunu Collective</h1>
-        <p class="tagline">Delivery-focused work between Wellington and Rarotonga.</p>
-        <span class="location">Wellington • Rarotonga</span>
+    <header class="site-header">
+        <h1 class="brand-name">Tumunu Collective</h1>
+        <p class="brand-tagline">Delivery-focused work between Wellington and Rarotonga.</p>
+        <span class="brand-location">Wellington • Rarotonga</span>
     </header>
 
-    <main id="main">
+    <main id="main" class="container">
         <p class="hero-statement">
             We assemble small, accountable teams to deliver practical outcomes across <strong>building</strong>, <strong>software tooling</strong>, and <strong>project delivery</strong>.<br>
             No big-agency layer. Clear scope, named responsibility, professional standards.
@@ -212,7 +369,7 @@
 
         <div class="grid">
             <!-- What we do -->
-            <div class="card">
+            <article class="card">
                 <h3>What we do</h3>
                 <ul>
                     <li><strong>Building & site work (NZ):</strong> carpentry and delivery support (licensed practitioner available)</li>
@@ -220,10 +377,10 @@
                     <li><strong>Project delivery:</strong> planning, coordination, risk, stakeholder alignment</li>
                     <li><strong>Applied teaching:</strong> simple rubrics, real-world training, handover that sticks</li>
                 </ul>
-            </div>
+            </article>
 
             <!-- How we work -->
-            <div class="card">
+            <article class="card">
                 <h3>How we work</h3>
                 <ul class="work">
                     <li>Named lead for every job (no collective fog)</li>
@@ -232,39 +389,41 @@
                     <li>Contracting party is stated per project (individual or entity as appropriate)</li>
                     <li>We take only what we can deliver well</li>
                 </ul>
-            </div>
+            </article>
 
             <!-- Proof & contact -->
-            <div class="card">
+            <article class="card">
                 <h3>Proof / verification</h3>
                 <ul class="verify-list">
-                    <li><strong>NZ LBP:</strong> BP158180 — <a href="https://kete-lbp.mbie.govt.nz/advanced-building-practitioner-search/" target="_blank" rel="noopener">public register</a></li>
+                    <li><strong>NZ LBP:</strong> <a href="https://kete-lbp.mbie.govt.nz/advanced-building-practitioner-search/" target="_blank" rel="noopener">BP158180</a></li>
                     <li><strong>GitHub:</strong> <a href="https://github.com/tumunu" target="_blank" rel="noopener">github.com/tumunu</a></li>
                     <li><strong>Instagram:</strong> <a href="https://www.instagram.com/ivebuilt/" target="_blank" rel="noopener">@ivebuilt</a></li>
-                    <li><strong>Google:</strong> search "Tumunu Collective Wellington"</li>
+                    <li><strong>Google:</strong> "Tumunu Collective Wellington"</li>
                 </ul>
-            </div>
+            </article>
         </div>
 
         <div class="contact-cta">
-            <a href="mailto:info@tumunu.com">info@tumunu.com</a>
+            <a href="mailto:info@tumunu.com" class="primary">info@tumunu.com</a>
             <span class="contact-note">No unsolicited sales or agencies.</span>
-            <a href="/about.html" class="secondary-cta">Full profile / due diligence →</a>
+            <a href="/about.html" class="secondary-cta">Full profile / due diligence</a>
         </div>
     </main>
 
-    <footer>
-        Wellington • Rarotonga — Professional standards, unconventional structure.
+    <footer class="site-footer">
+        Professional standards, unconventional structure.
     </footer>
 
     <script>
-        // Smooth scroll for anchor links
+        // Smooth scroll + focus management
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     e.preventDefault();
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    target.setAttribute('tabindex', '-1');
+                    target.focus();
                 }
             });
         });
