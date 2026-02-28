@@ -3,38 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tumunu Collective — cross-disciplinary work between Wellington and Rarotonga. Carpentry (NZ LBP), software tooling, teaching, performance, market trading, and project management.">
+    <meta name="description" content="Tumunu Collective — delivery-focused work between Wellington and Rarotonga. Building, software tooling, project delivery.">
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://tumunu.com/">
     <meta property="og:title" content="Tumunu Collective">
-    <meta property="og:description" content="Cross-disciplinary collective between Wellington and Rarotonga. Named accountability, professional standards, unconventional structure.">
+    <meta property="og:description" content="Delivery-focused work between Wellington and Rarotonga. Clear scope, named responsibility, professional standards.">
     <meta property="og:site_name" content="Tumunu Collective">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tumunu.com/">
     <title>Tumunu Collective</title>
     <style>
-        /* --- CSS VARIABLES --- */
         :root {
-            --color-bg: #f8f9fa;
-            --color-text: #212529;
+            --color-bg: #ffffff;
+            --color-text: #1a1a1a;
+            --color-muted: #4a5568;
             --color-primary: #0d47a1;
             --color-primary-dark: #1a3c5e;
-            --color-link: #4dabf7;
-            --color-link-hover: #a5d8ff;
-            --color-border: #e9ecef;
-            --color-card-bg: #ffffff;
+            --color-border: #e2e8f0;
+            --color-card: #f8fafc;
             --font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --spacing-xs: 0.5rem;
             --spacing-sm: 1rem;
             --spacing-md: 2rem;
             --spacing-lg: 3rem;
             --spacing-xl: 4rem;
-            --max-width: 900px;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --max-width: 1100px;
             --radius: 6px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
         }
-
-        /* --- RESET & BASE --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: var(--font-stack);
@@ -43,154 +39,159 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
-        a { color: var(--color-link); text-decoration: none; }
-        a:hover { text-decoration: underline; color: var(--color-link-hover); }
-        img { max-width: 100%; height: auto; }
-
-        /* --- ACCESSIBILITY --- */
+        a { color: var(--color-primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
         .skip-link {
-            position: absolute;
-            left: -9999px;
-            top: auto;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
+            position: absolute; left: -9999px; top: auto;
+            width: 1px; height: 1px; overflow: hidden;
         }
         .skip-link:focus {
-            left: 16px;
-            top: 16px;
-            width: auto;
-            height: auto;
-            padding: 10px 12px;
-            background: #fff;
-            color: #000;
-            z-index: 9999;
+            left: 16px; top: 16px; width: auto; height: auto;
+            padding: 10px 12px; background: #fff; color: #000;
+            z-index: 9999; border: 2px solid var(--color-primary);
             border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
-        /* --- HEADER --- */
+        /* Header */
         header {
-            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
-            color: white;
             padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg);
             text-align: center;
+            border-bottom: 1px solid var(--color-border);
         }
         header h1 {
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             font-weight: 800;
             letter-spacing: -0.5px;
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: var(--spacing-xs);
         }
-        header p {
-            font-size: 1.3rem;
+        header .tagline {
+            font-size: 1.15rem;
+            color: var(--color-muted);
             max-width: 600px;
-            margin: 0 auto var(--spacing-sm);
-            opacity: 0.95;
+            margin: 0 auto;
         }
-        .tagline {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-top: 4px;
-        }
-
-        /* --- SECTIONS --- */
-        section {
-            max-width: var(--max-width);
-            margin: var(--spacing-xl) auto;
-            padding: 0 var(--spacing-md);
-        }
-        h2 {
-            font-size: 1.9rem;
+        header .location {
+            display: inline-block;
+            margin-top: var(--spacing-sm);
+            font-size: 0.95rem;
             color: var(--color-primary);
-            border-bottom: 2px solid var(--color-border);
-            padding-bottom: var(--spacing-sm);
-            margin-bottom: var(--spacing-lg);
-            font-weight: 700;
+            font-weight: 500;
         }
 
-        /* --- TEAM GRID --- */
-        .members {
+        /* Main layout */
+        main { max-width: var(--max-width); margin: 0 auto; padding: var(--spacing-lg) var(--spacing-md); }
+
+        /* Hero statement */
+        .hero-statement {
+            max-width: 700px;
+            margin: 0 auto var(--spacing-xl);
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--color-text);
+        }
+        .hero-statement strong { color: var(--color-primary-dark); }
+
+        /* Three-column grid */
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
         }
-        .member {
-            background: var(--color-card-bg);
-            padding: var(--spacing-md);
+        .card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
             border-radius: var(--radius);
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            padding: var(--spacing-md);
         }
-        .member:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-        }
-        .member h3 {
-            font-size: 1.5rem;
-            color: var(--color-primary-dark);
-            margin-bottom: var(--spacing-sm);
+        .card h3 {
+            font-size: 1.25rem;
             font-weight: 700;
-        }
-        .anchor-note {
-            display: block;
-            font-style: italic;
-            color: #6c757d;
-            font-size: 0.95rem;
             margin-bottom: var(--spacing-sm);
+            color: var(--color-primary-dark);
         }
-        .member p { margin: 0; color: #495057; }
-
-        /* --- WORK LIST --- */
-        ul.work {
+        .card ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
-        ul.work li {
-            margin: var(--spacing-sm) 0;
-            padding-left: 24px;
+        .card ul li {
+            margin: var(--spacing-xs) 0;
+            padding-left: 18px;
             position: relative;
+            font-size: 0.95rem;
         }
-        ul.work li:before {
-            content: "→";
+        .card ul li:before {
+            content: "•";
             position: absolute;
             left: 0;
             color: var(--color-primary);
             font-weight: 600;
         }
+        .card ul.work li:before { content: "→"; }
 
-        /* --- CONTACT / VERIFY --- */
-        .verify-list {
-            list-style: none;
-            padding: 0;
-        }
-        .verify-list li {
-            margin: var(--spacing-sm) 0;
-            font-size: 1.05rem;
-        }
-        .verify-list strong { color: var(--color-primary-dark); }
-
-        /* --- FOOTER --- */
-        footer {
-            background: var(--color-primary-dark);
-            color: #ced4da;
+        /* Contact CTA */
+        .contact-cta {
             text-align: center;
-            padding: var(--spacing-lg) var(--spacing-md);
+            padding: var(--spacing-lg) 0;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            margin: var(--spacing-xl) 0;
+        }
+        .contact-cta a {
+            display: inline-block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 2px solid var(--color-primary);
+            border-radius: var(--radius);
+        }
+        .contact-cta a:hover {
+            background: var(--color-primary);
+            color: white;
+            text-decoration: none;
+        }
+        .contact-note {
+            display: block;
+            margin-top: var(--spacing-sm);
+            font-size: 0.9rem;
+            color: var(--color-muted);
+        }
+        .secondary-cta {
+            display: block;
+            text-align: center;
+            margin-top: var(--spacing-sm);
             font-size: 0.95rem;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 600px) {
-            header h1 { font-size: 2.2rem; }
-            header p { font-size: 1.1rem; }
-            h2 { font-size: 1.7rem; }
-            .member { padding: var(--spacing-sm); }
+        /* Verification list */
+        .verify-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .verify-list li {
+            margin: var(--spacing-xs) 0;
+            font-size: 0.95rem;
+        }
+        .verify-list strong { color: var(--color-primary-dark); }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: var(--spacing-lg) var(--spacing-md);
+            font-size: 0.9rem;
+            color: var(--color-muted);
+            border-top: 1px solid var(--color-border);
         }
 
-        /* --- FOCUS STATES --- */
-        a:focus, button:focus {
-            outline: 2px solid var(--color-link);
-            outline-offset: 2px;
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            header .tagline { font-size: 1.05rem; }
+            .hero-statement { font-size: 1.05rem; }
+            .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -199,65 +200,65 @@
 
     <header>
         <h1>Tumunu Collective</h1>
-        <p>A cross-disciplinary collective — Wellington and Rarotonga.</p>
-        <p class="tagline">Carpentry (NZ LBP), software tooling, teaching, performance, market trading, project management. Get it done properly, no bullshit.</p>
+        <p class="tagline">Delivery-focused work between Wellington and Rarotonga.</p>
+        <span class="location">Wellington • Rarotonga</span>
     </header>
 
     <main id="main">
-        <section>
-            <h2>Core People</h2>
-            <div class="members">
-                <div class="member">
-                    <h3>Core Builder / Multi-Skilled</h3>
-                    <span class="anchor-note">Primary anchor</span>
-                    <p>NZ LBP carpentry, software tooling (forensic acquisition CLI, bootable forensic environments, AI governance tooling), teaching (rubrics/skill transfer). Wellington.</p>
-                </div>
-                <div class="member">
-                    <h3>Performance Artist</h3>
-                    <p>Live performance and community/cultural events. Creative direction when needed.</p>
-                </div>
-                <div class="member">
-                    <h3>Market Trader</h3>
-                    <p>Punanga Nui Market stall, Rarotonga. Local produce/crafts, direct sales, island relationships.</p>
-                </div>
-                <div class="member">
-                    <h3>Senior Project Manager</h3>
-                    <p>Coordination, timelines, budgets, risk. Keeps multi-skill projects aligned.</p>
-                </div>
+        <p class="hero-statement">
+            We assemble small, accountable teams to deliver practical outcomes across <strong>building</strong>, <strong>software tooling</strong>, and <strong>project delivery</strong>.<br>
+            No big-agency layer. Clear scope, named responsibility, professional standards.
+        </p>
+
+        <div class="grid">
+            <!-- What we do -->
+            <div class="card">
+                <h3>What we do</h3>
+                <ul>
+                    <li><strong>Building & site work (NZ):</strong> carpentry and delivery support (licensed practitioner available)</li>
+                    <li><strong>Software tooling:</strong> field utilities, governance tooling, forensic-oriented workflows (open repos where possible)</li>
+                    <li><strong>Project delivery:</strong> planning, coordination, risk, stakeholder alignment</li>
+                    <li><strong>Applied teaching:</strong> simple rubrics, real-world training, handover that sticks</li>
+                </ul>
             </div>
-        </section>
 
-        <section>
-            <h2>How We Work</h2>
-            <ul class="work">
-                <li>Named accountability per project — no collective fog.</li>
-                <li>Scope first, commitment second.</li>
-                <li>Credentials, repos, photos, references available.</li>
-                <li>Contracting party is named per project (individual or entity, as appropriate).</li>
-                <li>Only what we can deliver professionally.</li>
-            </ul>
-        </section>
+            <!-- How we work -->
+            <div class="card">
+                <h3>How we work</h3>
+                <ul class="work">
+                    <li>Named lead for every job (no collective fog)</li>
+                    <li>Scope, terms, and constraints agreed before committing</li>
+                    <li>Evidence-first: credentials, repos, photos, references on request</li>
+                    <li>Contracting party is stated per project (individual or entity as appropriate)</li>
+                    <li>We take only what we can deliver well</li>
+                </ul>
+            </div>
 
-        <section>
-            <h2>Verify / Contact</h2>
-            <ul class="verify-list">
-                <li><strong>LBP:</strong> BP158180 <a href="https://kete-lbp.mbie.govt.nz/advanced-building-practitioner-search/" target="_blank" rel="noopener noreferrer">(search public register NZ)</a></li>
-                <li><strong>GitHub:</strong> <a href="https://github.com/tumunu" target="_blank" rel="noopener noreferrer">github.com/tumunu</a> — forensic tools & templates</li>
-                <li><strong>Google:</strong> Search "Tumunu Collective Wellington"</li>
-                <li><strong>Instagram:</strong> <a href="https://www.instagram.com/ivebuilt/" target="_blank" rel="noopener noreferrer">@ivebuilt</a> — work photos & notes</li>
-                <li><strong>Email:</strong> <a href="mailto:info@tumunu.com">info@tumunu.com</a> (no unsolicited sales/agencies — pitches to services: don't)</li>
-            </ul>
-            <p style="margin-top: var(--spacing-sm);">Selective: build/tech/coordination/creative needs only.</p>
-            <p><a href="/about.html">Full profile (credentials & details)</a></p>
-        </section>
+            <!-- Proof & contact -->
+            <div class="card">
+                <h3>Proof / verification</h3>
+                <ul class="verify-list">
+                    <li><strong>NZ LBP:</strong> BP158180 — <a href="https://kete-lbp.mbie.govt.nz/advanced-building-practitioner-search/" target="_blank" rel="noopener">public register</a></li>
+                    <li><strong>GitHub:</strong> <a href="https://github.com/tumunu" target="_blank" rel="noopener">github.com/tumunu</a></li>
+                    <li><strong>Instagram:</strong> <a href="https://www.instagram.com/ivebuilt/" target="_blank" rel="noopener">@ivebuilt</a></li>
+                    <li><strong>Google:</strong> search "Tumunu Collective Wellington"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="contact-cta">
+            <a href="mailto:info@tumunu.com">info@tumunu.com</a>
+            <span class="contact-note">No unsolicited sales or agencies.</span>
+            <a href="/about.html" class="secondary-cta">Full profile / due diligence →</a>
+        </div>
     </main>
 
     <footer>
-        <p>Wellington • Rarotonga<br>Professional standards. Unconventional structure.</p>
+        Wellington • Rarotonga — Professional standards, unconventional structure.
     </footer>
 
-    <!-- Optional: Smooth scroll for anchor links -->
     <script>
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const target = document.querySelector(this.getAttribute('href'));
