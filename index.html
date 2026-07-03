@@ -1,627 +1,297 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tumunu Collective — delivery-focused work between Wellington and Rarotonga. Building, software tooling, project delivery.">
-    <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://tumunu.com/">
-    <meta property="og:title" content="Tumunu Collective">
-    <meta property="og:description" content="Clear scope. Clean delivery. Professional standards, unconventional structure.">
-    <meta property="og:site_name" content="Tumunu Collective">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tumunu.com/">
-    <meta property="og:image" content="https://tumunu.com/og-image.jpg">
-    <title>Tumunu Collective</title>
-    
-    <!-- Premium Fonts (Google Fonts CDN - reliable, fast) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- PREMIUM DESIGN SYSTEM --- */
-        :root {
-            /* Color palette - sophisticated, professional */
-            --color-bg: #ffffff;
-            --color-bg-alt: #fafafa;
-            --color-text: #0a0a0a;
-            --color-text-muted: #4a4a4a;
-            --color-primary: #0d47a1;
-            --color-primary-dark: #0a357a;
-            --color-primary-light: #1976d2;
-            --color-accent: #c9a961; /* Subtle gold - premium accent */
-            --color-border: #e6e6e6;
-            --color-border-focus: #0d47a1;
-            --color-card: #ffffff;
-            --color-success: #2e7d32;
-            
-            /* Typography - fluid, editorial */
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --font-mono: 'Roboto Mono', monospace;
-            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
-            --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-            --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
-            --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.375rem);
-            --text-xl: clamp(1.375rem, 1.2rem + 1vw, 1.75rem);
-            --text-2xl: clamp(1.75rem, 1.5rem + 1.5vw, 2.5rem);
-            --text-3xl: clamp(2.5rem, 2rem + 2.5vw, 3.5rem);
-            --text-display: clamp(3rem, 2.5rem + 3vw, 4.5rem);
-            --leading-tight: 1.1;
-            --leading-base: 1.6;
-            --leading-loose: 1.8;
-            --tracking-tight: -0.02em;
-            --tracking-normal: 0;
-            
-            /* Spacing - intentional rhythm */
-            --space-1: 0.25rem;
-            --space-2: 0.5rem;
-            --space-3: 1rem;
-            --space-4: 1.5rem;
-            --space-5: 2rem;
-            --space-6: 3rem;
-            --space-7: 4rem;
-            --space-8: 6rem;
-            --space-9: 8rem;
-            --container: min(90vw, 1200px);
-            
-            /* Borders & radius */
-            --radius-sm: 4px;
-            --radius-md: 8px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
-            --border-width: 1px;
-            
-            /* Shadows - layered, subtle */
-            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
-            --shadow-lg: 0 12px 32px rgba(0,0,0,0.08);
-            --shadow-xl: 0 24px 64px rgba(0,0,0,0.12);
-            --shadow-inset: inset 0 1px 0 rgba(255,255,255,0.1);
-            
-            /* Motion - purposeful, refined */
-            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
-            --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
-            --duration-fast: 150ms;
-            --duration-base: 300ms;
-            --duration-slow: 500ms;
-            
-            /* Z-index layers */
-            --z-base: 1;
-            --z-overlay: 10;
-            --z-modal: 100;
-            --z-dropdown: 1000;
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --color-bg: #0a0a0a;
-                --color-bg-alt: #111111;
-                --color-text: #f5f5f5;
-                --color-text-muted: #a0a0a0;
-                --color-primary: #42a5f5;
-                --color-primary-dark: #1976d2;
-                --color-primary-light: #90caf9;
-                --color-border: #2a2a2a;
-                --color-card: #141414;
-                --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
-                --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
-                --shadow-lg: 0 12px 32px rgba(0,0,0,0.6);
-            }
-        }
-        
-        /* --- RESET & BASE --- */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: var(--font-sans);
-            background: var(--color-bg);
-            color: var(--color-text);
-            font-size: var(--text-base);
-            line-height: var(--leading-base);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-            overflow-x: hidden;
-        }
-        ::selection { background: var(--color-primary); color: white; }
-        a { color: var(--color-primary); text-decoration: none; transition: color var(--duration-fast) var(--ease-out); }
-        a:hover { color: var(--color-primary-dark); }
-        a:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
-        img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
-        input, button, textarea, select { font: inherit; }
-        button { cursor: pointer; border: none; background: none; }
-        
-        /* --- ACCESSIBILITY --- */
-        .skip-link {
-            position: absolute; left: -9999px; top: auto;
-            width: 1px; height: 1px; overflow: hidden;
-        }
-        .skip-link:focus {
-            left: var(--space-3); top: var(--space-3);
-            width: auto; height: auto;
-            padding: var(--space-2) var(--space-3);
-            background: var(--color-text); color: var(--color-bg);
-            z-index: var(--z-modal); border-radius: var(--radius-sm);
-            font-weight: 600; font-size: var(--text-sm);
-        }
-        [hidden] { display: none !important; }
-        
-        /* --- LAYOUT --- */
-        .container {
-            max-width: var(--container);
-            margin: 0 auto;
-            padding: 0 var(--space-3);
-        }
-        .section {
-            padding: var(--space-7) 0;
-        }
-        @media (min-width: 768px) {
-            .section { padding: var(--space-8) 0; }
-        }
-        
-        /* --- HEADER / HERO --- */
-        .site-header {
-            padding: var(--space-7) var(--space-3) var(--space-6);
-            text-align: center;
-            border-bottom: 1px solid var(--color-border);
-            position: relative;
-            overflow: hidden;
-        }
-        .site-header::after {
-            content: "";
-            position: absolute;
-            bottom: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 80%; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
-            opacity: 0.6;
-        }
-        .brand-name {
-            font-size: var(--text-display);
-            font-weight: 800;
-            letter-spacing: var(--tracking-tight);
-            line-height: var(--leading-tight);
-            margin-bottom: var(--space-2);
-            background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary-dark) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp var(--duration-slow) var(--ease-out);
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .brand-tagline {
-            font-size: var(--text-lg);
-            color: var(--color-text-muted);
-            max-width: 54ch;
-            margin: 0 auto var(--space-3);
-            line-height: var(--leading-loose);
-            animation: fadeInUp var(--duration-slow) var(--ease-out) var(--duration-fast) both;
-        }
-        .brand-location {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            font-size: var(--text-sm);
-            font-weight: 500;
-            color: var(--color-primary);
-            padding: var(--space-1) var(--space-3);
-            background: var(--color-bg-alt);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            animation: fadeInUp var(--duration-slow) var(--ease-out) calc(var(--duration-fast) * 2) both;
-        }
-        .brand-location::before {
-            content: "◈";
-            color: var(--color-accent);
-            font-size: 0.9em;
-        }
-        
-        /* --- HERO STATEMENT --- */
-        .hero-statement {
-            max-width: 65ch;
-            margin: 0 auto var(--space-8);
-            font-size: var(--text-lg);
-            line-height: var(--leading-loose);
-            text-align: center;
-            color: var(--color-text);
-            animation: fadeInUp var(--duration-slow) var(--ease-out) calc(var(--duration-fast) * 3) both;
-        }
-        .hero-statement strong {
-            color: var(--color-primary-dark);
-            font-weight: 700;
-            border-bottom: 2px solid var(--color-accent);
-            padding-bottom: 2px;
-        }
-        
-        /* --- THREE-COLUMN GRID --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-5);
-            margin-bottom: var(--space-8);
-        }
-        .card {
-            background: var(--color-card);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            padding: var(--space-4);
-            transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp var(--duration-slow) var(--ease-out) both;
-        }
-        .card:nth-child(1) { animation-delay: calc(var(--duration-fast) * 4); }
-        .card:nth-child(2) { animation-delay: calc(var(--duration-fast) * 5); }
-        .card:nth-child(3) { animation-delay: calc(var(--duration-fast) * 6); }
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-            opacity: 0;
-            transition: opacity var(--duration-fast) var(--ease-out);
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--color-primary);
-        }
-        .card:hover::before { opacity: 1; }
-        .card h3 {
-            font-size: var(--text-xl);
-            font-weight: 700;
-            margin-bottom: var(--space-3);
-            color: var(--color-primary-dark);
-            letter-spacing: var(--tracking-tight);
-        }
-        .card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .card ul li {
-            margin: var(--space-2) 0;
-            padding-left: 22px;
-            position: relative;
-            font-size: var(--text-sm);
-            color: var(--color-text-muted);
-        }
-        .card ul li:before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--color-primary);
-            font-weight: 600;
-            font-size: 1.2em;
-            top: -2px;
-        }
-        .card ul.work li:before { content: "→"; color: var(--color-accent); }
-        
-        /* --- VERIFICATION LIST --- */
-        .verify-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .verify-list li {
-            margin: var(--space-2) 0;
-            font-size: var(--text-sm);
-            display: flex;
-            align-items: baseline;
-            gap: var(--space-2);
-        }
-        .verify-list strong {
-            color: var(--color-primary-dark);
-            font-weight: 600;
-            min-width: 80px;
-        }
-        .verify-list a {
-            color: var(--color-text);
-            border-bottom: 1px dashed var(--color-border);
-            transition: all var(--duration-fast) var(--ease-out);
-        }
-        .verify-list a:hover {
-            border-bottom-style: solid;
-            color: var(--color-primary);
-            padding-bottom: 1px;
-        }
-        
-        /* --- CONTACT CTA --- */
-        .contact-cta {
-            text-align: center;
-            padding: var(--space-6) 0;
-            border-top: 1px solid var(--color-border);
-            border-bottom: 1px solid var(--color-border);
-            margin: var(--space-8) 0;
-            animation: fadeInUp var(--duration-slow) var(--ease-out) calc(var(--duration-fast) * 7) both;
-        }
-        .contact-cta a.primary {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            font-size: var(--text-lg);
-            font-weight: 700;
-            color: var(--color-bg);
-            background: var(--color-primary);
-            padding: var(--space-3) var(--space-5);
-            border-radius: var(--radius-md);
-            border: 2px solid var(--color-primary);
-            transition: all var(--duration-base) var(--ease-out);
-            position: relative;
-            overflow: hidden;
-        }
-        .contact-cta a.primary::before {
-            content: "";
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left var(--duration-slow) var(--ease-out);
-        }
-        .contact-cta a.primary:hover {
-            background: var(--color-primary-dark);
-            border-color: var(--color-primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            text-decoration: none;
-        }
-        .contact-cta a.primary:hover::before { left: 100%; }
-        .contact-cta a.primary::after {
-            content: "→";
-            font-weight: 300;
-            opacity: 0.8;
-            transition: transform var(--duration-fast) var(--ease-out);
-        }
-        .contact-cta a.primary:hover::after { transform: translateX(4px); }
-        .contact-note {
-            display: block;
-            margin-top: var(--space-3);
-            font-size: var(--text-sm);
-            color: var(--color-text-muted);
-            font-style: italic;
-        }
-        .secondary-cta {
-            display: inline-block;
-            margin-top: var(--space-4);
-            font-size: var(--text-sm);
-            color: var(--color-text-muted);
-            border-bottom: 1px solid var(--color-border);
-            padding-bottom: 2px;
-            transition: all var(--duration-fast) var(--ease-out);
-        }
-        .secondary-cta:hover {
-            color: var(--color-primary);
-            border-bottom-color: var(--color-primary);
-        }
-        
-        /* --- FOOTER --- */
-        .site-footer {
-            text-align: center;
-            padding: var(--space-6) var(--space-3);
-            font-size: var(--text-sm);
-            color: var(--color-text-muted);
-            border-top: 1px solid var(--color-border);
-        }
-        .site-footer::before {
-            content: "";
-            display: block;
-            width: 40px; height: 2px;
-            background: var(--color-accent);
-            margin: 0 auto var(--space-3);
-            border-radius: 1px;
-            animation: pulse 2s var(--ease-in-out) infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-        
-        /* --- RESPONSIVE REFINEMENTS --- */
-        @media (max-width: 768px) {
-            :root {
-                --text-display: clamp(2.5rem, 2.2rem + 1.5vw, 3.2rem);
-                --text-3xl: clamp(2rem, 1.8rem + 1vw, 2.75rem);
-                --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
-            }
-            .brand-name { font-size: var(--text-3xl); }
-            .hero-statement { font-size: var(--text-base); }
-            .grid { grid-template-columns: 1fr; }
-            .card { padding: var(--space-3); }
-            .contact-cta a.primary { width: 100%; justify-content: center; }
-        }
-        
-        /* --- REDUCED MOTION --- */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-            html { scroll-behavior: auto; }
-        }
-        
-        /* --- PRINT --- */
-        @media print {
-            body { background: white; color: black; }
-            .site-header, .contact-cta, .site-footer { border: none; }
-            a { text-decoration: underline; color: black; }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tumunu Collective — Six trades. One circle.</title>
+<meta name="description" content="Tumunu Collective — a six-person collective working between Wellington and Rarotonga. Building, AI &amp; software, digital delivery, fashion, craft, and inclusive arts education. Named lead for every job.">
+<link rel="canonical" href="https://tumunu.com/">
+<meta property="og:title" content="Tumunu Collective">
+<meta property="og:description" content="Six trades. One circle. Named lead for every job. Wellington ↔ Rarotonga.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tumunu.com/">
+<meta property="og:site_name" content="Tumunu Collective">
+<meta property="og:image" content="https://tumunu.com/og-image.jpg">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F6F2;      /* sea-glass */
+    --ink:#14251F;        /* palm ink */
+    --lagoon:#0F7C74;     /* working colour */
+    --hibiscus:#D5484F;   /* one hot accent, used sparingly */
+    --husk:#8A6A45;       /* captions, hairlines */
+    --line:rgba(20,37,31,.18);
+    --max:68rem;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:"Atkinson Hyperlegible",system-ui,sans-serif;
+    font-size:1.0625rem;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--lagoon);text-underline-offset:3px}
+  a:hover{color:var(--hibiscus)}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--hibiscus);outline-offset:3px;border-radius:2px}
+  .skip{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--paper);padding:.5rem 1rem;z-index:10}
+  .skip:focus{left:.5rem;top:.5rem}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}
+
+  /* ---------- header ---------- */
+  header{border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;gap:1rem;flex-wrap:wrap}
+  .mark{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink)}
+  .mark svg{flex:none}
+  .mark b{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:.01em}
+  .loc{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--husk);letter-spacing:.06em}
+  nav a{margin-left:1.1rem;font-size:.95rem;text-decoration:none;color:var(--ink)}
+  nav a:hover{color:var(--hibiscus)}
+  @media(max-width:640px){nav{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:4.5rem 0 3.5rem;display:grid;grid-template-columns:1.4fr 1fr;gap:3rem;align-items:center}
+  @media(max-width:820px){.hero{grid-template-columns:1fr;padding:3rem 0 2.5rem}}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lagoon)}
+  h1{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+    font-size:clamp(2.6rem,7vw,4.6rem);line-height:1.02;
+    letter-spacing:-.015em;margin:.6rem 0 1.2rem;
+  }
+  h1 .turn{color:var(--lagoon)}
+  .lede{font-size:1.15rem;max-width:34rem}
+  .lede em{font-style:normal;border-bottom:2px solid var(--hibiscus)}
+  .hero-note{margin-top:1.4rem;font-size:.95rem;color:var(--husk);max-width:34rem}
+
+  /* the circle — signature element */
+  .ring{width:min(320px,80vw);margin:0 auto}
+  .ring svg{width:100%;height:auto;display:block}
+  .node{fill:var(--paper);stroke:var(--ink);stroke-width:2.5;transition:fill .2s}
+  .ring text{font-family:"IBM Plex Mono",monospace;font-size:8.5px;fill:var(--ink);letter-spacing:.05em}
+  .ring .vessel{fill:none;stroke:var(--husk);stroke-width:1.5;stroke-dasharray:4 5}
+  .node-g{cursor:default}
+  .node-g:hover .node{fill:var(--hibiscus)}
+
+  /* ---------- sections ---------- */
+  section{padding:3.5rem 0;border-top:1px solid var(--line)}
+  h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(1.6rem,3.4vw,2.2rem);letter-spacing:-.01em;margin-bottom:.4rem}
+  .sub{color:var(--husk);margin-bottom:2rem;max-width:38rem}
+
+  /* what we do */
+  .lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+  .line-card{background:var(--paper);padding:1.5rem 1.4rem}
+  .line-card h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.15rem;margin-bottom:.5rem}
+  .line-card p{font-size:.95rem}
+  .line-tag{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lagoon);display:block;margin-bottom:.6rem}
+
+  /* circle / members */
+  .members{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1.4rem}
+  .member{border:1px solid var(--line);padding:1.4rem;background:#fff9}
+  .member h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.05rem}
+  .member .role{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--husk);display:block;margin:.15rem 0 .7rem}
+  .member p{font-size:.93rem}
+  .member .cred{margin-top:.7rem;font-family:"IBM Plex Mono",monospace;font-size:.75rem;color:var(--lagoon)}
+
+  /* how we work */
+  .rules{list-style:none;max-width:44rem}
+  .rules li{padding:.9rem 0;border-bottom:1px dashed var(--line);display:flex;gap:.9rem;align-items:baseline}
+  .rules li::before{content:"●";color:var(--hibiscus);font-size:.6rem;flex:none;transform:translateY(-2px)}
+
+  /* proof */
+  .proof{font-family:"IBM Plex Mono",monospace;font-size:.88rem}
+  .proof dt{color:var(--husk);text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;margin-top:1.1rem}
+  .proof dd{margin:.15rem 0 0}
+
+  /* contact */
+  .contact{background:var(--ink);color:var(--paper)}
+  .contact h2{color:var(--paper)}
+  .contact a{color:#7FD6CE}
+  .contact a:hover{color:#F2A9AC}
+  .contact .email{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:clamp(1.3rem,3.5vw,2rem);display:inline-block;margin:.8rem 0 1rem;text-decoration:none;border-bottom:2px solid var(--hibiscus)}
+  .contact p.small{font-size:.9rem;opacity:.8;max-width:36rem}
+
+  footer{padding:1.6rem 0;font-family:"IBM Plex Mono",monospace;font-size:.75rem;color:var(--husk);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+</style>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
 
-    <header class="site-header">
-        <h1 class="brand-name">Tumunu Collective</h1>
-        <p class="brand-tagline">Delivery-focused work between Wellington and Rarotonga.</p>
-        <span class="brand-location">Wellington • Rarotonga</span>
-    </header>
+<header>
+  <div class="wrap bar">
+    <a class="mark" href="#top" aria-label="Tumunu Collective home">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+        <circle cx="15" cy="15" r="12" fill="none" stroke="#14251F" stroke-width="2"/>
+        <circle cx="15" cy="3.5" r="2.6" fill="#D5484F"/>
+        <circle cx="25" cy="9.5" r="2.2" fill="#14251F"/>
+        <circle cx="25" cy="20.5" r="2.2" fill="#14251F"/>
+        <circle cx="15" cy="26.5" r="2.2" fill="#14251F"/>
+        <circle cx="5" cy="20.5" r="2.2" fill="#14251F"/>
+        <circle cx="5" cy="9.5" r="2.2" fill="#14251F"/>
+      </svg>
+      <b>Tumunu Collective</b>
+    </a>
+    <span class="loc">WLG&nbsp;↔&nbsp;RAR</span>
+    <nav aria-label="Main">
+      <a href="#work">What we do</a>
+      <a href="#circle">The circle</a>
+      <a href="#how">How we work</a>
+      <a href="#proof">Proof</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-    <main id="main" class="container">
-        <p class="hero-statement">
-            We assemble small, accountable teams to deliver practical outcomes across <strong>building</strong>, <strong>software tooling</strong>, and <strong>project delivery</strong>.<br>
-            No big-agency layer. Clear scope, named responsibility, professional standards.
-        </p>
+<main id="main">
+  <!-- HERO -->
+  <div class="wrap hero" id="top">
+    <div>
+      <span class="eyebrow">Wellington ↔ Rarotonga</span>
+      <h1>Six trades.<br>One circle.<br><span class="turn">Each takes a turn.</span></h1>
+      <p class="lede">A <em>tumunu</em> is the hollowed palm the village circle gathers around — everyone contributes, one person serves at a time, and the circle holds them to it. That is how we work: small, accountable teams across <strong>building, AI &amp; software, digital delivery, fashion, craft, and inclusive arts education</strong>.</p>
+      <p class="hero-note">No big-agency layer. Clear scope, named responsibility, professional standards.</p>
+    </div>
+    <div class="ring" role="img" aria-label="Diagram of six practices arranged in a circle: Build, AI and Research, Delivery, Fashion, Craft, Teach">
+      <svg viewBox="0 0 240 240">
+        <circle class="vessel" cx="120" cy="120" r="78"/>
+        <circle cx="120" cy="120" r="16" fill="none" stroke="#14251F" stroke-width="2.5"/>
+        <g class="node-g"><circle class="node" cx="120" cy="34" r="9"/><text x="120" y="18" text-anchor="middle">BUILD</text></g>
+        <g class="node-g"><circle class="node" cx="195" cy="77" r="9"/><text x="197" y="66" text-anchor="middle">AI/RESEARCH</text></g>
+        <g class="node-g"><circle class="node" cx="195" cy="163" r="9"/><text x="197" y="186" text-anchor="middle">DELIVERY</text></g>
+        <g class="node-g"><circle class="node" cx="120" cy="206" r="9"/><text x="120" y="228" text-anchor="middle">FASHION</text></g>
+        <g class="node-g"><circle class="node" cx="45" cy="163" r="9"/><text x="43" y="186" text-anchor="middle">CRAFT</text></g>
+        <g class="node-g"><circle class="node" cx="45" cy="77" r="9"/><text x="43" y="66" text-anchor="middle">TEACH</text></g>
+      </svg>
+    </div>
+  </div>
 
-        <div class="grid">
-            <!-- What we do -->
-            <article class="card">
-                <h3>What we do</h3>
-                <ul>
-                    <li><strong>Building & site work (NZ):</strong> carpentry and delivery support (licensed practitioner available)</li>
-                    <li><strong>Software tooling:</strong> field utilities, governance tooling, forensic-oriented workflows (open repos where possible)</li>
-                    <li><strong>Project delivery:</strong> planning, coordination, risk, stakeholder alignment</li>
-                    <li><strong>Applied teaching:</strong> simple rubrics, real-world training, handover that sticks</li>
-                </ul>
-            </article>
-
-            <!-- How we work -->
-            <article class="card">
-                <h3>How we work</h3>
-                <ul class="work">
-                    <li>Named lead for every job (no collective fog)</li>
-                    <li>Scope, terms, and constraints agreed before committing</li>
-                    <li>Evidence-first: credentials, repos, photos, references on request</li>
-                    <li>Contracting party is stated per project (individual or entity as appropriate)</li>
-                    <li>We take only what we can deliver well</li>
-                </ul>
-            </article>
-
-            <!-- Proof & contact -->
-            <article class="card">
-                <h3>Proof / verification</h3>
-                <ul class="verify-list">
-                    <li><strong>NZ LBP:</strong> <a href="https://kete-lbp.mbie.govt.nz/advanced-building-practitioner-search/" target="_blank" rel="noopener">BP158180</a></li>
-                    <li><strong>GitHub:</strong> <a href="https://github.com/tumunu" target="_blank" rel="noopener">github.com/tumunu</a></li>
-                    <li><strong>Instagram:</strong> <a href="https://www.instagram.com/ivebuilt/" target="_blank" rel="noopener">@ivebuilt</a></li>
-                    <li><strong>Google:</strong> "Tumunu Collective Wellington"</li>
-                </ul>
-            </article>
+  <!-- WHAT WE DO -->
+  <section id="work">
+    <div class="wrap">
+      <h2>What we do</h2>
+      <p class="sub">Four service lines. Every job is quoted, scoped, and led by the member whose trade it is.</p>
+      <div class="lines">
+        <div class="line-card">
+          <span class="line-tag">Build</span>
+          <h3>Building &amp; site work (NZ)</h3>
+          <p>Carpentry, renovations, and delivery support by a qualified NZ carpenter and Licensed Building Practitioner. Restricted building work signed off properly.</p>
         </div>
-
-        <div class="contact-cta">
-            <a href="mailto:info@tumunu.com" class="primary">info@tumunu.com</a>
-            <span class="contact-note">No unsolicited sales or agencies.</span>
-            <a href="#about" class="secondary-cta" onclick="showAbout(); return false;">Full profile / due diligence</a>
+        <div class="line-card">
+          <span class="line-tag">Digital</span>
+          <h3>AI, software &amp; transformation</h3>
+          <p>Applied AI and research-grade analysis, field utilities, governance and forensic-oriented tooling — paired with digital transformation project management that lands change, not decks.</p>
         </div>
-    </main>
-
-    <!-- About Section (Hidden by default, revealed via JS) -->
-    <section id="about" class="section" hidden>
-        <div class="container">
-            <h2 style="font-size: var(--text-2xl); color: var(--color-primary-dark); margin-bottom: var(--space-4);">Full Profile / Due Diligence</h2>
-            
-            <div style="background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); margin-bottom: var(--space-6);">
-                <p style="font-size: var(--text-base); line-height: var(--leading-loose);">
-                    Tumunu is a small collective that forms <strong>project-specific teams</strong> across Wellington and Rarotonga.<br>
-                    We are not a single large company; we operate through <strong>named individuals/entities per engagement</strong>, stated in writing before work begins.
-                </p>
-            </div>
-            
-            <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-3); color: var(--color-primary-dark);">Team</h3>
-            <div class="grid" style="margin-bottom: var(--space-6);">
-                <div class="card">
-                    <h4 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Core Builder / Multi-Skilled Operator</h4>
-                    <span style="display: block; font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-2);">Wellington</span>
-                    <p style="font-size: var(--text-sm); color: var(--color-text-muted);">NZ LBP carpentry delivery, software tooling for field/forensics-oriented workflows, and practical teaching/transfer. Primary technical and delivery anchor when projects require it.</p>
-                </div>
-                <div class="card">
-                    <h4 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Senior Project Manager</h4>
-                    <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Large-project coordination: scope, budgets, timelines, risk, stakeholders. Keeps delivery predictable and reduces rework.</p>
-                </div>
-                <div class="card">
-                    <h4 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Performance Artist</h4>
-                    <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Live performance and community/cultural events. Creative direction and storytelling when a project benefits from it.</p>
-                </div>
-                <div class="card">
-                    <h4 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Market Trader / Vendor</h4>
-                    <span style="display: block; font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-2);">Rarotonga</span>
-                    <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Punanga Nui Market: produce/crafts, direct sales, local relationships. Island-side logistics and on-the-ground execution.</p>
-                </div>
-            </div>
-            
-            <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-3); color: var(--color-primary-dark);">Governance</h3>
-            <ul class="work" style="margin-bottom: var(--space-6);">
-                <li><strong>Accountability:</strong> Every project has a named lead responsible for delivery and communication.</li>
-                <li><strong>Scope control:</strong> We document scope and constraints before committing. Variations are explicit.</li>
-                <li><strong>Contracting:</strong> The contracting party (individual or entity) is named per project.</li>
-                <li><strong>Verification:</strong> Credentials and evidence are provided on request (where appropriate).</li>
-                <li><strong>Fit:</strong> We decline work that can't be delivered to a professional standard.</li>
-            </ul>
-            
-            <div style="text-align: center; padding-top: var(--space-4); border-top: 1px solid var(--color-border);">
-                <a href="#" onclick="hideAbout(); return false;" class="secondary-cta">← Back to overview</a>
-            </div>
+        <div class="line-card">
+          <span class="line-tag">Create</span>
+          <h3>Fashion &amp; craft</h3>
+          <p>Original garments and made-to-order pieces from an emerging designer, alongside handmade craft and commissioned artwork rooted in Pacific making traditions.</p>
         </div>
-    </section>
+        <div class="line-card">
+          <span class="line-tag">Teach</span>
+          <h3>Inclusive arts education</h3>
+          <p>Performing-arts workshops and creative programmes designed for disabled and mixed-ability learners. Simple rubrics, real-world training, handover that sticks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer class="site-footer">
-        Professional standards, unconventional structure.
-    </footer>
+  <!-- THE CIRCLE -->
+  <section id="circle">
+    <div class="wrap">
+      <h2>The circle</h2>
+      <p class="sub">Six members. We name the lead on every job — no collective fog. Individual identities shared on engagement.</p>
+      <div class="members">
+        <article class="member">
+          <h3>The Builder</h3>
+          <span class="role">Carpentry · Site delivery</span>
+          <p>Qualified NZ carpenter and Licensed Building Practitioner. Leads all building and site work.</p>
+          <p class="cred">NZ LBP · BP158180</p>
+        </article>
+        <article class="member">
+          <h3>The Researcher</h3>
+          <span class="role">AI · Software · Analysis</span>
+          <p>Experienced researcher completing a Master of IT specialising in artificial intelligence. Leads AI, tooling, and research work. Open repos where possible.</p>
+          <p class="cred">github.com/tumunu</p>
+        </article>
+        <article class="member">
+          <h3>The Deliverer</h3>
+          <span class="role">Digital transformation · PM</span>
+          <p>Digital transformation project manager. Leads planning, coordination, risk, and stakeholder alignment across every engagement.</p>
+        </article>
+        <article class="member">
+          <h3>The Designer</h3>
+          <span class="role">Fashion</span>
+          <p>Up-and-coming fashion designer. Leads garment design, made-to-order pieces, and seasonal drops.</p>
+        </article>
+        <article class="member">
+          <h3>The Maker</h3>
+          <span class="role">Art &amp; craft</span>
+          <p>Arts and craft expert. Leads handmade goods, commissions, and market production.</p>
+        </article>
+        <article class="member">
+          <h3>The Teacher</h3>
+          <span class="role">Performing arts · Inclusive education</span>
+          <p>Performing-arts graduate with experience teaching disabled learners. Leads workshops, programmes, and community sessions.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Smooth scroll + focus management
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target && !target.hasAttribute('hidden')) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    target.setAttribute('tabindex', '-1');
-                    target.focus();
-                }
-            });
-        });
-        
-        // About section toggle
-        function showAbout() {
-            const about = document.getElementById('about');
-            if (about) {
-                about.hidden = false;
-                about.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // Add fade-in animation
-                about.style.opacity = '0';
-                about.style.transform = 'translateY(20px)';
-                about.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-                requestAnimationFrame(() => {
-                    about.style.opacity = '1';
-                    about.style.transform = 'translateY(0)';
-                });
-            }
-        }
-        
-        function hideAbout() {
-            const about = document.getElementById('about');
-            if (about) {
-                about.style.opacity = '0';
-                about.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    about.hidden = true;
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }, 300);
-            }
-        }
-        
-        // Close about section if clicking outside on mobile
-        document.addEventListener('click', function(e) {
-            const about = document.getElementById('about');
-            if (about && !about.hidden && !about.contains(e.target) && !e.target.closest('.secondary-cta')) {
-                // Optional: auto-close on outside click (commented for now)
-                // hideAbout();
-            }
-        });
-        
-        // Performance: lazy-load non-critical animations
-        if ('requestIdleCallback' in window) {
-            requestIdleCallback(() => {
-                // Could add additional non-critical enhancements here
-            });
-        }
-    </script>
+  <!-- HOW WE WORK -->
+  <section id="how">
+    <div class="wrap">
+      <h2>How we work</h2>
+      <ul class="rules">
+        <li>Named lead for every job — the circle knows who is serving.</li>
+        <li>Scope, terms, and constraints agreed before we commit.</li>
+        <li>Evidence-first: credentials, repos, photos, and references on request.</li>
+        <li>Contracting party stated per project (individual or entity as appropriate).</li>
+        <li>Accessible by default — in our teaching, our tools, and this website.</li>
+        <li>We take only what we can deliver well.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section id="proof">
+    <div class="wrap">
+      <h2>Proof / verification</h2>
+      <p class="sub">Check us before you contact us. We prefer it that way.</p>
+      <dl class="proof">
+        <dt>NZ Licensed Building Practitioner</dt>
+        <dd><a href="https://kete-lbp.mbie.govt.nz/advanced-building-practitioner-search/">BP158180 — verify on the MBIE public register</a></dd>
+        <dt>Code</dt>
+        <dd><a href="https://github.com/tumunu">github.com/tumunu</a></dd>
+        <dt>Work in progress</dt>
+        <dd><a href="https://www.instagram.com/ivebuilt/">instagram.com/ivebuilt</a></dd>
+        <dt>Search</dt>
+        <dd>"Tumunu Collective Wellington"</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Bring us a job</h2>
+      <p>Tell us what you need and where. We reply with the named lead, or we tell you it's not for us.</p>
+      <a class="email" href="mailto:info@tumunu.com">info@tumunu.com</a>
+      <p class="small">No unsolicited sales or agencies. Serious enquiries from Wellington, wider Aotearoa, and the Cook Islands welcome.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+    <span>© Tumunu Collective</span>
+    <span>Professional standards, unconventional structure.</span>
+  </div>
+</footer>
 </body>
 </html>
