@@ -14,7 +14,10 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Join Tumunu Beta — Forensics & Copilot Governance">
   <meta name="twitter:description" content="Early access to Tumunu's forensics toolchain and Copilot governance platform.">
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/tumunu-favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon-180.png">
+  <meta property="og:image" content="https://tumunu.com/og-image.jpg">
   <style>
     :root {
       --bg: #ffffff;
@@ -85,6 +88,8 @@
       box-shadow: var(--shadow);
       text-align: center;
     }
+    .beta-mark { display: block; margin: 0 auto 16px; }
+    @media (prefers-color-scheme: dark) { .beta-mark { content: url(/brand/tumunu-mark-light.svg); } }
     .beta-form h1 {
       font-size: clamp(28px, 5vw, 38px);
       margin: 0 0 10px 0;
@@ -201,6 +206,7 @@
 <body>
 <main class="wrap">
   <div class="beta-form">
+    <img class="beta-mark" src="/brand/tumunu-mark.svg" width="64" height="64" alt="">
     <h1>Join the Tumunu Beta</h1>
     <p>Early access to forensics toolchain and Copilot governance. Limited spots for Q1 2026.</p>
     
