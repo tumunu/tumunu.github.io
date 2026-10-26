@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="tumunu">
+  <title>tumunu</title>
+  <defs>
+    <!-- slight tear on every edge, like cut paper -->
+    <filter id="tear" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.3" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.1" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3.2"/>
+    </filter>
+  </defs>
+
+  <!-- night sky -->
+  <rect width="64" height="64" rx="14" fill="#2B3461"/>
+
+  <!-- moon glow -->
+  <circle cx="45" cy="17" r="10" fill="#FFE0AC" opacity=".35" filter="url(#glow)"/>
+
+  <g filter="url(#tear)">
+    <!-- stars -->
+    <path d="M15 12.4l.55 1.25 1.35.1-1.03.88.33 1.32-1.2-.72-1.2.72.33-1.32-1.03-.88 1.35-.1z" fill="#EFE3C2"/>
+    <path d="M25.5 7.6l.38.85.92.07-.7.6.22.9-.82-.49-.82.49.22-.9-.7-.6.92-.07z" fill="#EFE3C2"/>
+
+    <!-- moon: pale paper core, face, craters -->
+    <circle cx="45" cy="17" r="7.6" fill="#F7F0DD"/>
+    <circle cx="45" cy="17" r="7" fill="#E8D8A9"/>
+    <ellipse cx="43" cy="15" rx="1.9" ry="1.5" fill="#D3BF8A"/>
+    <ellipse cx="47.3" cy="19.2" rx="2.2" ry="1.6" fill="#D3BF8A"/>
+    <ellipse cx="46.6" cy="14.6" rx="1.2" ry="1" fill="#F3EACB"/>
+
+    <!-- island shadow -->
+    <ellipse cx="30.6" cy="47.4" rx="24" ry="7.4" fill="#0A0D22" opacity=".35"/>
+
+    <!-- reef ring, lagoon, land -->
+    <ellipse cx="30" cy="46" rx="24.2" ry="7.6" fill="#FFFDF6"/>
+    <ellipse cx="30" cy="46" rx="23.4" ry="7" fill="#ECE5D2"/>
+    <ellipse cx="30" cy="46" rx="21.6" ry="6" fill="#2E7480"/>
+    <ellipse cx="29.6" cy="44.8" rx="18" ry="4.6" fill="#1E3B32" stroke="#4E6B5C" stroke-width=".6"/>
+
+    <!-- peaks, with the Needle on the right -->
+    <path d="M12.6 45 L16.8 41.2 L19.6 38.8 L21.8 39.8 L24.4 34.2 L26.8 35.8 L29.4 29.6 L31.4 32.2 L32.8 31.2 L34 26.6 L35.2 26.8 L36 31.6 L39 34.2 L42.6 38.6 L47 45 Z"
+          fill="#2D4858" stroke="#7F94A0" stroke-width=".7" stroke-linejoin="round"/>
+    <path d="M13.2 46 Q17.6 40.8 21.6 41.6 Q25.6 38.6 29.6 39.8 Q33.8 38.4 38 40.6 Q42.6 40.8 46.4 46 Z"
+          fill="#24443A" stroke="#5E7A6C" stroke-width=".6" stroke-linejoin="round"/>
+    <path d="M12 45.6 Q29.6 51.2 47.4 45.6 Q29.6 47.8 12 45.6 Z" fill="#1C3A30"/>
+
+    <!-- motu -->
+    <ellipse cx="22" cy="49.6" rx="1.7" ry=".7" fill="#22463B" stroke="#D9CDA9" stroke-width=".35"/>
+    <ellipse cx="30" cy="50.7" rx="1.4" ry=".6" fill="#22463B" stroke="#D9CDA9" stroke-width=".35"/>
+    <ellipse cx="38" cy="49.6" rx="1.6" ry=".65" fill="#22463B" stroke="#D9CDA9" stroke-width=".35"/>
+  </g>
+</svg>

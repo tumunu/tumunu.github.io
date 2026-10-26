@@ -1,0 +1,55 @@
+/* tumunu.com — page styles. The scene itself is drawn by scene.js. */
+
+:root {
+  --night: #2B3461;
+  --cream: #F1E8D2;
+  --dusk: #B6B8D2;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { height: 100%; }
+body {
+  background: var(--night);
+  color: var(--cream);
+  font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+footer {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px 24px;
+  padding: 20px clamp(16px, 4vw, 44px) clamp(18px, 3.2vh, 32px);
+}
+h1 {
+  font-family: "Young Serif", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(32px, 4.2vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.005em;
+  color: var(--cream);
+}
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--dusk);
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 560px) {
+  footer { flex-direction: column; align-items: center; text-align: center; }
+  .meta { align-items: center; }
+}
